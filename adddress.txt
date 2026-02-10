@@ -1,0 +1,15 @@
+# AUTHENTICATION_BACKENDS = [
+#     'myapp.backends.CustomBackend',  # Replace 'myapp' with the name of your Django app
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
+
+# REDIS_HOST = "common-redis.redis.cache.windows.net"
+# REDIS_PASSWORD = "8Jv8fZgUOfNVJVgLwpdpy42blBm7Jx4CmAzCaEjtFdk="
+# REDIS_PORT = 6380
+
+# REDIS_HOST = "Vertoxlabs.redis.cache.windows.net"
+# REDIS_PASSWORD = "rdfFU7Y6aUS3Rnr4jubPQo4da6gi0ChSuAzCaAMJZoA="
+# REDIS_PORT = 6380
+
+# REDIS_URL = "redis://:Bariflo@2025@34.100.171.181:6379/1"
+

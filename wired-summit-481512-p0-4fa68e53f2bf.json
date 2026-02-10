@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "wired-summit-481512-p0",
+  "private_key_id": "4fa68e53f2bfaf0a7b4b03bf6f118c459f28bdf6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCWuN7GzMRa0yIF\neWzvX67n+5b6NfFKmoDM5cfUZThHYoTLWN/V08vQEoz5JfDdI57lmF0X4P/qG+2b\nLXLcazf8Ipl//6nhhAEFzrEujPunj9m3mSIyUiKWTRtEIj/AO7g6n5tpfk3veuRK\nhBq5Nyz6meNcPVgfKBzKSIKzzv+v11cFZGN7B74sk/JzTaCWrXBTZHTtnbivU3+A\nTH08VuNI1ELbcdU8fZVaGpxmJPH6Cjqf9lVelIL/x49KbqH5KmEm83sb7KdwC8wp\nzbI+d9N2clfHS6oIWlQ1cRd/RhxjFWHenZOl+bXvB5ZuowzQ6IL+Jx2FnB0MHEJ6\n+3x1L4yzAgMBAAECggEAAlfvhtHKP8tGnSUtL2+ibZL43v0Vul46oHT2LXRBcsKy\nY+MG3/FCGwMe1ATmANo77z/2OpfSAtbaU+5Z+dlk7nOvRVE5V/tQdMGo+ZtRkmJn\nNTaZVIT4arPaN638pcWH8MlohjRji9SyVgJF1Blqhp777QQ7KYjbIb4M4jTWvuop\nHRLnmHHJgwR7X4EOkASTvmybK1Bo2U9DSyeHNmJwGRakXkks8LOE6omk5QcUispE\nqgBQvIsdAyL6Ztx7dCcLzAbiWUO2NoRtwCBANKgQt0gw2b7rbt0CRGnZoayLRYJu\np4moFEMrvspuKrc9xD1Xd7LK4ccaCD7uoB/+Tr2oIQKBgQDTsaci+ercoh6/S2dT\n7or71ev8mVBzW+SjcE/p1Gk3QWFaJMIvTnEr5cFdJMSkAaBOA0KOKfciyCW/ED/q\n8HkMFovtqK+ir+9d1K9YEeXnQ06htl8GjYrjvtTm25fwr2Yk5K7jV7IRcgbR94Gr\nStf+9xYzcwTL+qAt/7rFBBXyIwKBgQC2RGjsQXTSQ91cXExH3VwLum5Fmf9Zfp2v\n/jG+Yz4xzPp06o2s/sPnTgV64OlUyTsU/e6hjpd1Qe9Oonh/Gicrl+VSoDFXmQJ8\nw6hxj7yJobPhy6S+Kg42kzhxEq2uk9pocjEb2eYqJolyBrrCYFpzL3K/OIfJ0i88\nqdNTBJQ8MQKBgDLvpxCSY8GMvKs4oHcgiY6I7YxM83+eV8g/qOrRcjOaZqtC9vpc\n/Hwcf0dDJpFz1reOrz/3twBGelabuVV1YRrYffjEQuZ5QLYqC7q8K75WgqAEep7g\nBdBAxYd6xPdjrMcpwy7ulej+r8drr2agzpIJr+zXOws9lbcbtjvbfNBTAoGAIS87\nWyhfuJiaiOJVERCAXbJHuWxcTVL8KrrBG8S94htLzlWWDdUkncxauxCP6tvoYd4J\nwGhRswuaIlr6TUnZr9or6ms4EJbPGSAWXvaogPZr5cRJ7kWB6PXM5OldrddFgJap\n0kRN34a8p4IKJrGcRjRxU9dbAae+6fCRhR/kTUECgYA/F8vUmnkiN/e7zvY1BUus\n4M78WZaVRhwXzJ4otNqx8ke8lC31Iqa/m42j5Z0ekyKOUgBOIMFDCOPFwpoXySMt\nkIrLDtGqo4rfOKd3PXx5gAsSqXLbCJeVp9f5BMH7adXxdS4V7meqe98XMqSvFoxV\nYWMSPXJ6ZX+zzLD3ntgSaA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "abhisek-earth-engine-sa@wired-summit-481512-p0.iam.gserviceaccount.com",
+  "client_id": "110914309815623537246",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/abhisek-earth-engine-sa%40wired-summit-481512-p0.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
