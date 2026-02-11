@@ -36,8 +36,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Add configuration for Google Earth Engine JSON key
-COPY ee-tapaskumarsahoo9090-6245e11643e0.json /app/ee-tapaskumarsahoo9090-6245e11643e0.json
-ENV GOOGLE_APPLICATION_CREDENTIALS=/app/ee-tapaskumarsahoo9090-6245e11643e0.json
+# COPY ee-tapaskumarsahoo9090-6245e11643e0.json /app/ee-tapaskumarsahoo9090-6245e11643e0.json
+# ENV GOOGLE_APPLICATION_CREDENTIALS=/app/ee-tapaskumarsahoo9090-6245e11643e0.json
 
 # Copy the supervisord script file
 COPY all_commands.sh /app/all_commands.sh
