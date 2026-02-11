@@ -259,3 +259,13 @@ class PondTaskSerializer(serializers.ModelSerializer):
 class TaskClearSerializer(serializers.Serializer):
     device=serializers.CharField(max_length=50)
     
+########################################## User Cluster ########################################
+class ClusterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Cluster
+        fields="__all__"
+class UserCluserSerializer(serializers.ModelSerializer):
+    clusters = ClusterSerializer(many=True, read_only=True)
+    class Meta:
+        model=User
+        fields=["clusters"]

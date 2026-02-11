@@ -93,24 +93,30 @@ WSGI_APPLICATION = 'water.wsgi.application'
 
 # ############################# DATABASE ######################
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# DATABASES = {
+#     "default": {   # Local PostgreSQL (for development)
+#         "ENGINE": "django.contrib.gis.db.backends.postgis",
+#         "NAME": "masterdb",   # your local DB name
+#         "USER": "vertoxl",         # your local postgres username
+#         "PASSWORD": "vertoxlabs", # your local postgres password
+#         "HOST": "192.168.1.140",
+#         "PORT": "5432",
+#         'OPTIONS': {
+#             'sslmode': 'require',  
+#         },
+#     }}
 DATABASES = {
     "default": {   # Local PostgreSQL (for development)
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "masterdb",   # your local DB name
-        "USER": "vertoxl",         # your local postgres username
-        "PASSWORD": "vertoxlabs", # your local postgres password
-        "HOST": "192.168.1.140",
+        "NAME": "aquafarm",  
+        "USER": "Vertoxlabs1987Bfl",         
+        "PASSWORD": "Vtx@1987#2026#Bfl@", 
+        "HOST": 'vertoxlabsdb.postgres.database.azure.com',
         "PORT": "5432",
         'OPTIONS': {
             'sslmode': 'require',  
         },
     }}
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 ###################################################################
 
 
@@ -148,9 +154,9 @@ USE_TZ = True
 # COMMONLOGIN_DB_PORT = '5432'
 
 COMMONLOGIN_DB_NAME = 'commonlogin'
-COMMONLOGIN_DB_USER = 'vertoxl'
-COMMONLOGIN_DB_PASS = "vertoxlabs"
-COMMONLOGIN_DB_HOST = '192.168.1.140'
+COMMONLOGIN_DB_USER = "Vertoxlabs1987Bfl"
+COMMONLOGIN_DB_PASS = "Vtx@1987#2026#Bfl@"
+COMMONLOGIN_DB_HOST = 'vertoxlabsdb.postgres.database.azure.com'
 COMMONLOGIN_DB_PORT = '5432'
 ############################################################################
 

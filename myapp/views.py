@@ -255,12 +255,9 @@ def cluster_create(request):
         jsondata = JSONParser().parse(request)
         name = jsondata.get('name')
         mobile = jsondata.get('mob')
-        print(name, mobile,"11111111111")
         try:
             user = User.objects.get(Mob=mobile)
-            print(user,"222222222222")
             name = Cluster.objects.create(Name=name,user=user)
-            print(name,"333333333333")
             data = {
                 "cluster_name": name.Name,
                 "cluster_id": name.id,
@@ -874,7 +871,10 @@ def common_login(request):
         # 2. CHECK IN USER TABLE
         # ----------------------------------------
         try:
-            user = User.objects.get(Mob=Mob)
+            user = User.objects.get(Mob=Mob)   # make sure mob exists
+            print(user)
+
+            serializer = UserCluserSerializer(user)
 
             response_data = {
                 'message': 'You have successfully logged in to the owner page...',
@@ -882,9 +882,12 @@ def common_login(request):
                 'name': user.Company_name,
                 'email': user.Email,
                 'user_category': user.user_category,
-                'category': 'owner'
+                'category': 'owner',
+                'cluster': serializer.data
             }
+
             return JsonResponse(response_data, status=200)
+
 
         except User.DoesNotExist:
             pass
