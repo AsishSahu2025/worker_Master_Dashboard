@@ -16,7 +16,7 @@ PASSWORD = "Bfl@2025"
 ALL_DEVICES_TOPIC = "auto_feeder/+/system/alert"
 TOPIC_AUTO="auto_feeder/+/mode/switch"
 TOPIC_STATUS="auto_feeder/+/auto/status"
-#-------------------------------------------------------------
+#--------------------------------------+-----------------------
 
 class Command(BaseCommand):
     help = 'Subscribe to system alert topic and save messages to Alert_message table'
