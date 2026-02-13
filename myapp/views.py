@@ -2994,7 +2994,7 @@ class DeviceCommandStateView(APIView):
 
 class DeviceCommandAbortView(APIView):
 
-    def post(self, request,id,):
+    def post(self, request,id,tid):
         DEVICE_ID = id
         TOPIC_Abort = f"auto_feeder/{DEVICE_ID}/auto/abort"
         client = mqtt.Client(
@@ -3014,11 +3014,14 @@ class DeviceCommandAbortView(APIView):
         # payload={"MODE": "AUTO"}
 
         client.publish(TOPIC_Abort,"abort", qos=1)
+        task = Task.objects.get(id=tid)
+        task.status = "abort"
+        task.save() 
         time.sleep(1)
 
         client.loop_stop()
         client.disconnect()
-
+        
         return Response({
             "status": "success",
             "message": "Process Aborted"

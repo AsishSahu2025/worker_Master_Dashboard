@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'geoposition',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'leaflet',  
+
     
 ]
 
@@ -147,12 +147,6 @@ USE_I18N = True
 USE_TZ = True
 
 ###########################common login database ##########################
-# COMMONLOGIN_DB_NAME = 'commonlogin'
-# COMMONLOGIN_DB_USER = 'Vertoxlabs'
-# COMMONLOGIN_DB_PASS = "Vtx@mru@#5951#new"
-# COMMONLOGIN_DB_HOST = 'bcpostgressqlserver12.postgres.database.azure.com'
-# COMMONLOGIN_DB_PORT = '5432'
-
 COMMONLOGIN_DB_NAME = 'commonlogin'
 COMMONLOGIN_DB_USER = "Vertoxlabs1987Bfl"
 COMMONLOGIN_DB_PASS = "Vtx@1987#2026#Bfl@"
@@ -172,28 +166,11 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS_ALLOWED_ORIGINS=[
-# # #     # 'https://waterbg.bc-pl.com',
-#     # 'http://localhost:5173', 
-# # # #     'http://4.240.112.100:4200',
-# # # #     'http://20.235.248.237:5173',
-#     'http://192.168.1.2:5173',
-# # #     # '*',
 
-# ]
 CSRF_TRUSTED_ORIGINS = [
     'https://masterbg.bc-pl.com',
-    # 'https://aquafarmingbg.bc-pl.com',
-    # 'http://192.168.1.2:5173',
-    # 'http://localhost:5173',
-
 ]
-# CSRF_TRUSTED_ORIGINS = [
-# #     'https://waterbg.bc-pl.com',
-#     'http://localhost:5173',
-# #     # 'http://4.240.112.100:4200',
-#     'http://192.168.1.2:5173',
-# ]
+
 
 
 CORS_ORIGIN_ALLOW_ALL = True
