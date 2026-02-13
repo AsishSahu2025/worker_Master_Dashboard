@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*','192.168.1.102'] 
 
 
@@ -170,10 +170,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'https://masterbg.bc-pl.com',
 ]
-
-
-
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "https://autofeeder.bc-pl.com",
+    "http://localhost:5173",
+]
+CORS_ALLOW_CREDENTIALS = True
 
 ########################## Email configuration ##############
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
