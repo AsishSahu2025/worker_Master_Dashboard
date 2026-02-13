@@ -158,8 +158,13 @@ class TaskSubmitSerializer(serializers.ModelSerializer):
                 checktime = False
             if not checktime:
                 raise serializers.ValidationError(f"Plz Start the Cycle C{cycleno} After Completion of C{cycleno-1} ")
-            if status != "completed":
-                raise serializers.ValidationError(f"C{cycleno-1} Till Not Completed")
+            
+            if (status != "completed"):
+                print(status)
+                if status == "abort":
+                    pass
+                else:
+                    raise serializers.ValidationError(f"C{cycleno-1} Till Not Completed")
             
         ####################### Validate the Feed_percentages ################
         feed_weight = validated_data.get('feed_weight')

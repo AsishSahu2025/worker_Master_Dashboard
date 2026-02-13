@@ -23,22 +23,22 @@ def check_interval(task_id):
     count=1
 
     while True:
-        
-        current_time = timezone.localtime(timezone.now()).time().strftime("%H:%M")
-        task = Task.objects.get(id=task_id)
         print("Task:", task)
         print("End Time:", end_time)
         print("Current Time:", current_time)
-        status=task.status
-        print("status:",status)
-        print("TaskID:",task.id)
         if count == 1:
             time.sleep(int(sleeptime))
             count+= 1
+        current_time = timezone.localtime(timezone.now()).time().strftime("%H:%M")
+        task = Task.objects.get(id=task_id)
+        status=task.status
+        print("status:",status)
+        print("TaskID:",task.id)
+       
         if current_time == end_time and status == "processing":
             setattr(task,"status","completed")
             break
-        else:
+        elif status == "abort":
             break
     task.save()
     return task
