@@ -1,14 +1,17 @@
-# Use an official Python runtime as a parent image
+# Base Python image
 FROM python:3.10-slim
 
-# Set environment variables
+# Prevent Python from writing pyc files and enable unbuffered logs
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set the working directory in the container
+# Set working directory for Master Dashboard project
 WORKDIR /app
 
-# Install Python and other dependencies
+# ---------------------------------------------------------
+# Install required system packages
+# (kept from your existing Dockerfile)
+# ---------------------------------------------------------
 RUN apt-get update && \
     apt-get install -y \
     python3 \
@@ -20,31 +23,53 @@ RUN apt-get update && \
     libgdal-dev \
     supervisor && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip
+    ln -sf /usr/bin/pip3 /usr/bin/pip && \
+    rm -rf /var/lib/apt/lists/*
 
+# ---------------------------------------------------------
 # Create and activate a virtual environment
+# ---------------------------------------------------------
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Copy the requirements file into the container at /app
-COPY requirements.txt /app/
+# ---------------------------------------------------------
+# Copy and install dependencies for Master Dashboard backend
+# (path is relative to build context: /home/vertoxlabs)
+# ---------------------------------------------------------
+COPY Master_Dashboard/requirements.txt /app/requirements.txt
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r /app/requirements.txt
 
-# Copy your application code into the container at /app
-COPY . /app/
+# ---------------------------------------------------------
+# Copy Master Dashboard source code
+# ---------------------------------------------------------
+COPY Master_Dashboard/ /app/
 
-# Add configuration for Google Earth Engine JSON key
-# COPY ee-tapaskumarsahoo9090-6245e11643e0.json /app/ee-tapaskumarsahoo9090-6245e11643e0.json
-# ENV GOOGLE_APPLICATION_CREDENTIALS=/app/ee-tapaskumarsahoo9090-6245e11643e0.json
+# ---------------------------------------------------------
+# Copy Common Login backend source code
+# (second Django backend, no Dockerfile needed there)
+# ---------------------------------------------------------
+COPY Commonlogin_new_version_2026/ /commonlogin/
 
-# Copy the supervisord script file
-COPY all_commands.sh /app/all_commands.sh
+# ---------------------------------------------------------
+# Install dependencies for Common Login backend
+# ---------------------------------------------------------
+RUN pip install --no-cache-dir -r /commonlogin/requirements.txt
+
+# ---------------------------------------------------------
+# Make startup script executable
+# ---------------------------------------------------------
 RUN chmod +x /app/all_commands.sh
 
-# Expose the port the app runs on
-EXPOSE 8000
+# ---------------------------------------------------------
+# Expose both backend ports
+#   8000 -> Master Dashboard backend
+#   8001 -> Common Login backend
+# ---------------------------------------------------------
+EXPOSE 8000 8001
 
-# Run all_commands
+# ---------------------------------------------------------
+# Start all backend services using your shell script
+# ---------------------------------------------------------
 CMD ["/app/all_commands.sh"]

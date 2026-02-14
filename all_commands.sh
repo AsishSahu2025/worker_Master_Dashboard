@@ -1,60 +1,41 @@
 #!/bin/bash
 
-# Activate virtual environment
 source /opt/venv/bin/activate
-
-# Ensure /app/logs directory exists
 mkdir -p /app/logs
 
-# Function to handle process termination
 function terminate_processes {
     echo "Terminating processes..."
-    pkill -f "python3 manage.py"
-    pkill -f "daphne"
-    exit
+    pkill -f "python3 manage.py" || true
+    pkill -f "Telegram_Bot_Admin.py" || true
+    exit 0
 }
 
-# Trap SIGTERM signal to gracefully terminate processes
-trap terminate_processes SIGTERM
+trap terminate_processes SIGTERM SIGINT
 
-# Run Remote sensing script and handle errors
 echo "Starting Remote sensing script..."
 python3 manage.py testing &> /app/logs/Remote_sensing.log &
-if [ $? -ne 0 ]; then
-    echo "Error starting Remote sensing script..."
-    exit 1
-fi
 
-# Run voip and handle errors
 echo "Starting voip..."
 python3 manage.py voip &> /app/logs/voip.log &
-if [ $? -ne 0 ]; then
-    echo "Error starting voip"
-    exit 1
-fi
 
-# Start Daphne server and handle errors
 echo "Starting Django server..."
 python3 manage.py runserver 0.0.0.0:8000 &> /app/logs/django_server.log &
-if [ $? -ne 0 ]; then
-    echo "Error starting Django server"
-    exit 1
-fi
 
-# Run Telegram Bot in the foreground
-echo "Starting Telegram Bot in the foreground..."
-python3 manage.py Telegram_Bot &> /app/logs/telegram_bot.log
-if [ $? -ne 0 ]; then
-    echo "Error running Telegram Bot"
-    exit 1
-fi
+echo "Starting Telegram Bot..."
+python3 Telegram_Bot_Admin.py &> /app/logs/telegram_bot.log &
 
-# Start subscribe_alerts in background
+echo "Starting Common Login backend..."
+
+cd /commonlogin
+python3 manage.py runserver 0.0.0.0:8001 &> /app/logs/commonlogin.log &
+cd /app
+
 echo "Starting subscribe_alerts..."
-python manage.py subscribe_alerts &
+python3 manage.py subscribe_alerts &> /app/logs/subscribe_alerts.log &
+
 
 echo "✅ All services started!"
 echo "Django server: http://0.0.0.0:8000"
-echo "MQTT subscriber: Running in background"
-# Keep container running
+
+# keep container running
 wait
