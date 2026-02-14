@@ -32,13 +32,11 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['*','192.168.1.102'] 
+ALLOWED_HOSTS = ['*','masterbg.bc-pl.com'] 
 
 
 # Application definition
 INSTALLED_APPS = [   
-    # 'channels', 
-    # 'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,8 +51,6 @@ INSTALLED_APPS = [
     'geoposition',
     'rest_framework',
     'rest_framework.authtoken',
-
-    
 ]
 
 
@@ -93,20 +89,8 @@ WSGI_APPLICATION = 'water.wsgi.application'
 
 # ############################# DATABASE ######################
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-# DATABASES = {
-#     "default": {   # Local PostgreSQL (for development)
-#         "ENGINE": "django.contrib.gis.db.backends.postgis",
-#         "NAME": "masterdb",   # your local DB name
-#         "USER": "vertoxl",         # your local postgres username
-#         "PASSWORD": "vertoxlabs", # your local postgres password
-#         "HOST": "192.168.1.140",
-#         "PORT": "5432",
-#         'OPTIONS': {
-#             'sslmode': 'require',  
-#         },
-#     }}
 DATABASES = {
-    "default": {   # Local PostgreSQL (for development)
+    "default": {  
         "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": "aquafarm",  
         "USER": "Vertoxlabs1987Bfl",         
@@ -171,9 +155,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://masterbg.bc-pl.com',
 ]
 CORS_ALLOWED_ORIGINS = [
-    "https://autofeeder.bc-pl.com",
-    "http://localhost:5173",
+    'https://master.bc-pl.com',
+    "http://localhost:3000",
 ]
+# CORS_ALLOW_ALL_ORIGINS=True
 CORS_ALLOW_CREDENTIALS = True
 
 ########################## Email configuration ##############
