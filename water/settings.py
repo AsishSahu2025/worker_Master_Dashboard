@@ -155,12 +155,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://masterbg.bc-pl.com',
+    'http://20.6.11.71:3000',
 ]
-CORS_ALLOWED_ORIGINS = [
-    'https://master.bc-pl.com',
-    "http://192.168.1.17:3000",
-]
-# CORS_ALLOW_ALL_ORIGINS=True
+#CORS_ALLOWED_ORIGINS = [
+   # 'https://master.bc-pl.com',
+  #  "http://localhost:3001",
+ #   "http://localhost:3000",
+
+#]
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 ########################## Email configuration ##############
