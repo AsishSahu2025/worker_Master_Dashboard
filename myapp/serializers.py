@@ -3,42 +3,6 @@ from .models import *
 from django.utils import timezone
 from datetime import datetime, timedelta
 
-
-# from rest_framework_gis.serializers import GeoFeatureModelSerializer 
-# from .models import YourGeoSpatialModel
-
-# class weatherSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Weather
-#         fields = '__all__'
-        
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = '__all__'
-        
-# class LocationSerializer(GeoFeatureModelSerializer):
-#     class Meta:
-#         model = Location
-#         geo_field = "area"
-#         # id_field = False
-#         fields = '__all__'from datetime import datetime, timedelta
-
-        
-# class AdminSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Admin
-#         fields = '__all__'
-        
-# class LoginSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Admin
-#         fields = ['user_name','mobile_no']
-        
-# class RegistrationSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Registration
-#         fields = '__all__'
 ############### clusterpond_analytic serializer #######################
 
 class DeviceSerializer(serializers.ModelSerializer):
@@ -217,22 +181,13 @@ class TaskSubmitSerializer(serializers.ModelSerializer):
         else:
             return instance
 ##########################################################################################################       
-# class SetIntervalSerializer(serializers.Serializer):
-#     def update(self, instance, validated_data):
-#         start=getattr(instance,"from_time")
-#         end=getattr(instance,"to_time")
-#         print(start)
-#         print(end)
-
-#         return super().update(instance, validated_data)
-#-------------------------------------------------------------------------
 
 class AbortSerializer(serializers.Serializer):
     status=serializers.CharField(max_length=100)
     def validate(self, attrs):
         status = attrs.get('status')
         if status != 'processing':
-            serializers.ValidationError("Already Abort or Failed")
+            raise serializers.ValidationError("Already Abort or Failed")
         return attrs
 
 
@@ -257,9 +212,14 @@ class TotalFeedSerializer(serializers.ModelSerializer):
         fields = ["device", "TotalFeed"]
 
 class PondTaskSerializer(serializers.ModelSerializer):
+    toggle = serializers.SerializerMethodField()
     class Meta:
-        model=Task
-        fields="__all__"
+        model = Task
+        fields = "__all__" 
+    def get_toggle(self, obj):
+        # ON when status is processing
+        return "ON" if obj.status.lower() == "processing" else "OFF"
+    
 ########################################### Task Clear Serializer ##################################
 class TaskClearSerializer(serializers.Serializer):
     device=serializers.CharField(max_length=50)

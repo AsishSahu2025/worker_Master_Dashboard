@@ -25,90 +25,6 @@ from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status
 
-
-# @csrf_exempt                                             #new
-# def token_verification(request):
-#     if request.method == 'POST': 
-#         jsondata = JSONParser().parse(request)
-#         category = jsondata.get('category')
-#         token = jsondata.get('token')
- 
-#         try:
-#             if category == 'waterUser':
-#                 data = User.objects.get(token=token)
-#                 return JsonResponse({'message': 'Authenticated successfully.',"username":data.Name,"mobile_no":data.Mobno})
-#             else:
-#                 data = AdminUser.objects.get(token=token)
-#                 return JsonResponse({'message': 'Authenticated successfully.',"username":data.Name,"mobile_no":data.Mobno})
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)}, status=400)
-        
-# @api_view(['POST'])                                           #new
-# @csrf_exempt
-# def user_create(request):
-#     if request.method=="POST":
-#        mobno=request.data['mobileno']
-#        password=request.data['password']
-#        user_pic=request.data['user_pic']
-#        user_docs=request.data['user_docs']
- 
-#        try:
-#             token = csrf.get_token(request)
-#             user_instance = Registration.objects.get(Mobno=mobno)
-#             user_category_instance = AdminUser.objects.get(user_category=user_instance.user_category)
-#             if not User.objects.filter(Mobno=mobno).exists():
-#                 user=User(Name=user_instance.Name,Email=user_instance.Email,Mobno=mobno,password=password,Adhaar=user_instance.Adhaar,user_pic=user_pic,user_docs=user_docs,user_category=user_category_instance,token=token)
-#                 user.save()
-#                 param = {
-#                     'host':'20.244.37.91',
-#                     'database':'logindb',
-#                     'user':'bariflolabs',
-#                     'password':'bariflo2024'
-#                     }
-#                 conn = psycopg2.connect(**param)
-#                 print("connected")
-#                 cur = conn.cursor()
-#                 cur.execute('INSERT INTO public.myapp_user("Name", "Email", "Mobno", "password", "Adhaar", "token", "user_category") VALUES (%s, %s, %s, %s, %s, %s, %s);', (f'{user_instance.Name}', f'{user_instance.Email}', f'{user_instance.Mobno}', f'{password}', f'{user_instance.Adhaar}', f'{token}', f'{user_category_instance}'))
-#                 conn.commit()
-#                 user_instance.delete()
-#                 return JsonResponse({"message":"User Created"})
-#             else:
-#                 return JsonResponse({"message":"User already exists,Report to Admin"})
-#        except Exception as e:
-#              return JsonResponse({'error': str(e)}, status=500)
-
-#################################################################### user  side ###############################################################################
-
-
-
-# from django.contrib.auth.models import User,Group
-# @csrf_exempt
-# def registration(request):
-#     if request.method == 'POST':
-#         regd_instance=JSONParser().parse(request)
-#         Company_name=regd_instance.get('company_name')
-#         email=regd_instance.get('email')
-#         mobno=regd_instance.get('mobno')
-#         address=regd_instance.get('address')
-#         user_cat=regd_instance.get('category')
-#         password=regd_instance.get('password')
-#         Pan_no=regd_instance.get('Pan_no')
-#         GST_no=regd_instance.get('GST_no')
-#         try:
-#             if not User.objects.filter(Mob=mobno).exists():
-#                 customer_id = random.randrange(10000000,99999999)
-#                 if not User.objects.filter(Customer_id=customer_id).exists():
-#                 # token = get_token(request)
-#                     datas = User(Company_name=Company_name,Email=email,Mob=mobno,Customer_id=customer_id,password=password,address=address,Pan_no=Pan_no,user_category=user_cat,GST_no=GST_no)
-#                     datas.save()
-#                     return JsonResponse({"massage":"Registration Successfull"})
-#                 else:
-#                     return JsonResponse({"massage":"Customer ID already registered, Report to Admin"})
-#             else:
-#                 return JsonResponse({"massage":"User Mobile number already registered, Report to Admin"})
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)}, status=500)
-
   
 #***********User Registration********#
 ########################################
@@ -186,67 +102,6 @@ def user_registration(request):
             return JsonResponse({"error": str(e)}, status=500)
 
         
-        
-# @csrf_exempt
-# def manager_details_post(request, company_name):
-#     if request.method == 'POST':
-#         try:
-#             data = JSONParser().parse(request)
-#             username = data.get('username')
-#             password = data.get('password')
-#             mob = data.get('Mob')
-#             email = data.get('email')
-#             company_name = data.get('company_name')
-#             users = User.objects.filter(Company_name=company_name)
-#             for user in users:
-#                 if user:
-#                     details = Manager.objects.create(
-#                         username=username,
-#                         password=password,
-#                         Mob=mob,
-#                         email=email,
-#                         user=user  
-#                     )
-#                     details.save()
-#                     param = {
-#                         'host': settings.COMMONLOGIN_DB_HOST,
-#                         'database': settings.COMMONLOGIN_DB_NAME,
-#                         'user': settings.COMMONLOGIN_DB_USER,
-#                         'password': settings.COMMONLOGIN_DB_PASS
-#                     }
-#                     # Connect to the commonlogintestdb database
-#                     try:
-#                         conn = psycopg2.connect(**param)
-#                         print("Connected to commonlogintestdb")
-#                         cur = conn.cursor()
-
-#                         # Prepare the query to insert data into the 'user' table of the commonlogintestdb
-#                         insert_query = '''
-#                         INSERT INTO public.myapp_manager("username", "password", "mob", "email", "user")
-#                         VALUES (%s, %s, %s, %s, %s);
-#                         '''
-#                         print(f"Inserting into commonlogintestdb: {username}, {password}, {mob}, {email}, {user}")
-
-#                         # Execute the insert query
-#                         cur.execute(insert_query, (
-#                             username, password, mob, email, user
-#                         ))
-
-#                         # Commit the transaction to save the data
-#                         conn.commit()
-
-#                         # Close the cursor and connection
-#                         cur.close()
-#                         conn.close()
-#                         return JsonResponse({"message": "Registration Successful"})
-#                     except (Exception, psycopg2.DatabaseError) as error:
-#                         return JsonResponse({'message': 'Details save Successfully'})
-#         except Exception as e:
-#             return JsonResponse({"error": str(e)})
-#     else:
-#         return JsonResponse({'message': 'Invalid HTTP method'}, status=405)
-
-            
     
         
 @csrf_exempt
@@ -290,78 +145,6 @@ def cluster_get(request,Mob):
         
 
 @csrf_exempt
-# def demo(request):
-#     if request.method == 'POST':
-#         jsondata = JSONParser().parse(request)
-#         name = jsondata.get('name')
-#         latitude = jsondata.get('latitude')
-#         longitude = jsondata.get('longitude')
-#         polygon_points  = jsondata.get('location', None)
-#         clusterid  = jsondata.get('clusterid')
-#         area = jsondata.get('area')
-#         address = jsondata.get('address')
-#         device_quantity = jsondata.get('device_quantity')
-
-#         try:
-#             register_intstance = Cluster.objects.get(id=clusterid)
-#             print(register_intstance,"1111111111")
-#             if not register_intstance:
-#                 return JsonResponse({'message': 'Cluster not found'}, status=404)
-            
-#             with transaction.atomic():    
-#                 xx = Pond(name=name, registration=register_intstance, area=area, address=address)
-#                 print(xx,"22222222222222")
-#                 if polygon_points:
-#                     points_str = ', '.join([f'{point[0]} {point[1]}' for point in polygon_points])
-#                     points_str += f', {polygon_points[0][0]} {polygon_points[0][1]}'
-#                     xx.location = f'POLYGON(({points_str}))'
-#                 else:
-#                     xx.location = None 
-                
-#                 latitude_str = str(latitude)
-#                 longitude_str = str(longitude)
-#                 xx.latlong = f'({latitude_str},{longitude_str})'
-#                 if isinstance(device_quantity, dict):
-#                     xx.device_quantity = device_quantity
-#                     xx.save()
-                    
-#                     pond = Pond.objects.get(id=xx.id)
-#                     print(pond,"33333333333")
-                    
-                    
-#                     for device_name, quantity in device_quantity.items():
-#                         print(device_name, quantity,"444444")
-#                         try:
-#                             quantity = int(quantity)  
-#                         except ValueError:
-#                             return JsonResponse({'message': f"Invalid quantity value for device {device_name}"}, status=400)
-                        
-#                         device_type = Device.objects.get(device_type=device_name)
-#                         print(device_type)
-                                 
-#                         for _ in range(quantity):
-#                             device_id = random.randrange(10000000,99999999)
-#                             device = Device(device_id=device_id, device_type=device_type, pond_id=pond)
-#                             device.save() 
-                        
-#                     return JsonResponse({'message': 'Device types and device created successfully'}, status=201)
-#                 else:
-#                     return JsonResponse({'message': 'Invalid device_quantity format. Expected a dictionary.'}, status=400)
-
-#         except Cluster.DoesNotExist:
-#             return JsonResponse({'message': 'Cluster not found'}, status=404)
-
-#         except Pond.DoesNotExist:
-#             return JsonResponse({'message': 'Pond not found'}, status=404)
-
-#         except Device.DoesNotExist:
-#             return JsonResponse({'message': 'DeviceType not found'}, status=404)
-
-#         except IntegrityError as e:
-#             return JsonResponse({'message': 'Database integrity error', 'error': str(e)}, status=400)
-
-#         except Exception as e:
-#             return JsonResponse({'message': 'An error occurred', 'error': str(e)}, status=500)
 def PondCreateView(request):
     if request.method == 'POST':
         jsondata = JSONParser().parse(request)
@@ -399,7 +182,7 @@ def PondCreateView(request):
                 # lat long
                 xx.latlong = f'({latitude},{longitude})'
 
-                # ✅ SAVE pond
+                #  SAVE pond
                 xx.save()
 
                 return JsonResponse(
@@ -522,6 +305,7 @@ def userpondsid(request, id):
             return JsonResponse({'message': 'Pond location not found'}, status=404)
     else:
         return JsonResponse({'message': 'Method not allowed'}, status=405)
+    
    
 @csrf_exempt
 def admin_cluster_view(request, mob):
@@ -563,21 +347,7 @@ def admin_cluster_view(request, mob):
 
             except Manager.DoesNotExist:
                 return JsonResponse({"error": "mob not found in User or Manager tables"}, status=404)
-        #    return JsonResponse({"error": "mob not found"})
-        # data = []
-
-        # clusters = Cluster.objects.filter(user=users)
-        # for cluster in clusters:
-        #     data.append({
-        #        "Name":cluster.Name,
-        #        "id":cluster.id,
-        #        "Mob":users.Mob
-        #        # "user":cluster.user
-        #     })
-        # return JsonResponse(data,safe=False) 
-               
-        # except Exception as e:
-        #    return JsonResponse({"message": "An error occurred: " + str(e)}, status=500)
+      
     else:
         return JsonResponse({"message": "Invalid request method"}, status=405)
    
@@ -1565,6 +1335,7 @@ def feedweight_per_month(request, mobno):
 
 
 
+
 from django.utils.dateparse import parse_date
 @csrf_exempt
 def feedweight_date(request, clusterid):
@@ -2123,22 +1894,9 @@ def complete_order(request):
     else:
         return JsonResponse({'message': 'Pond location not found'}, status=404)
 
-############################################################################################
-        
-# @csrf_exempt
-# def my(request):
-#     if request.method == 'GET':
-#         marks = Mark.objects.all()
-#         data = [{'mark': item.mark, 'second_name': item.second.name} for item in marks]
-#         return JsonResponse(data, safe=False)
-#     else:
-#         return JsonResponse({'message': 'Method not allowed'}, status=405)
-
-
-
-
-
+##################################################################################
 ########################## user and admin side ###################################
+
 @csrf_exempt
 def photoupload(request, Mob):
     if request.method == 'POST':
@@ -2810,13 +2568,12 @@ class PondTaskView(APIView):
     def get(self, request):
         pond_id = request.query_params.get("pond_id")
         device_id = request.query_params.get("device_id")
-        try:
-            today = timezone.now().date()
 
-            tasks = Task.objects.select_related("device").filter(
-            created_at__date=today)
-        except Task.DoesNotExist:
-            return Response({"message":"Task NotFound"})
+        today = timezone.now().date()
+        tasks = Task.objects.select_related("device").filter(
+            created_at__date=today
+        )
+
         if pond_id:
             tasks = tasks.filter(device__pond_id__id=pond_id)
 
@@ -2833,10 +2590,7 @@ class PondTaskView(APIView):
             elif device_id:
                 message = f"No tasks found for device_id={device_id}."
 
-            return Response(
-                {"message": message},
-                status=200,
-            )
+            return Response({"message": message}, status=200)
 
         tasks = tasks.order_by("cycles")
 

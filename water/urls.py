@@ -45,7 +45,7 @@ urlpatterns = [
     path('viewuser/<id>/',views.viewuser),
     path('userponds/<registration_id>/',views.userponds),
     path('userpondsid/<id>/',views.userpondsid),
-    path('deviceregistry_view/<customer_id>/',views.deviceregistry_view),     #
+    path('deviceregistry_view/<customer_id>/',views.deviceregistry_view), 
     # path('devicetype_create/<pond_id>/',views.devicetype_create),     #
     path('drawline/',views.drawline),  #admin
     path('deviceregistry_all/',views.deviceregistry_all),  #admin
