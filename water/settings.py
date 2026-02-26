@@ -31,8 +31,8 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
+DEBUG = True
 ALLOWED_HOSTS = ['*','masterbg.bc-pl.com'] 
 
 
