@@ -43,34 +43,37 @@ class Command(BaseCommand):
                     device_id = topic_parts[1]
                     
                 self.stdout.write(f"📩 Message from device {device_id}: {payload}")
-                Alert_message.objects.create(alert=payload, device_id=device_id)
+                cleaned_payload = payload.strip()
+                if not cleaned_payload:
+                    print("⚠️ Empty or whitespace message received. Skipping save.")
+                    return
+                else:
+                    Alert_message.objects.create(alert=payload, device_id=device_id)
                 self.stdout.write(self.style.SUCCESS(f"✅ Message from device {device_id} saved to Alert_message table"))
                 
                 state, _ = DeviceCommandState.objects.get_or_create(device_id=device_id)
                 print(device_id)
                 TOPIC_DOOR = f"auto_feeder/{device_id}/door/set_position"
                 TOPIC_SCHEDULE=f"auto_feeder/{device_id}/schedule"
-                # print(state.task_id)
+        
                 task=Task.objects.filter(device=device_id,id=state.task_id).first()
                 duration=getattr(task,'time_interval')
                 start_time=getattr(task,'from_time')
                 formatted_time = start_time.strftime("%H:%M")
-                print(formatted_time)
+            
                 auto_feed=getattr(task,'auto_feed_rate')
                 auto_sprinkle=getattr(task,'auto_sprinkle_rate')
                 door=getattr(task,'auto_door')
+            
                 # 🔁 STEP LOGIC
                 if state.step == 1 and payload == "AUTO":
-                    print("*********************")
                     client.publish(TOPIC_DOOR,f"{door}", qos=1)
                     print("step 1 success")
                     state.step = 2
                     state.save()
 
-                elif state.step == 2 and payload == "Door set to 3750 steps":
-                    
+                elif state.step == 2 and payload == f"Door set to {door} steps":
                     load=f"{formatted_time},{duration},{auto_feed},{auto_sprinkle}"
-                    
                     client.publish(TOPIC_SCHEDULE,load, qos=1)
                     print("step 2 success")
                     state.step = 0

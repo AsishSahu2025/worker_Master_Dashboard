@@ -4,12 +4,14 @@ import time
 
 BROKER = "mqttbroker.bc-pl.com"   # same as subscriber
 PORT = 1883
-DEVICE_ID = "BFL_FdtryA005"
+DEVICE_ID = "BFL_FdtryA001"
 TOPIC = f"auto_feeder/{DEVICE_ID}/system/alert"
 USERNAME = "mqttuser"
 PASSWORD = "Bfl@2025"
 
-payload = "16:59 20 100 4000"
+
+payload = ""
+
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with rc:", rc)

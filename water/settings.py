@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 DEBUG = True
 ALLOWED_HOSTS = ['*','masterbg.bc-pl.com'] 
 
-
+  
 
 # Application definition
 INSTALLED_APPS = [   
@@ -161,7 +161,6 @@ CSRF_TRUSTED_ORIGINS = [
    # 'https://master.bc-pl.com',
   #  "http://localhost:3001",
  #   "http://localhost:3000",
-
 #]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True

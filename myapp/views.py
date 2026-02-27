@@ -2568,17 +2568,17 @@ class PondTaskView(APIView):
     def get(self, request):
         pond_id = request.query_params.get("pond_id")
         device_id = request.query_params.get("device_id")
-
-        today = timezone.now().date()
-        tasks = Task.objects.select_related("device").filter(
-            created_at__date=today
-        )
+        Date = datetime.strptime(request.query_params.get("date"), "%d-%m-%Y").date()
+        print(Date)
+        tasks = Task.objects.select_related("device").filter()
 
         if pond_id:
             tasks = tasks.filter(device__pond_id__id=pond_id)
 
         if device_id:
             tasks = tasks.filter(device__device_id=device_id)
+        if Date:
+            tasks = tasks.filter(created_at__date=Date)
 
         if not tasks.exists():
             message = "No tasks found."
