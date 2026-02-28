@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'geoposition',
     'rest_framework',
     'rest_framework.authtoken',
+    'checktray',
 ]
 
 
