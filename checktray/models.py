@@ -17,3 +17,23 @@ class ChecktrayTask(models.Model):
     def __str__(self):
         return f"Task-{self.id} | Device-{self.device_id}"
 
+
+class Image(models.Model):
+    IMAGE_TYPE_CHOICES = (
+        ("color", "Color"),
+        ("thermal", "Thermal"),
+    )
+
+    STORAGE_TYPE_CHOICES = (
+        ("azure", "Azure"),
+        ("local", "Local"),
+    )
+    
+    device_id = models.CharField(max_length=30, db_index=True)
+    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES)
+    storage_mode = models.CharField(max_length=10, choices=STORAGE_TYPE_CHOICES)
+    logical_path = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.image_type} | {self.created_at}"
