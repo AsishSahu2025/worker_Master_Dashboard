@@ -1034,7 +1034,7 @@ class clusterpond_analytic(APIView):
     
 import datetime
 from redis import Redis
-from datetime import datetime
+from datetime import datetime,date
 
 @csrf_exempt
 def work_assign(request):
@@ -2568,7 +2568,8 @@ class PondTaskView(APIView):
     def get(self, request):
         pond_id = request.query_params.get("pond_id")
         device_id = request.query_params.get("device_id")
-        Date = datetime.strptime(request.query_params.get("date"), "%d-%m-%Y").date()
+        date_str = request.query_params.get("date")
+        Date = datetime.strptime(date_str, "%d-%m-%Y").date() if date_str else timezone.now().date()
         print(Date)
         tasks = Task.objects.select_related("device").filter()
 
@@ -2745,7 +2746,70 @@ class DeviceCommandStateView(APIView):
             "payload": "AUTO"
         })
 
+def Feedcalculate(tid):
+    try:
+        task=Task.objects.get(id=tid)
+    except Exception as e:
+        return Response({"message":f"Task with {tid} not found."})
+    
+    restfeed=getattr(task,"feedin")
+    from_time = getattr(task, "from_time")  # time object
+    current_time = datetime.now().time()
 
+    # convert both to datetime using today's date
+    today = date.today()
+    from_dt = datetime.combine(today, from_time)
+    current_dt = datetime.combine(today, current_time)
+    status = getattr(task,"status")
+    second=0
+    Seed_spreded_inKG=0
+    duration=0
+    restf=0
+    tidnext=int(tid)+1
+    # status == "processing"
+    if current_dt > from_dt and status == "processing":
+        # Calculate the Rest Feed At the Abort Situation
+        duration = current_dt - from_dt
+        second = round(duration.total_seconds())
+        Seed_spreded_inKG= (second*13)/1000
+        restf=int(restfeed) - Seed_spreded_inKG
+        setattr(task,"restfeed",restf)
+        
+        
+        # Check the Availibility of next Task or update feedin
+        
+        try:
+            tasknext=Task.objects.get(id=tidnext)
+            
+        except Exception as e:
+            pass
+        if tasknext:
+            setattr(tasknext,"feedin",restf)
+            
+    elif current_dt <= from_dt and status == "processing":
+        setattr(task,"restfeed",restfeed)
+        try:
+            tasknext=Task.objects.get(id=tidnext)
+            
+        except Exception as e:
+            pass
+        if tasknext:
+            setattr(tasknext,"feedin",restfeed)
+            
+    task.save()
+    tasknext.save()
+        
+    
+    print('status::',status)
+    print('second:',second,type(second))
+    print('Seed_spreded_inKG:',Seed_spreded_inKG)
+    print("from_dt::",from_dt)
+    print("current_dt::",current_dt)
+    print('duration::',duration)
+    print('restf::',restf)
+
+    
+    
 class DeviceCommandAbortView(APIView):
 
     def post(self, request,id,tid):
@@ -2755,7 +2819,7 @@ class DeviceCommandAbortView(APIView):
         client_id=f"tasksubmit_{DEVICE_ID}_{int(time.time())}",
         protocol=mqtt.MQTTv311
         )
-
+        Feedcalculate(tid)
         def on_connect(client, userdata, flags, rc):
             print("Connected with rc:", rc)
 

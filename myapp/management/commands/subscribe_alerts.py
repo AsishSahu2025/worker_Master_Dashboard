@@ -4,7 +4,6 @@ from myapp.models import *
 
 # MQTT Broker Configuration
 BROKER = "mqttbroker.bc-pl.com"  # Remote broker
-# BROKER = "localhost"  # Uncomment for local testing
 PORT = 1883
 USERNAME = "mqttuser"
 PASSWORD = "Bfl@2025"
@@ -58,6 +57,7 @@ class Command(BaseCommand):
         
                 task=Task.objects.filter(device=device_id,id=state.task_id).first()
                 duration=getattr(task,'time_interval')
+                print(duration)
                 start_time=getattr(task,'from_time')
                 formatted_time = start_time.strftime("%H:%M")
             
@@ -79,7 +79,7 @@ class Command(BaseCommand):
                     state.step = 0
                     state.save()
 
-                elif state.step == 0 and payload == "DOORSET":
+                elif state.step == 0 and payload.startwith("Auto event completed at"):
                     print("✅ Process completed")
                     
             except Exception as e:

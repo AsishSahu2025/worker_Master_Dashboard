@@ -149,6 +149,8 @@ class TaskSubmitSerializer(serializers.ModelSerializer):
         
         use_feed=feedin*(feed_weight/100)*1000
         duration=math.ceil(use_feed/800)
+        # duration=(use_feed/800)
+        
         
         start_datetime = datetime.combine(datetime.today(), start_time)
         end_time = (start_datetime + timedelta(minutes=duration)).time()
