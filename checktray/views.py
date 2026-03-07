@@ -13,25 +13,25 @@ MQTT_PORT = 1883
 MQTT_USERNAME = "mqttuser"   # if required
 MQTT_PASSWORD = "Bfl@2025"
 
-def publish_schedule_to_device(device_id, message):
-    try:
-        client = mqtt.Client(client_id=f"schedule_pub_{device_id}")
+# def publish_schedule_to_device(device_id, message):
+#     try:
+#         client = mqtt.Client(client_id=f"schedule_pub_{device_id}")
 
-        # remove if broker allows anonymous access
-        client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+#         # remove if broker allows anonymous access
+#         client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
 
-        client.connect(MQTT_BROKER, MQTT_PORT, 60)
+#         client.connect(MQTT_BROKER, MQTT_PORT, 60)
 
-        topic = f"feeder/{device_id}/schedule_set"
+#         topic = f"feeder/{device_id}/schedule_set"
 
-        client.publish(topic, message, qos=1)
+#         client.publish(topic, message, qos=1)
 
-        client.disconnect()
+#         client.disconnect()
 
-        print(f"Published: {topic} -> {message}")
+#         print(f"Published: {topic} -> {message}")
 
-    except Exception as e:
-        print("MQTT Publish Error:", str(e))
+#     except Exception as e:
+#         print("MQTT Publish Error:", str(e))
 
 
 
@@ -125,10 +125,10 @@ def scheduling(request):
             if updated==0:
                 return JsonResponse({'error':'Task not found or already scheduled'}, status=409)
             
-            mqtt_message = f"morning_feed|{start_time_str}|1|0"
-            print(mqtt_message)
+            # mqtt_message = f"morning_feed|{start_time_str}|1|0"
+            # print(mqtt_message)
             
-            publish_schedule_to_device(device_id, mqtt_message)
+            # publish_schedule_to_device(device_id, mqtt_message)
 
             return JsonResponse({
                 'status': 'success',
@@ -145,9 +145,7 @@ def scheduling(request):
 def checktrayTask(request):
     if request.method == "GET":
         try:
-            data = json.loads(request.body)
-
-            device_id = data.get("device_id")
+            device_id = request.GET.get("device_id")
 
             if not device_id:
                 return JsonResponse({'error':'device_id is required.'}, status=400)
@@ -156,14 +154,13 @@ def checktrayTask(request):
             tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
             "id",
             "device_id",
-            "sparay_cycle",
+            "spray_cycle",
             "image_update",
             "water_level",
             "start_time",
             "stop_time",
             "status"
         )
-            print(tasks)
             # tasks=list(tasks)
             # print(tasks)
 
