@@ -74,12 +74,13 @@ class Command(BaseCommand):
 
                 elif state.step == 2 and payload == f"Door set to {door} steps":
                     load=f"{formatted_time},{duration},{auto_feed},{auto_sprinkle}"
+                    print(load)
                     client.publish(TOPIC_SCHEDULE,load, qos=1)
                     print("step 2 success")
                     state.step = 0
                     state.save()
 
-                elif state.step == 0 and payload.startwith("Auto event completed at"):
+                elif state.step == 0 and payload.startswith("Auto event completed at"):
                     print("✅ Process completed")
                     
             except Exception as e:

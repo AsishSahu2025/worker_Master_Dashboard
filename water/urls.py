@@ -45,8 +45,7 @@ urlpatterns = [
     path('viewuser/<id>/',views.viewuser),
     path('userponds/<registration_id>/',views.userponds),
     path('userpondsid/<id>/',views.userpondsid),
-    path('deviceregistry_view/<customer_id>/',views.deviceregistry_view), 
-    # path('devicetype_create/<pond_id>/',views.devicetype_create),     #
+    path('deviceregistry_view/<customer_id>/',views.deviceregistry_view),     
     path('drawline/',views.drawline),  #admin
     path('deviceregistry_all/',views.deviceregistry_all),  #admin
     path('devicedetails_add/',views.devicedetails_add),  #admin
@@ -59,22 +58,10 @@ urlpatterns = [
     path('feedweight_month/<clusterid>/',views.feedweight_month), 
     path('graph/<id>/',views.graph),  
     path('category/',views.category), 
-    # path('devicetype_image/',views.devicetype_image),  #admin
-    # path('weather/',views.weather,name='weather'),
-    # path('user/<user_id>/',views.user,name='user'),
     path('master_signup/',views.master_registration),
-    # path('login/',views.login),
     path('send_otp/',views.send_otp),
-    # path('add_pond_number/',views.add_pond_number),
-    # path('my/',views.my),
-    # path('logout/',views.logout),
     path('changepassword/<mob>/',views.changepassword),
-    # path('forgotpassword/',views.forgotpassword),
     path('pondcount/<registration_id>/',views.pondcount),
-    # path('getmark/<id>/',views.getmark),
-    # path('myhtml/<token>',views.myhtml),
-    # path('gateway/<id>/',views.gateway,name='gateway'),
-    #  path('gatewaysecond/<id>/',views.gatewaysecond,name='gatewaysecond'),
     path('success/',views.success, name='success'),
     path('gateway/success',views.success),
     path('create_order/',views.create_order),
@@ -84,26 +71,16 @@ urlpatterns = [
     path('adminpond/<Mob>/',views.adminpond),
     path('accounts/', include('django.contrib.auth.urls')),
     path('trail/',views.trail),
-    # path('fetchlocation/<id>/',views.fetchlocation),
     path('pondanalytic/<mob>/',views.pondanalytic),  
     path('task_assign_pondlist/<id>/',views.task_assign_pondlist),
-    # path('excel/',excel.as_view()), 
     path('fetch_cluster/<Mob>/', views.fetch_cluster),   
     path('admin_cluster_delete_all/<id>/',views.admin_cluster_delete_all),
     path('admin_cluster_delete/<id>/',views.admin_cluster_delete),
     path('remote_sensing_data/',views.remote_sensing_data),
-    path('livefeed/<usermob>/', views.live_feed_view, name='live_feed'),   #
+    path('livefeed/<usermob>/', views.live_feed_view, name='live_feed'),   
     path('delete_drawline/<id>/',views.delete_drawline),
     path('device_details/<device_type>/',views.device_details),     
-    path('get_parameters/<pond_id>/',views.get_parameters),    #
-    # path('telegram_bot_post/',views.telegram_bot_post),    #
-    # re_path(r'^.*$', some_view, name='catch_all'),
+    path('get_parameters/<pond_id>/',views.get_parameters),     
     
-    
-    
-    ################# manager #########################
-    
-   
- 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

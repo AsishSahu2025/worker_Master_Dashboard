@@ -182,7 +182,7 @@ class TaskSubmitSerializer(serializers.ModelSerializer):
             return instance,task
         else:
             return instance
-##########################################################################################################       
+##################################################################################################    
 
 class AbortSerializer(serializers.Serializer):
     status=serializers.CharField(max_length=100)
@@ -193,20 +193,20 @@ class AbortSerializer(serializers.Serializer):
         return attrs
 
 
-#################################### Auto Feed start ##############################################
+#################################### Auto Feed start #############################################
 
 class DeviceCommandStateSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceCommandState
         fields = ["device_id", "step","task_id"]
         
-#################################### AleartMessage start ##############################################
+#################################### AleartMessage start #########################################
 
 class AlertMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert_message
         fields = ["device_id", "alert"]
-################################### Total Feed ####################################################
+################################### Total Feed ###################################################
 class TotalFeedSerializer(serializers.ModelSerializer):
     TotalFeed = serializers.CharField(source="feedin")
     class Meta:
@@ -222,11 +222,11 @@ class PondTaskSerializer(serializers.ModelSerializer):
         # ON when status is processing
         return "ON" if obj.status.lower() == "processing" else "OFF"
     
-########################################### Task Clear Serializer ##################################
+########################################### Task Clear Serializer ################################
 class TaskClearSerializer(serializers.Serializer):
     device=serializers.CharField(max_length=50)
     
-########################################## User Cluster ########################################
+########################################## User Cluster ##########################################
 class ClusterSerializer(serializers.ModelSerializer):
     class Meta:
         model=Cluster

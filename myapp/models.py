@@ -186,13 +186,8 @@ class Task(models.Model):
     feedin_percentage=models.IntegerField(null=True,blank=True)
     feed_weight = models.IntegerField(blank=True, null=True)
     restfeed=models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
-    #------------------------------------------------------------------------
-    spray_type = models.CharField(max_length=50, blank=True, null=True)
-    image=models.ImageField(upload_to='image/',null=True,blank=True)
-    depth=models.CharField(max_length=100,null=True,blank=True)
     time_interval = models.CharField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    quantity = models.CharField(max_length=100, null=True,blank=True)
     status = models.CharField(
     max_length=20,
     default="pending",
@@ -203,6 +198,11 @@ class Task(models.Model):
         ("pending","Pending")
         )
     )
+    #------------------------------------------------------------------------
+    spray_type = models.CharField(max_length=50, blank=True, null=True)
+    image=models.ImageField(upload_to='image/',null=True,blank=True)
+    depth=models.CharField(max_length=100,null=True,blank=True)
+    quantity = models.CharField(max_length=100, null=True,blank=True)
     def __str__(self):
         return f"Task-{self.id} | Device-{self.device_id}"
 

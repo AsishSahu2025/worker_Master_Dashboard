@@ -2767,6 +2767,7 @@ def Feedcalculate(tid):
     restf=0
     tidnext=int(tid)+1
     # status == "processing"
+    tasknext=None
     if current_dt > from_dt and status == "processing":
         # Calculate the Rest Feed At the Abort Situation
         duration = current_dt - from_dt
@@ -2774,20 +2775,21 @@ def Feedcalculate(tid):
         Seed_spreded_inKG= (second*13)/1000
         restf=int(restfeed) - Seed_spreded_inKG
         setattr(task,"restfeed",restf)
-        
+        setattr(task,"to_time",current_dt.time())
         
         # Check the Availibility of next Task or update feedin
         
         try:
             tasknext=Task.objects.get(id=tidnext)
-            
+            setattr(tasknext,"feedin",restf)
         except Exception as e:
             pass
-        if tasknext:
-            setattr(tasknext,"feedin",restf)
             
     elif current_dt <= from_dt and status == "processing":
         setattr(task,"restfeed",restfeed)
+        setattr(task,"to_time",current_dt.time())
+        
+        
         try:
             tasknext=Task.objects.get(id=tidnext)
             
@@ -2797,14 +2799,16 @@ def Feedcalculate(tid):
             setattr(tasknext,"feedin",restfeed)
             
     task.save()
-    tasknext.save()
-        
+    if tasknext:
+        tasknext.save()
+    else: 
+        pass
     
     print('status::',status)
     print('second:',second,type(second))
     print('Seed_spreded_inKG:',Seed_spreded_inKG)
     print("from_dt::",from_dt)
-    print("current_dt::",current_dt)
+    print("current_dt::",current_dt.time())
     print('duration::',duration)
     print('restf::',restf)
 

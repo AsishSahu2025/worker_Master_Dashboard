@@ -175,7 +175,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 #############################################################
-8000
 # import razorpay
 # RAZORPAY_KEY_ID = 'rzp_test_M4wPEnBM4t1hog'
 # RAZORPAY_KEY_SECRET = 'P4GVB18vIsqzqKF47bYaEf9k'
