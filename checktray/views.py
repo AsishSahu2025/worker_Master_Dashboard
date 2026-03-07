@@ -37,7 +37,7 @@ def publish_schedule_to_device(device_id, message):
 
 @csrf_exempt
 # Create your views here.
-def checktryGenerate(request):
+def checktrayGenerate(request):
     if request.method == "POST":
         try:
             data=json.loads(request.body)

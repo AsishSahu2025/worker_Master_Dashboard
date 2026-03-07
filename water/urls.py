@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path,include
 from myapp import views
 from myapp.views import *
+import checktray.views
 from django.conf import settings
 
 from django.conf.urls.static import static
@@ -81,6 +82,12 @@ urlpatterns = [
     path('delete_drawline/<id>/',views.delete_drawline),
     path('device_details/<device_type>/',views.device_details),     
     path('get_parameters/<pond_id>/',views.get_parameters),     
+
+    ######################### checktray ################################
+
+    path('checktray_generate/', checktray.views.checktrayGenerate),
+    path('schedule/', checktray.views.scheduling),
+    path('checktray_task/', checktray.views.checktrayTask),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
