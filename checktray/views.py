@@ -51,7 +51,7 @@ def checktrayGenerate(request):
             # prevent duplicate generation
             if ChecktrayTask.objects.filter(
                 device_id=device_id,
-                status__in=["","Pending", "Running"]
+                status__in=["No Status","Pending", "Running"]
             ).exists():
                 return JsonResponse(
                     {"error": "Cycles already generated"},
@@ -67,7 +67,7 @@ def checktrayGenerate(request):
                     spray_cycle="YES",
                     image_update="YES",
                     water_level=0,
-                    status=""
+                    status="No Status"
                 )
 
                 # send row back to UI
@@ -76,7 +76,7 @@ def checktrayGenerate(request):
                     "device_id": device_id,
                     # "cycle_no": f"C{0}",
                     # "water_level": 0,
-                    "status": ""
+                    "status": "No Status"
                 })
 
             return JsonResponse({"tasks": response_rows}, status=200)
@@ -141,32 +141,39 @@ def scheduling(request):
     return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
 
 
-@csrf_exempt
+
 def checktrayTask(request):
     if request.method == "GET":
         try:
             device_id = request.GET.get("device_id")
 
-            if not device_id:
-                return JsonResponse({'error':'device_id is required.'}, status=400)
-            
-            
-            tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
-            "id",
-            "device_id",
-            "spray_cycle",
-            "image_update",
-            "water_level",
-            "start_time",
-            "stop_time",
-            "status"
-        )
-            # tasks=list(tasks)
-            # print(tasks)
+            if device_id:
+                tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
+                "id",
+                "device_id",
+                "spray_cycle",
+                "image_update",
+                "water_level",
+                "start_time",
+                "stop_time",
+                "status"
+            )
 
-
-            return JsonResponse({'task':list(tasks)}, status=200)
+                return JsonResponse({'task':list(tasks)}, status=200)
+            else :
+                tasks = ChecktrayTask.objects.all().order_by('start_time').values(
+                    "id",
+                    "device_id",
+                    "spray_cycle",
+                    "image_update",
+                    "water_level",
+                    "start_time",
+                    "stop_time",
+                    "status"
+                )
+                return JsonResponse({'task':list(tasks)}, status=200) 
+        
         except Exception as e:
             return JsonResponse({'error':str(e)}, status=500)
-    return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
+    return JsonResponse({'error':'Invalid HTTP method, Use GET'}, status=405)
 
