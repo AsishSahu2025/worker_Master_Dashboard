@@ -1,0 +1,50 @@
+from azure.storage.blob import (
+    BlobServiceClient,
+    generate_blob_sas,
+    BlobSasPermissions)
+
+from datetime import datetime, timedelta
+from django.conf import settings
+
+def generate_upload_sas(logical_path: str, expires_in_minutes=5):
+    """
+    Generates an upload-only SAS URL for a blob.
+    """
+
+    sas_token = generate_blob_sas(
+        account_name=settings.AZURE_STORAGE_ACCOUNT_NAME,
+        container_name=settings.AZURE_STORAGE_CONTAINER,
+        blob_name=logical_path,
+        account_key=settings.AZURE_STORAGE_ACCOUNT_KEY,
+        permission=BlobSasPermissions(write=True, create=True),
+        expiry=datetime.utcnow() + timedelta(minutes=expires_in_minutes),
+        version="2020-10-02",
+        protocol="https",
+        resource="b",
+
+    )
+
+    upload_url = (
+        f"https://{settings.AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/"
+        f"{settings.AZURE_STORAGE_CONTAINER}/{logical_path}?{sas_token}"
+    )
+
+    return upload_url
+
+def generate_read_sas(logical_path: str, expires_in_minutes=10):
+    sas_token = generate_blob_sas(
+        account_name=settings.AZURE_STORAGE_ACCOUNT_NAME,
+        container_name=settings.AZURE_STORAGE_CONTAINER,
+        blob_name=logical_path,
+        account_key=settings.AZURE_STORAGE_ACCOUNT_KEY,
+        permission=BlobSasPermissions(read=True),
+        expiry=datetime.utcnow() + timedelta(minutes=120),
+        version="2020-10-02",
+        protocol="https",
+        resource="b",
+    )
+
+    return (
+        f"https://{settings.AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/"
+        f"{settings.AZURE_STORAGE_CONTAINER}/{logical_path}?{sas_token}"
+    )
