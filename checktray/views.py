@@ -5,34 +5,8 @@ from .models import *
 from django.db import transaction
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-
-import paho.mqtt.client as mqtt
-
-MQTT_BROKER = "mqttbroker.bc-pl.com"
-MQTT_PORT = 1883
-MQTT_USERNAME = "mqttuser"   # if required
-MQTT_PASSWORD = "Bfl@2025"
-
-# def publish_schedule_to_device(device_id, message):
-#     try:
-#         client = mqtt.Client(client_id=f"schedule_pub_{device_id}")
-
-#         # remove if broker allows anonymous access
-#         client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
-
-#         client.connect(MQTT_BROKER, MQTT_PORT, 60)
-
-#         topic = f"feeder/{device_id}/schedule_set"
-
-#         client.publish(topic, message, qos=1)
-
-#         client.disconnect()
-
-#         print(f"Published: {topic} -> {message}")
-
-#     except Exception as e:
-#         print("MQTT Publish Error:", str(e))
-
+from myapp.views import DeviceCommandAbortView
+from checktray.mqtt_command_queue import enqueue_mqtt_command
 
 
 @csrf_exempt
@@ -92,55 +66,56 @@ def checktrayGenerate(request):
 
 @csrf_exempt
 def scheduling(request):
-    if request.method == "POST":
+    if request.method != "POST":
+        return JsonResponse({'error':'Invalid HTTP method, Use POST.'})
+    try:
+        data= json.loads(request.body)
+        
+        task_id= data.get("id")
+        device_id = data.get('device_id')
+        start_time_str= data.get("start_time")
+
+
+        if not all([task_id, device_id, start_time_str]):
+            return JsonResponse({'error': 'Missing required fields'}, status=400)
+        
         try:
-            data= json.loads(request.body)
-            
-            id= data.get("id")
-            device_id = data.get('device_id')
-            # cycle_no= data.get("cycle_no")
-            # spray_cycle= data.get("spray_cycle")
-            start_time_str= data.get("start_time")
+            start_time = timezone.datetime.strptime(start_time_str, '%Y-%m-%d %H:%M')
+            print(start_time)
+            start_time = timezone.make_aware(start_time)
+            print()
+        except ValueError:
+            return JsonResponse({'error': 'Invalid time format. Use YYYY-MM-DD HH:MM'}, status=400)
 
+        with transaction.atomic():
 
-            if not all([id, start_time_str]):
-                return JsonResponse({'error': 'Missing required fields'}, status=400)
-            
-            try:
-                start_time = timezone.datetime.strptime(start_time_str, '%Y-%m-%d %H:%M')
-                print(start_time)
-                start_time = timezone.make_aware(start_time)
-                print()
-            except ValueError:
-                return JsonResponse({'error': 'Invalid time format. Use YYYY-MM-DD HH:MM'}, status=400)
+            task = ChecktrayTask.objects.select_for_update().get(id=task_id)
 
-            
-            updated=ChecktrayTask.objects.filter(id=id).update(
-                    # cycle_no=cycle_no,
-                    # sparay_cycle=spray_cycle,
-                    start_time=start_time,
-                    status="Pending"
-                )
+            if task.status != "No Status":
+                return JsonResponse({"error": "Already scheduled or No task found."}, status=409)
 
-            if updated==0:
-                return JsonResponse({'error':'Task not found or already scheduled'}, status=409)
-            
-            # mqtt_message = f"morning_feed|{start_time_str}|1|0"
-            # print(mqtt_message)
-            
-            # publish_schedule_to_device(device_id, mqtt_message)
+            task.start_time = start_time
+            task.status = "ScheduleRequested"
+            task.save()
+        
+        mqtt_message = f"morning_feed|{start_time_str}|1|0"
+        topic = f"feeder/{device_id}/schedule_set"
+        
+        # success= publish_schedule_to_device(topic, mqtt_message)
+        print('ser tiopic')
+        # publish_mqtt_command(topic, mqtt_message)
+        enqueue_mqtt_command(topic, mqtt_message)
+        print('publish topic')
+        # if not success:
+        #     ChecktrayTask.objects.filter(id=task_id).update(status="No Status", start_time=None)
+        #     return JsonResponse({'error':'Not scheduled'})
 
-            return JsonResponse({
-                'status': 'success',
-            }, status=200)
+        return JsonResponse({
+            'status': 'success',
+        }, status=200)
 
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
-
-    
-    return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
-
-
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
 
 def checktrayTask(request):
     if request.method == "GET":
@@ -177,3 +152,57 @@ def checktrayTask(request):
             return JsonResponse({'error':str(e)}, status=500)
     return JsonResponse({'error':'Invalid HTTP method, Use GET'}, status=405)
 
+
+@csrf_exempt
+def deleteTask(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            task_id= data.get('id')
+
+            if not task_id:
+                return JsonResponse({'error':'task_id is required.'}, status=400)
+            
+            task = ChecktrayTask.objects.filter(id=task_id).first()
+            print(task)
+
+            if not task:
+                return JsonResponse({"error": "Task not found"}, status=404)
+            
+            print(task.status)
+
+            # Business rule validation
+            if task.status == "Running":
+                print('inside abort task')
+                topic=f"feeder/{task.device_id.device_id}/cycle_abort"
+                message= "Aborted"
+
+                # publish_mqtt_command(topic, message)
+                enqueue_mqtt_command(topic, message)
+
+                # task.delete()
+
+                return JsonResponse(
+                    {"status": "Cycle aborted and task deleted"},
+                    status=200
+                )
+            if task.status == "Pending":
+                topic = f"feeder/{task.device_id.device_id}/schedule_cancel"
+                message = "morning_feed"
+
+                # publish_mqtt_command(topic, message)
+                enqueue_mqtt_command(topic, message)
+
+                # task.delete()
+
+                return JsonResponse({"status": "schedule cancelled and task deleted"}, status=200)
+            
+                
+            task.delete()
+
+            return JsonResponse({'status':'success'}, status=200)
+        
+        except Exception as e:
+            return JsonResponse({'error':str(e)}, status=500)
+    return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)

@@ -4,8 +4,10 @@ import time
 # from app1.mqtt_worker import worker_loop
 # from app1.db_worker import db_worker_loop
 
-from checktray.paho_mqtt import *
+import checktray.paho_mqtt as paho_mqtt
 from myapp.models import Device
+from checktray.mqtt_command_worker import mqtt_command_worker
+from checktray.paho_mqtt import cleanup_stale_running_schedules, scheduler_loop, watchdog_loop
 
 
 class Command(BaseCommand):
@@ -18,10 +20,14 @@ class Command(BaseCommand):
         cleanup_stale_running_schedules()
 
         # Start MQTT
-        threading.Thread(
-            target=start_mqtt_client,
-            daemon=True
-        ).start()
+        paho_mqtt.start_mqtt_client()
+        while not paho_mqtt.mqtt_connected:
+            print('not connected')
+            time.sleep(1)
+        # threading.Thread(
+        #     target=start_mqtt_client,
+        #     daemon=True
+        # ).start()
 
         # Start scheduler
         threading.Thread(
@@ -30,6 +36,10 @@ class Command(BaseCommand):
         ).start()
 
         threading.Thread(target=watchdog_loop, daemon=True).start()
+        threading.Thread(
+            target=mqtt_command_worker,
+            daemon=True
+        ).start()
 
         # Keep command alive
         while True:

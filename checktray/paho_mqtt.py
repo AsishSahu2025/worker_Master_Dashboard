@@ -17,20 +17,25 @@ MQTT_BROKER = 'mqttbroker.bc-pl.com'
 MQTT_PORT = 1883
 MQTT_USER = 'mqttuser'
 MQTT_PASSWORD = 'Bfl@2025'
+SCHEDULE_STATUS= "feeder/+/schedule_status"
+SCHEDULE_CANCLE= "feeder/+/schedule_cancle"
 STATUS_TOPIC = "feeder/+/cycle_status"
 ABORT_TOPIC = "feeder/+/cycle_abort"
 TOPIC_TELEMETRY = f"feeder/+/telemetry/signal"
 BMS_TOPICS="bms/+/+"
 ALIVE_TOPIC="feeder/+/heartbeat"
 mqtt_client = None
+mqtt_connected= False
 CHECK_INTERVAL = 3  # scheduler loop sleep
 WATCHDOG_SLEEP = 3  # offline watchdog poll interval (seconds)
 MQTT_GRACE_SECONDS = 10
-DEVICE_OFFLINE_TIMEOUT= 6
+DEVICE_OFFLINE_TIMEOUT= 7
 HEARTBEAT_INTERVAL=5
 
 def on_connect(client, userdata, flags, rc):
+    global mqtt_connected
     if rc == 0:
+        mqtt_connected= True
         print("Connected to MQTT broker.")
         client.subscribe(ALIVE_TOPIC)
         print('message subscribed heartbeat topic.')
@@ -38,6 +43,10 @@ def on_connect(client, userdata, flags, rc):
         print('message subscribed status topic.')
         client.subscribe(ABORT_TOPIC)
         print('message subscribed aborted topic.')
+        client.subscribe(SCHEDULE_STATUS)
+        print('message subscribed schedule status topic.')
+        client.subscribe(SCHEDULE_CANCLE)
+        print('message subscribed schedule cancle topic.')
     else:
         print(f"Failed to connect, return code {rc}")
 
@@ -110,7 +119,7 @@ def watchdog_for_schedule(sched):
         timezone.now() - last_seen
     ).total_seconds() > DEVICE_OFFLINE_TIMEOUT:
 
-        sched.status = "Device Disconnected, Cycle Skipped"
+        sched.status = "Device Disconnected, Status Unknown"
         sched.save(update_fields=["status"])
 
         print(f"[WATCHDOG] Closed schedule {sched.id}")
@@ -285,14 +294,15 @@ def on_message(client, userdata, msg):
     device_id = topic.split("/")[1]
 
     # CRITICAL FIX: Ignore unknown devices
-    # if not Device.objects.filter(Device_id=device_id).exists():
-    #     print(f"[MQTT] Ignored unknown device: {device_id}")
-    #     return
+    if not Device.objects.filter(device_id=device_id).exists():
+        print(f"[MQTT] Ignored unknown device: {device_id}")
+        return
     
     is_heartbeat = topic.endswith("heartbeat")
     # is_signal = topic.endswith("telemetry/signal")
     is_cycle_status = topic.endswith("cycle_status")
     is_abort = topic.endswith("cycle_abort")
+    sche_status= topic.endswith("schedule_status")
     # is_bms= topic.startswith("bms/")
 
     # if is_signal:
@@ -301,8 +311,14 @@ def on_message(client, userdata, msg):
     #     cache.set(f"last_seen_{device_id}", now, None)
     print(f"[MQTT] {topic} -> {message}")
 
-    cache.set(f"last_seen_{device_id}", timezone.now(), None)
-    print(f"[HEARTBEAT] {device_id} alive", timezone.now())
+    # cache.set(f"last_seen_{device_id}", timezone.now(), None)
+    # print(f"[HEARTBEAT] {device_id} alive", timezone.now())
+
+    if is_heartbeat:
+        cache.set(f"last_seen_{device_id}", timezone.now(), None)
+        print(f"[HEARTBEAT] {device_id} alive")
+        return
+
         # state = LastServiceState.objects.filter(
         # device_id=device_id,
         # interface="DEVICE",
@@ -319,6 +335,56 @@ def on_message(client, userdata, msg):
         #     )
         # return
 
+    msg_lower=message.lower()
+    print(msg_lower)
+
+    if sche_status and "scheduled:" in msg_lower:
+        print(sche_status)
+        sched = (
+        ChecktrayTask.objects
+        .filter(device_id__device_id=device_id, status="ScheduleRequested")
+        .order_by("-start_time")
+        .first())
+
+        if not sched:
+            print(f"[WARN] schedule_status received but no ScheduleRequested for {device_id}")
+            return
+        
+
+        sched.status = "Pending"
+        print(sched.status)
+        sched.save(update_fields=["status"])
+
+        print(f"[DEVICE CONFIRMED SCHEDULE] {sched.device_id}")
+
+        # sched = (
+        # ChecktrayTask.objects
+        # .filter(device_id__device_id=device_id, status="pending")
+        # .order_by("-start_time")
+        # .first())
+        # if not sched:
+        #     return
+        # print(sched)
+
+        return
+    
+    if sche_status and ("canceled:" in msg_lower or "rejected:" in msg_lower):
+        print('inside cancle schedule')
+        sched = (
+        ChecktrayTask.objects
+        .filter(device_id__device_id=device_id, status__in=["Pending","ScheduleRequested"])
+        .order_by("-start_time")
+        .first())
+
+        if not sched:
+            print(f"[WARN] schedule_status received but no pending status for {device_id}")
+            return
+        
+        sched.delete()
+        
+        print(f"[DEVICE CONFIRMED SCHEDULE CANCLE] {sched.device_id}")
+
+
 
     # schedule = get_running_schedule_for_device(device_id)
     schedule = (
@@ -332,7 +398,6 @@ def on_message(client, userdata, msg):
         print(f"[WARN] No matching schedule for device {device_id}")
         return
     
-    msg_lower=message.lower()
 
     if schedule.status != "Running":
         return
@@ -349,12 +414,15 @@ def on_message(client, userdata, msg):
 
     # ABORTED
     if is_abort:
-        schedule.status = "Aborted"
-        schedule.stop_time= timezone.now()
-        schedule.save(update_fields=["status", "stop_time"])
+        # schedule.status = "Aborted"
+        # schedule.stop_time= timezone.now()
+        # schedule.save(update_fields=["status", "stop_time"])
+        schedule.delete()
 
         pick_next_schedule_for_device(schedule.device_id)
         return
+    
+
 
 
 def start_mqtt_client():
@@ -365,4 +433,5 @@ def start_mqtt_client():
     mqtt_client.on_message = on_message
     mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
     mqtt_client.loop_start()
+    print('mqtt_client process completed')
 

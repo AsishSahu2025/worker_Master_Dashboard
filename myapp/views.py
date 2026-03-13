@@ -24,6 +24,7 @@ from rest_framework.views import APIView
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status
+from checktray.models import *
 
   
 #***********User Registration********#
@@ -2812,42 +2813,6 @@ def Feedcalculate(tid):
     print('duration::',duration)
     print('restf::',restf)
 
-    
-    
-class DeviceCommandAbortView(APIView):
-
-    def post(self, request,id,tid):
-        DEVICE_ID = id
-        TOPIC_Abort = f"auto_feeder/{DEVICE_ID}/auto/abort"
-        client = mqtt.Client(
-        client_id=f"tasksubmit_{DEVICE_ID}_{int(time.time())}",
-        protocol=mqtt.MQTTv311
-        )
-        Feedcalculate(tid)
-        def on_connect(client, userdata, flags, rc):
-            print("Connected with rc:", rc)
-
-        client.on_connect = on_connect
-        if USERNAME and PASSWORD:
-            client.username_pw_set(USERNAME, PASSWORD)
-
-        client.loop_start()
-        client.connect(BROKER, 1883, 60)
-        # payload={"MODE": "AUTO"}
-
-        client.publish(TOPIC_Abort,"abort", qos=1)
-        task = Task.objects.get(id=tid)
-        task.status = "abort"
-        task.save() 
-        time.sleep(1)
-
-        client.loop_stop()
-        client.disconnect()
-        
-        return Response({
-            "status": "success",
-            "message": "Process Aborted"
-        })
 ############################### log message ####################################
 class AlertMessageView(APIView):
     def get(self,request,device_id):
