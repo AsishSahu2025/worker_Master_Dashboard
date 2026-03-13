@@ -41,7 +41,6 @@ urlpatterns = [
     path("pond-task/", PondTaskView.as_view()),
 #--------------------------------------------------------------------------
     path('manager_details_post/',views.manager_details_post),
-    path('manager_delete/',views.delete_manager),
     path('cluster_create/',views.cluster_create),
     path('viewuser/<id>/',views.viewuser),
     path('userponds/<registration_id>/',views.userponds),
@@ -88,6 +87,7 @@ urlpatterns = [
     path('checktray_generate/', checktray.views.checktrayGenerate),
     path('schedule/', checktray.views.scheduling),
     path('checktray_task/', checktray.views.checktrayTask),
+    path('delete_task/', checktray.views.deleteTask),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
