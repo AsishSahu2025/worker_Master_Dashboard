@@ -87,6 +87,7 @@ urlpatterns = [
     path('checktray_generate/', checktray.views.checktrayGenerate),
     path('schedule/', checktray.views.scheduling),
     path('checktray_task/', checktray.views.checktrayTask),
+    path('delete_task/', checktray.views.deleteTask),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
