@@ -142,31 +142,65 @@ def scheduling(request):
 
 
 @csrf_exempt
+# def checktrayTask(request):
+#     if request.method == "GET":
+#         try:
+#             device_id = request.GET.get("device_id")
+
+#             if not device_id:
+#                 return JsonResponse({'error':'device_id is required.'}, status=400)
+            
+            
+#             tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
+#             "id",
+#             "device_id",
+#             "spray_cycle",
+#             "image_update",
+#             "water_level",
+#             "start_time",
+#             "stop_time",
+#             "status"
+#         )
+#             # tasks=list(tasks)
+#             # print(tasks)
+
+
+#             return JsonResponse({'task':list(tasks)}, status=200)
+#         except Exception as e:
+#             return JsonResponse({'error':str(e)}, status=500)
+#     return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
 def checktrayTask(request):
     if request.method == "GET":
         try:
             device_id = request.GET.get("device_id")
 
-            if not device_id:
-                return JsonResponse({'error':'device_id is required.'}, status=400)
-            
-            
-            tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
-            "id",
-            "device_id",
-            "spray_cycle",
-            "image_update",
-            "water_level",
-            "start_time",
-            "stop_time",
-            "status"
-        )
-            # tasks=list(tasks)
-            # print(tasks)
+            if device_id:
+                tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
+                "id",
+                "device_id",
+                "spray_cycle",
+                "image_update",
+                "water_level",
+                "start_time",
+                "stop_time",
+                "status"
+            )
 
-
-            return JsonResponse({'task':list(tasks)}, status=200)
+                return JsonResponse({'task':list(tasks)}, status=200)
+            else :
+                tasks = ChecktrayTask.objects.all().order_by('start_time').values(
+                    "id",
+                    "device_id",
+                    "spray_cycle",
+                    "image_update",
+                    "water_level",
+                    "start_time",
+                    "stop_time",
+                    "status"
+                )
+                return JsonResponse({'task':list(tasks)}, status=200) 
+        
         except Exception as e:
             return JsonResponse({'error':str(e)}, status=500)
-    return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
+    return JsonResponse({'error':'Invalid HTTP method, Use GET'}, status=405)
 

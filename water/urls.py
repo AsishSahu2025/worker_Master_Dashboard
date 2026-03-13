@@ -41,7 +41,6 @@ urlpatterns = [
     path("pond-task/", PondTaskView.as_view()),
 #--------------------------------------------------------------------------
     path('manager_details_post/',views.manager_details_post),
-    path('manager_delete/',views.delete_manager),
     path('cluster_create/',views.cluster_create),
     path('viewuser/<id>/',views.viewuser),
     path('userponds/<registration_id>/',views.userponds),
