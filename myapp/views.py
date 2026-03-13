@@ -2749,7 +2749,7 @@ def Feedcalculate(tid):
     
 ############################################################################
     
-    
+
 class DeviceCommandAbortView(APIView):
 
     def post(self, request,id,tid):
