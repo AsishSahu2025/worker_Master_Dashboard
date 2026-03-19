@@ -30,7 +30,7 @@ urlpatterns = [
     path('cyclestatus/',CycleStatusview.as_view()),
     path('generate/',FeedingGenerateview.as_view()),
     path('automode/<id>/<tid>/',DeviceCommandStateView.as_view()),
-    path('automodeabort/<id>/<tid>/',DeviceCommandAbortView.as_view()),
+    # path('automodeabort/<id>/<tid>/',DeviceCommandAbortView.as_view()),
     path('tasksubmit/<id>/',TaskSubmitview.as_view()),
     path('taskclear/',TaskclearView.as_view()),
     path('abort/<id>/',Abortview.as_view()),

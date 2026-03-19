@@ -5,7 +5,6 @@ from .models import *
 from django.db import transaction
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from myapp.views import DeviceCommandAbortView
 from checktray.mqtt_command_queue import enqueue_mqtt_command
 
 
@@ -155,7 +154,7 @@ def checktrayTask(request):
 
 @csrf_exempt
 def deleteTask(request):
-    if request.method == "POST":
+    if request.method == "DELETE":
         try:
             data = json.loads(request.body)
 
@@ -205,4 +204,4 @@ def deleteTask(request):
         
         except Exception as e:
             return JsonResponse({'error':str(e)}, status=500)
-    return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
+    return JsonResponse({'error':'Invalid HTTP method, Use DELETE'}, status=405)
