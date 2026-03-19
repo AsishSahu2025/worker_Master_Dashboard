@@ -185,12 +185,11 @@ def checktrayTask(request):
 
 @csrf_exempt
 def deleteTask(request):
-    if request.method == "POST":
+    if request.method == "DELETE":
         try:
             data = json.loads(request.body)
-
             task_id= data.get('id')
-
+           
             if not task_id:
                 return JsonResponse({'error':'task_id is required.'}, status=400)
             
@@ -235,4 +234,4 @@ def deleteTask(request):
         
         except Exception as e:
             return JsonResponse({'error':str(e)}, status=500)
-    return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
+    return JsonResponse({'error':'Invalid HTTP method, Use DELETE'}, status=405)

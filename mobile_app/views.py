@@ -6,7 +6,6 @@ from .serializers import *
 
 class PondListView(APIView):
     def get(self, request,id):
-        print('/*/*****/*/*/*//*')
         cluster =Cluster.objects.get(id=id)
         serializer = ClusterPondSerializer(cluster)
         return Response(serializer.data, status=status.HTTP_200_OK)
