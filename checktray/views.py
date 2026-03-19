@@ -116,6 +116,36 @@ def scheduling(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+
+# @csrf_exempt
+# def checktrayTask(request):
+#     if request.method == "GET":
+#         try:
+#             device_id = request.GET.get("device_id")
+
+#             if not device_id:
+#                 return JsonResponse({'error':'device_id is required.'}, status=400)
+            
+            
+#             tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
+#             "id",
+#             "device_id",
+#             "spray_cycle",
+#             "image_update",
+#             "water_level",
+#             "start_time",
+#             "stop_time",
+#             "status"
+#         )
+#             # tasks=list(tasks)
+#             # print(tasks)
+
+
+#             return JsonResponse({'task':list(tasks)}, status=200)
+#         except Exception as e:
+#             return JsonResponse({'error':str(e)}, status=500)
+#     return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
+
 def checktrayTask(request):
     if request.method == "GET":
         try:
@@ -157,9 +187,8 @@ def deleteTask(request):
     if request.method == "DELETE":
         try:
             data = json.loads(request.body)
-
             task_id= data.get('id')
-
+           
             if not task_id:
                 return JsonResponse({'error':'task_id is required.'}, status=400)
             

@@ -1896,7 +1896,7 @@ def complete_order(request):
         return JsonResponse({'message': 'Pond location not found'}, status=404)
 
 ##################################################################################
-########################## user and admin side ###################################
+########################## User and Admin side ###################################
 
 @csrf_exempt
 def photoupload(request, Mob):
@@ -2397,73 +2397,6 @@ def manager_details_post(request):
         return JsonResponse({'message': 'Invalid HTTP method'}, status=405)
 
     
- 
-@csrf_exempt
-def delete_manager(request):
-    if request.method == 'DELETE':
-        try:
-            data = JSONParser().parse(request)
-            mob = data.get('Mob')  # This is the primary key
- 
-            # Step 1: Delete from Django (main) DB
-            try:
-                manager = Manager.objects.get(Mob=mob)
-                manager.delete()
-            except Manager.DoesNotExist:
-                return JsonResponse({'error': 'Manager not found in main DB'}, status=404)
- 
-            # Step 2: Delete from external DB
-            param = {
-                'host': settings.COMMONLOGIN_DB_HOST,
-                'database': settings.COMMONLOGIN_DB_NAME,# def workerview(request,mob):
-#     if request.method == 'GET':
-#         try:
-#             user = User.objects.filter(Mob=mob).first()
-#             if user:
-#                 print(user)
-#             else:
-#                 manager = Manager.objects.filter(Mob=mob).first()
-#                 if manager:
-#                     print("manager")
-#                 else:
-#                     return Response("Not Found any Manager or Owner", status=404)
-            
-#             if user:
-#                 result = Worker_details.objects.filter(user=user)
-#             elif manager:
-#                 result = Worker_details.objects.filter(manager=manager)
-#                 response = []
-#                 for i in result:
-#                     response.append({
-#                         "name":i.name
-#                     })
-#                 return JsonResponse({'Employee':response}, safe=False)
-#         except:
-#             return JsonResponse({'category':'error'})
-                'user': settings.COMMONLOGIN_DB_USER,
-                'password': settings.COMMONLOGIN_DB_PASS
-            }
-            try:
-                conn = psycopg2.connect(**param)
-                cur = conn.cursor()
- 
-                delete_query = '''
-                DELETE FROM public.myapp_manager WHERE "Mob" = %s;
-                '''
-                cur.execute(delete_query, (mob,))
-                conn.commit()
-                cur.close()
-                conn.close()
-            except (Exception, psycopg2.DatabaseError) as error:
-                return JsonResponse({'error': f'External DB deletion error: {str(error)}'}, status=500)
- 
-            return JsonResponse({'message': 'Manager deleted successfully from both databases'}, status=200)
- 
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
- 
-    else:
-        return JsonResponse({'message': 'Invalid HTTP method'}, status=405)
 #----------------------------------------------------------------------------------------------
 
 class deviceid_view(APIView):
@@ -2701,9 +2634,9 @@ class FeedTryGenerateview(APIView):
 #---------------------------------------------------------------------------------------
 
 ###################################### Publish FIRST Message and abort ################################
+
 import paho.mqtt.client as mqtt
 import time
-import json
 BROKER = "mqttbroker.bc-pl.com"   # same as subscriber
 PORT = 1883
 USERNAME = "mqttuser"
@@ -2746,6 +2679,8 @@ class DeviceCommandStateView(APIView):
             "message": "AUTO mode command sent",
             "payload": "AUTO"
         })
+        
+################# Calculate the Feed in Abort Situation #################
 
 def Feedcalculate(tid):
     try:
@@ -2812,8 +2747,47 @@ def Feedcalculate(tid):
     print("current_dt::",current_dt.time())
     print('duration::',duration)
     print('restf::',restf)
+    
+############################################################################
+    
 
+class DeviceCommandAbortView(APIView):
+
+    def post(self, request,id,tid):
+        DEVICE_ID = id
+        TOPIC_Abort = f"auto_feeder/{DEVICE_ID}/auto/abort"
+        client = mqtt.Client(
+        client_id=f"tasksubmit_{DEVICE_ID}_{int(time.time())}",
+        protocol=mqtt.MQTTv311
+        )
+        Feedcalculate(tid)
+        def on_connect(client, userdata, flags, rc):
+            print("Connected with rc:", rc)
+
+        client.on_connect = on_connect
+        if USERNAME and PASSWORD:
+            client.username_pw_set(USERNAME, PASSWORD)
+
+        client.loop_start()
+        client.connect(BROKER, 1883, 60)
+        # payload={"MODE": "AUTO"}
+
+        client.publish(TOPIC_Abort,"abort", qos=1)
+        task = Task.objects.get(id=tid)
+        task.status = "abort"
+        task.save() 
+        time.sleep(1)
+
+        client.loop_stop()
+        client.disconnect()
+        
+        return Response({
+            "status": "success",
+            "message": "Process Aborted"
+        })
+        
 ############################### log message ####################################
+
 class AlertMessageView(APIView):
     def get(self,request,device_id):
         try:
@@ -2822,7 +2796,9 @@ class AlertMessageView(APIView):
             return Response({'message':"Alert Not found"},status=404)
         serializer=AlertMessageSerializer(alert,many=True)
         return Response(serializer.data,status=200)
+    
 ############################### Task Clear #####################################
+
 class TaskclearView(APIView):
     def post(self,request):
         serializer=TaskClearSerializer(data=request.data)

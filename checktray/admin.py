@@ -9,4 +9,4 @@ class ChecktrayTaskAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ['device_id', 'image_type', 'storage_mode', 'logical_path', 'created_at']
+    list_display = ['id','device_id', 'image_type', 'storage_mode', 'logical_path', 'created_at']
