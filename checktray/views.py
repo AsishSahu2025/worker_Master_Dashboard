@@ -5,7 +5,6 @@ from .models import *
 from django.db import transaction
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from myapp.views import DeviceCommandAbortView
 from checktray.mqtt_command_queue import enqueue_mqtt_command
 
 

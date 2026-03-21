@@ -21,8 +21,8 @@ SCHEDULE_STATUS= "feeder/+/schedule_status"
 SCHEDULE_CANCLE= "feeder/+/schedule_cancle"
 STATUS_TOPIC = "feeder/+/cycle_status"
 ABORT_TOPIC = "feeder/+/cycle_abort"
-TOPIC_TELEMETRY = f"feeder/+/telemetry/signal"
-BMS_TOPICS="bms/+/+"
+# TOPIC_TELEMETRY = f"feeder/+/telemetry/signal"
+# BMS_TOPICS="bms/+/+"
 ALIVE_TOPIC="feeder/+/heartbeat"
 mqtt_client = None
 mqtt_connected= False
@@ -413,7 +413,7 @@ def on_message(client, userdata, msg):
     
 
     # ABORTED
-    if is_abort:
+    if is_abort and "aborted" in msg_lower:
         # schedule.status = "Aborted"
         # schedule.stop_time= timezone.now()
         # schedule.save(update_fields=["status", "stop_time"])
