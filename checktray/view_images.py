@@ -68,7 +68,7 @@ def confirm_image_upload(request):
             return JsonResponse({"error": "Missing fields"}, status=400)
         
         try:
-            device = Device.objects.get(Device_id=device_id)
+            device = Device.objects.get(device_id=device_id)
         except Device.DoesNotExist:
             return JsonResponse({'error': 'Invalid device.'}, status=403)
 
@@ -82,7 +82,7 @@ def confirm_image_upload(request):
 
         # Push to WebSocket group
         async_to_sync(channel_layer.group_send)(
-            f"device_{device.Device_id}",
+            f"device_{device.device_id}",
             {
                 "type": "new_image",
                 "data": {

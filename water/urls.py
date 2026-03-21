@@ -3,6 +3,7 @@ from django.urls import path,include
 from myapp import views
 from myapp.views import *
 import checktray.views
+import checktray.view_images
 from django.conf import settings
 
 from django.conf.urls.static import static
@@ -88,6 +89,7 @@ urlpatterns = [
     path('schedule/', checktray.views.scheduling),
     path('checktray_task/', checktray.views.checktrayTask),
     path('delete_task/', checktray.views.deleteTask),
+    path('confirm_image_upload/', checktray.view_images.confirm_image_upload),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

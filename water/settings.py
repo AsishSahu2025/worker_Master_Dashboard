@@ -181,11 +181,14 @@ EMAIL_USE_SSL = False
 
 
 ########## Redis configuration (LOCAL / LAN) ################
-REDIS_HOST = "192.168.1.40"
-REDIS_PORT = 6379          # default local Redis port
-REDIS_PASSWORD = "master"
-REDIS_DB = 0
-REDIS_SSL = False
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 ##############################################################
 
 ############### Session engine configuration #################
@@ -199,3 +202,8 @@ TOKEN = '8359846344:AAG_LPrbj0weS27hUeUF8Fi1Zxcl9W-kFSU'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT ="/home/bariflo/Desktop"
+
+
+AZURE_STORAGE_ACCOUNT_NAME="vertoxlabblob1"
+AZURE_STORAGE_CONTAINER="vertoxdb"
+AZURE_STORAGE_ACCOUNT_KEY="aYOMbNdrpbzGqmCNkwHFGmcmRw+s0bRskVcy3nDjLsG7fle1zyWyY39YG1dKcGEuTHL+yldRdpty+AStdh1wsg=="
