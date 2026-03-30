@@ -95,15 +95,16 @@ def cleanup_stale_running_schedules():
 
     # Handle MISSED pending schedules (start_time passed during downtime)
     missed_pending = ChecktrayTask.objects.filter(
-        status="Pending",
+        status__in=["Pending","ScheduleRequested"],
         start_time__lt=timezone.now()
     )
 
     for sched in missed_pending:
         sched.status = "Server started after schedule time – Missed Schedule"
-        sched.save(update_fields=["status"])
+        sched.submit = "True"
+        sched.save(update_fields=["status","submit"])
 
-        print(f"[RECOVERY] Pending schedule {sched.id} missed due to server start")
+        print(f"[RECOVERY] {sched.status} schedule {sched.id} missed due to server start")
 
 
 
@@ -352,8 +353,9 @@ def on_message(client, userdata, msg):
         
 
         sched.status = "Pending"
+        sched.submit = "True"
         print(sched.status)
-        sched.save(update_fields=["status"])
+        sched.save(update_fields=["status","submit"])
 
         print(f"[DEVICE CONFIRMED SCHEDULE] {sched.device_id}")
 

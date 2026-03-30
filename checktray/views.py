@@ -160,7 +160,8 @@ def checktrayTask(request):
                 "water_level",
                 "start_time",
                 "stop_time",
-                "status"
+                "status",
+                "submit"
             )
 
                 return JsonResponse({'task':list(tasks)}, status=200)
@@ -173,7 +174,8 @@ def checktrayTask(request):
                     "water_level",
                     "start_time",
                     "stop_time",
-                    "status"
+                    "status",
+                    "submit"
                 )
                 return JsonResponse({'task':list(tasks)}, status=200) 
         
