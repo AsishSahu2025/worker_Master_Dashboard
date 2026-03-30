@@ -12,6 +12,7 @@ class ChecktrayTask(models.Model):
     start_time= models.DateTimeField(null=True, blank=True)
     stop_time= models.DateTimeField(null=True, blank=True)
     status= models.CharField(max_length=100, default='Pending')
+    submit= models.CharField(max_length=10, default='False')
     
     def __str__(self):
         return f"Task-{self.id} | Device-{self.device_id}"
