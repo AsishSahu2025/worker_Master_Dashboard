@@ -12,6 +12,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('api/', include('power_monitoring.urls')),
     path('api/', include('mobile_app.urls')),
     path('admin/', admin.site.urls),
     path('admin_cluster_view/<mob>/',views.admin_cluster_view),   #admin side
