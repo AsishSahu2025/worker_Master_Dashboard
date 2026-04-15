@@ -4,7 +4,7 @@ from .models import MonitoringSession, SensorData
 
 @admin.register(MonitoringSession)
 class MonitoringSessionAdmin(admin.ModelAdmin):
-    list_display = ("id", "cycle_number", "main", "start_time", "end_time", "total_wh", "status", "worker", "description")
+    list_display = ("id","device", "cycle_number", "main", "start_time", "end_time", "total_wh", "status", "worker")
     list_filter = ("start_time",)
     search_fields = ("description",)
 

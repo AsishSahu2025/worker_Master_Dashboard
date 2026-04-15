@@ -21,6 +21,7 @@ from django.utils import timezone
 # ---------------- PROJECT ---------------- #
 from power_monitoring.models import SensorData, MonitoringSession
 from power_monitoring.views import update_session_status
+from django.db import close_old_connections
 
 # ---------------- CONFIG ---------------- #
 MQTT_BROKER = "mqttbroker.bc-pl.com"
@@ -153,8 +154,11 @@ def on_message(client, userdata, msg):
 
 
 # ---------------- SESSION WATCHER ---------------- #
+
 def schedule_watcher():
     while True:
+        close_old_connections()  
+
         sessions = MonitoringSession.objects.filter(
             status__in=["PENDING", "PROCESSING"]
         )

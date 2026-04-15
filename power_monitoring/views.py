@@ -26,21 +26,29 @@ MQTT_PASSWORD = "Bfl@2025"
 
 # ================= STATUS HELPER ================= #
 def update_session_status(session):
-    now = timezone.now()
-    if session.status in ["COMPLETED", "FAILED", "ABORTED"]:
-        return
-    if not session.start_time or not session.end_time:
-        session.status = "PENDING"
-    else:
-        has_data = session.readings.exists() if hasattr(session, 'readings') else False
-        if now < session.start_time:
-            session.status = "PENDING"
-        elif session.start_time <= now <= session.end_time:
-            session.status = "PROCESSING"
+    try:
+        now = timezone.now()
+        if session.status in ["COMPLETED", "FAILED", "ABORTED"]:
+            return
+        if not session.start_time or not session.end_time:
+            new_status = "PENDING"
+            duration = None
         else:
-            session.status = "COMPLETED" if has_data else "FAILED"
-        session.duration = session.end_time - session.start_time
-    session.save(update_fields=["status", "duration"])
+            has_data = session.readings.exists() if hasattr(session, 'readings') else False
+            if now < session.start_time:
+                new_status = "PENDING"
+            elif session.start_time <= now <= session.end_time:
+                new_status = "PROCESSING"
+            else:
+                new_status = "COMPLETED" if has_data else "FAILED"
+
+            duration = session.end_time - session.start_time
+        MonitoringSession.objects.filter(id=session.id).update(
+            status=new_status,
+            duration=duration
+        )
+    except Exception as e:
+        print(f"⚠️ update_session_status error for {session.id}: {e}")
 
 
 # ================= SENSOR DATA ================= #
@@ -105,13 +113,18 @@ class GenerateCyclesView(APIView):
             last_cycle = MonitoringSession.objects.filter(device=device).order_by("-cycle_number").first()
             next_cycle_number = last_cycle.cycle_number + 1 if last_cycle else 1
 
+            # AUTO MAIN LOGIC
+            main_value = 1 if device.device_id == "BFL_PomonA001" else 2
+
             session = MonitoringSession.objects.create(
                 device=device,
                 cycle_number=next_cycle_number,
                 start_time=None,
                 end_time=None,
-                status="PENDING"
+                status="PENDING",
+                main=main_value 
             )
+
             created_cycles.append({
                 "cycle_number": session.cycle_number,
                 "start_time": session.start_time,
@@ -123,8 +136,29 @@ class GenerateCyclesView(APIView):
             "device_id": device.device_id,
             "cycles": created_cycles
         })
+    
+# ================= CLEAR ALL CYCLES ================= #
 
+class ClearCyclesView(APIView):
+    def delete(self, request):
+        device_id = request.data.get("device_id")
 
+        if device_id:
+            deleted, _ = MonitoringSession.objects.filter(
+                device__device_id=device_id
+            ).delete()
+            return Response({
+                "success": True,
+                "message": f"{deleted} cycles deleted for {device_id}"
+            })
+
+        deleted, _ = MonitoringSession.objects.all().delete()
+
+        return Response({
+            "success": True,
+            "message": f"{deleted} cycles deleted (ALL)"
+        })
+    
 # ================= EMPTY ROWS WITH DETAILS ================= #
 class EmptySessionsDetailView(APIView):
     def get(self, request):
@@ -236,37 +270,48 @@ class MonitoringSessionViewSet(ModelViewSet):
                     raise ValidationError({"error": f"Cycle {i+1}: overlaps with existing session"})
 
                 # ----------- CREATE SESSION ----------- #
-                session = MonitoringSession.objects.create(
+                # Get first empty session
+                session = MonitoringSession.objects.filter(
                     device=device,
-                    worker=worker,
-                    start_time=start_time,
-                    end_time=end_time,
-                    main=main,
-                    status="PENDING",
-                    cycle_number=(MonitoringSession.objects.filter(device=device).count() + 1)
-                )
+                    start_time__isnull=True,
+                    end_time__isnull=True
+                ).order_by("cycle_number").first()
+
+                if not session:
+                    raise ValidationError({"error": "No empty cycle available. Generate cycles first."})
+
+                # UPDATE instead of CREATE
+                session.worker = worker
+                session.start_time = start_time
+                session.end_time = end_time
+                session.main = main
+                session.status = "PENDING"
+
+                session.save()
 
                 update_session_status(session)
                 created_sessions.append(session)
 
                 # ----------- MQTT PUBLISH ----------- #
                 payload = {
-                    "cycle": session.cycle_number,
                     "start_time": start_time.strftime("%H:%M"),
                     "duration": int((end_time - start_time).total_seconds()),
                     "main": main
                 }
+
                 topic = f"pomon/{device.device_id}/rnd/schedule"
+
                 try:
                     publish.single(
                         topic,
-                        json.dumps(payload, separators=(',', ':')),
+                        json.dumps(payload, separators=(',', ':')),  # ✅ IMPORTANT
                         hostname=MQTT_BROKER,
                         port=MQTT_PORT,
                         auth={"username": MQTT_USER, "password": MQTT_PASSWORD}
                     )
+                    print(f"📤 MQTT SENT: {payload}")
                 except Exception as e:
-                    print("MQTT Error:", e)
+                    print("❌ MQTT Error:", e)
 
         return Response({
             "success": True,

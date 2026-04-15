@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .views import (
+    ClearCyclesView,
     EmptySessionsDetailView,
     GenerateCyclesView,
     SensorDataViewSet,
@@ -22,4 +23,5 @@ urlpatterns = router.urls + [
     path('active-session/', ActiveSessionView.as_view(), name='active-session'),
     path('abort-session/', AbortSessionView.as_view(), name='abort-session'),
     path('empty-sessions-detail/', EmptySessionsDetailView.as_view(), name='empty-sessions-detail'),
+    path('clear-cycles/', ClearCyclesView.as_view())
 ]
