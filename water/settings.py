@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'checktray.apps.ChecktrayConfig',
+    'power_monitoring',
 ]
 
 
@@ -105,19 +106,22 @@ WSGI_APPLICATION = 'water.wsgi.application'
 
 
 # ############################# DATABASE ######################
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
 DATABASES = {
-    "default": {  
+    "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "aquafarm",  
-        "USER": "Vertoxlabs1987Bfl",         
-        "PASSWORD": "Vtx@1987#2026#Bfl@", 
-        "HOST": 'vertoxlabsdb.postgres.database.azure.com',
+        "NAME": "aquafarm",
+        "USER": "Vertoxlabs1987Bfl",
+        "PASSWORD": "Vtx@1987#2026#Bfl@",
+        "HOST": "vertoxlabsdb.postgres.database.azure.com",
         "PORT": "5432",
-        'OPTIONS': {
-            'sslmode': 'require',  
+        "CONN_MAX_AGE": 60,
+        "OPTIONS": {
+            "sslmode": "require",
         },
-    }}
+    }
+}
+
 ###################################################################
 
 
