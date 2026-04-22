@@ -304,7 +304,7 @@ class MonitoringSessionViewSet(ModelViewSet):
                 try:
                     publish.single(
                         topic,
-                        json.dumps(payload, separators=(',', ':')),  # ✅ IMPORTANT
+                        json.dumps(payload, separators=(',', ':')),  
                         hostname=MQTT_BROKER,
                         port=MQTT_PORT,
                         auth={"username": MQTT_USER, "password": MQTT_PASSWORD}
