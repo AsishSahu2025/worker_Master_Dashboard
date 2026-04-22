@@ -6,7 +6,10 @@ from django.db import transaction
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from checktray.mqtt_command_queue import enqueue_mqtt_command
+from checktray.telegram_queue import enqueue_telegram
 
+from checktray.telegram_notifications import notify_checktray_task
+import time
 
 @csrf_exempt
 # Create your views here.
@@ -51,7 +54,6 @@ def checktrayGenerate(request):
                     # "water_level": 0,
                     "status": "No Status"
                 })
-
             return JsonResponse({"tasks": response_rows}, status=200)
 
 
@@ -72,19 +74,26 @@ def scheduling(request):
         
         task_id= data.get("id")
         device_id = data.get('device_id')
-        start_time_str= data.get("start_time")
+        start_time_str= data.get("from_time")
+        worker = data.get('worker_name')
+        # manager = data.get("manager")
 
 
-        if not all([task_id, device_id, start_time_str]):
+        if not all([task_id, device_id, start_time_str, worker]):
             return JsonResponse({'error': 'Missing required fields'}, status=400)
         
         try:
             start_time = timezone.datetime.strptime(start_time_str, '%Y-%m-%d %H:%M')
             print(start_time)
-            start_time = timezone.make_aware(start_time)
-            print()
+            # start_time = timezone.make_aware(start_time)
+            # print()
         except ValueError:
             return JsonResponse({'error': 'Invalid time format. Use YYYY-MM-DD HH:MM'}, status=400)
+        
+        try:
+            worker_obj = Worker_details.objects.get(name=worker)
+        except Worker_details.DoesNotExist:
+            return JsonResponse({'error': 'Worker not found'}, status=404)
 
         with transaction.atomic():
 
@@ -94,8 +103,19 @@ def scheduling(request):
                 return JsonResponse({"error": "Already scheduled or No task found."}, status=409)
 
             task.start_time = start_time
+            task.worker_name = worker_obj
+            # task.manager_id = manager
             task.status = "ScheduleRequested"
             task.save()
+            # After commit: avoids notifying while holding the row lock and ensures the row is visible.
+            # _scheduled_task_id = task.id
+            # transaction.on_commit(
+            #     lambda tid=_scheduled_task_id: notify_checktray_task(tid)
+            # )
+            # _scheduled_task_id = task.id
+            # transaction.on_commit(
+            # lambda tid=_scheduled_task_id: enqueue_telegram(tid)
+            # )
         
         mqtt_message = f"morning_feed|{start_time_str}|1|0"
         topic = f"feeder/{device_id}/schedule_set"
@@ -155,6 +175,8 @@ def checktrayTask(request):
                 tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
                 "id",
                 "device_id",
+                "worker_name",
+                # "manager_id",
                 "spray_cycle",
                 "image_update",
                 "water_level",
@@ -169,6 +191,8 @@ def checktrayTask(request):
                 tasks = ChecktrayTask.objects.all().order_by('start_time').values(
                     "id",
                     "device_id",
+                    "worker_name",
+                    # "manager_id",
                     "spray_cycle",
                     "image_update",
                     "water_level",

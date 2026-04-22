@@ -7,6 +7,7 @@ import time
 import checktray.paho_mqtt as paho_mqtt
 from myapp.models import Device
 from checktray.mqtt_command_worker import mqtt_command_worker
+from checktray.telegram_worker import telegram_worker
 from checktray.paho_mqtt import cleanup_stale_running_schedules, scheduler_loop, watchdog_loop
 
 
@@ -38,6 +39,10 @@ class Command(BaseCommand):
         threading.Thread(target=watchdog_loop, daemon=True).start()
         threading.Thread(
             target=mqtt_command_worker,
+            daemon=True
+        ).start()
+        threading.Thread(
+            target=telegram_worker,
             daemon=True
         ).start()
 

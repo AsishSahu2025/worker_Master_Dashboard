@@ -1,24 +1,3 @@
-# from .mqtt_command_queue import mqtt_publish_queue
-# from .paho_mqtt import mqtt_client
-
-# def mqtt_command_worker():
-
-#     print("MQTT command worker started")
-
-#     while True:
-
-#         command = mqtt_publish_queue.get()
-
-#         topic = command["topic"]
-#         payload = command["payload"]
-
-#         result = mqtt_client.publish(topic, payload, qos=1)
-
-#         if result.rc == 0:
-#             print(f"[MQTT PUBLISHED] {topic}")
-#         else:
-#             print(f"[MQTT FAILED] {topic}")
-
 import redis
 import json
 from checktray import paho_mqtt

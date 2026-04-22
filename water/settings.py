@@ -12,14 +12,28 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-# # import dotenv
+# import dotenv
 # from dotenv import load_dotenv
 # import os
-# load_dotenv()    
+# load_dotenv()
+from glob import glob
+from dotenv import load_dotenv    
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+_env_path = os.path.join(BASE_DIR, ".env")
+try:
+    load_dotenv(_env_path, encoding="utf-8-sig")
+except TypeError:
+    load_dotenv(_env_path)
+
+### For Check Tray Telegram
+AZURE_COMMUNICATION_CONNECTION_STRING = os.getenv("AZURE_COMMUNICATION_CONNECTION_STRING")
+TELEGRAM_BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip() or None
+_raw_chat = os.getenv("TELEGRAM_GROUP_CHAT_ID")
+TELEGRAM_GROUP_CHAT_ID = (_raw_chat.strip() if _raw_chat else None) or None
 
 
 # Quick-start development settings - unsuitable for production
@@ -53,7 +67,7 @@ INSTALLED_APPS = [
     'geoposition',
     'rest_framework',
     'rest_framework.authtoken',
-    'checktray',
+    'checktray.apps.ChecktrayConfig',
 ]
 
 
@@ -131,7 +145,7 @@ AUTHENTICATION_BACKENDS = [
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
-USE_TZ = True
+USE_TZ = False
 
 ###########################common login database ##########################
 COMMONLOGIN_DB_NAME = 'commonlogin'
@@ -195,8 +209,6 @@ CHANNEL_LAYERS = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
-################ Telegram Token configuration ################
-TOKEN = '8359846344:AAG_LPrbj0weS27hUeUF8Fi1Zxcl9W-kFSU'
 
 ###################### Image Configurations ##################
 
@@ -207,3 +219,19 @@ MEDIA_ROOT ="/home/bariflo/Desktop"
 AZURE_STORAGE_ACCOUNT_NAME="vertoxlabblob1"
 AZURE_STORAGE_CONTAINER="vertoxdb"
 AZURE_STORAGE_ACCOUNT_KEY="aYOMbNdrpbzGqmCNkwHFGmcmRw+s0bRskVcy3nDjLsG7fle1zyWyY39YG1dKcGEuTHL+yldRdpty+AStdh1wsg=="
+
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
+CELERY_TIMEZONE = 'Asia/Kolkata'
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'start-scheduled-cycles-every-1-min': {
+        'task': 'myapp.tasks.start_scheduled_cycles',
+        'schedule': 60.0,  # every 60 seconds
+    },
+}

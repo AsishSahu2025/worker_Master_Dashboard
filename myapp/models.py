@@ -176,28 +176,34 @@ class Task(models.Model):
     #------------------------------------------------------------------------
     device = models.ForeignKey(Device,on_delete=models.CASCADE)
     worker_name = models.ForeignKey(Worker_details,on_delete=models.CASCADE,null=True,blank=True)
-    cycles = models.IntegerField(max_length=5)
+    cycles = models.IntegerField()
     from_time = models.TimeField(null=True, blank=True)
     to_time = models.TimeField(null=True, blank=True)
     auto_feed_rate = models.CharField(max_length=255,default=100) 
-    auto_sprinkle_rate = models.CharField(max_length=255,default=4000)
-    auto_door=models.IntegerField(default=3750)
+    auto_sprinkle_rate = models.CharField(max_length=255,default=1000)
+    auto_door=models.IntegerField(default=3000)
     feedin=models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
     feedin_percentage=models.IntegerField(null=True,blank=True)
     feed_weight = models.IntegerField(blank=True, null=True)
     restfeed=models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
     time_interval = models.CharField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    schedule_date = models.DateField(null=True, blank=True)
     status = models.CharField(
     max_length=20,
     default="pending",
     choices=(
+        ("pending", "Pending"),
+        ("scheduled", "Scheduled"),
         ("processing", "Processing"),
         ("completed", "Completed"),
         ("abort", "Abort"),
         ("pending","Pending")
         )
     )
+    is_published = models.BooleanField(default=False)
+    extra_feed = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    batch_id = models.UUIDField(null=True, blank=True, db_index=True)
     #------------------------------------------------------------------------
     spray_type = models.CharField(max_length=50, blank=True, null=True)
     image=models.ImageField(upload_to='image/',null=True,blank=True)

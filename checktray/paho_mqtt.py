@@ -9,6 +9,7 @@ from django.db import close_old_connections
 # from .mqtt_worker import *
 from .models import *
 from myapp.models import *
+from checktray.telegram_queue import enqueue_telegram
 
 SERVER_START_TIME = timezone.now()
 
@@ -29,7 +30,7 @@ mqtt_connected= False
 CHECK_INTERVAL = 3  # scheduler loop sleep
 WATCHDOG_SLEEP = 3  # offline watchdog poll interval (seconds)
 MQTT_GRACE_SECONDS = 10
-DEVICE_OFFLINE_TIMEOUT= 7
+DEVICE_OFFLINE_TIMEOUT= 20
 HEARTBEAT_INTERVAL=5
 
 def on_connect(client, userdata, flags, rc):
@@ -112,6 +113,19 @@ def cleanup_stale_running_schedules():
 def watchdog_for_schedule(sched):
     device_id = sched.device_id.device_id
     last_seen = cache.get(f"last_seen_{device_id}")
+    now = timezone.now()
+
+    print("\n[WATCHDOG DEBUG]")
+    print("Device:", device_id)
+    print("Now:", now)
+    print("Last Seen:", last_seen)
+
+    if last_seen:
+        diff = (now - last_seen).total_seconds()
+        print("Time Diff (seconds):", diff)
+    else:
+        print("Last Seen is None ❌")
+
 
     if sched.status in ["Completed", "Aborted"]:
         return
@@ -119,8 +133,9 @@ def watchdog_for_schedule(sched):
     if not last_seen or (
         timezone.now() - last_seen
     ).total_seconds() > DEVICE_OFFLINE_TIMEOUT:
+        print("inside watchdog ---------------------------------------------------------------")
 
-        sched.status = "Device Disconnected, Status Unknown"
+        sched.status = "Device Disconnected"
         sched.save(update_fields=["status"])
 
         print(f"[WATCHDOG] Closed schedule {sched.id}")
@@ -316,8 +331,9 @@ def on_message(client, userdata, msg):
     # print(f"[HEARTBEAT] {device_id} alive", timezone.now())
 
     if is_heartbeat:
+        now = timezone.now()
         cache.set(f"last_seen_{device_id}", timezone.now(), None)
-        print(f"[HEARTBEAT] {device_id} alive")
+        print(f"[HEARTBEAT] {device_id} alive at {now}")
         return
 
         # state = LastServiceState.objects.filter(
@@ -337,7 +353,7 @@ def on_message(client, userdata, msg):
         # return
 
     msg_lower=message.lower()
-    print(msg_lower)
+    print('msg lower',msg_lower)
 
     if sche_status and "scheduled:" in msg_lower:
         print(sche_status)
@@ -358,6 +374,8 @@ def on_message(client, userdata, msg):
         sched.save(update_fields=["status","submit"])
 
         print(f"[DEVICE CONFIRMED SCHEDULE] {sched.device_id}")
+
+        enqueue_telegram(sched.id)
 
         # sched = (
         # ChecktrayTask.objects
@@ -406,6 +424,7 @@ def on_message(client, userdata, msg):
 
     # COMPLETED
     if is_cycle_status and "all cycles completed" in msg_lower:
+        print('------------------------completed-------------------------------------')
         schedule.status = "Completed"
         schedule.stop_time = timezone.now()
         schedule.save(update_fields=["status", "stop_time"])

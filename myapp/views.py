@@ -2420,6 +2420,7 @@ class CycleStatusview(APIView):
         serializer.save()
         return Response({"sms":f"Owner start the Machine of Device_id={serializer.validated_data['device']}"})
 #----------------------------------------------------------------------------------------------
+import uuid
 class FeedingGenerateview(APIView):
     def post(self, request):
         serializer = GenerateSerializer(data=request.data)
@@ -2429,24 +2430,32 @@ class FeedingGenerateview(APIView):
         category_name = data['deviceName']
         device_id = data['deviceId']
         total_cycles = data['cycles']
+        schedule_date = data['schedule_date']
         last_task = None
         check_sts = None
-        last_task = Task.objects.filter(device=device_id).order_by('-id').first()
+        last_task = Task.objects.filter(
+            device=device_id,
+            schedule_date=schedule_date
+        ).order_by('-cycles').first()
+
         if last_task != None:
-            check_sts=getattr(last_task,'status')
+            check_sts = getattr(last_task, 'status', None) if last_task else None
 
         if  check_sts == "processing" or check_sts == "abort" or check_sts == "pending":
-            return Response(f"{device_id} is on Processing.., try After completed the Process.")
+            return Response(f"{device_id} already has active cycles for this date.")
         try:
             category = Task_Category.objects.get(name__iexact=category_name)
             created_task_ids = []
 
             with transaction.atomic():
+                batch_id = uuid.uuid4()
                 for cycle_no in range(1, total_cycles + 1):
                     task = Task.objects.create(
                         taskcatagory=category,  
                         device_id=device_id,
                         cycles=cycle_no,
+                        schedule_date=schedule_date,
+                        batch_id=batch_id,
                         from_time=None,
                         to_time=None,
                         feed_weight=None,
@@ -2476,22 +2485,175 @@ class FeedingGenerateview(APIView):
 #---------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------
 from .validator import check_interval
-import threading
+from django.utils import timezone
 class TaskSubmitview(APIView):
-    def put(self,request,id):
-        cycle=Task.objects.get(id=id)
-        serializer=TaskSubmitSerializer(cycle,data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        task=Task.objects.get(id=id)
-        #---------------------- Threading------------------------------
-        threading.Thread(
-            target=check_interval,
-            args=(id,),
-            daemon=True
-        ).start()
+    def put(self,request):
+        print('--------------------------------------------------------------------------------')
+        print('see the feed weight that i get in requests', request.data.get("feed_weight"))
+        print('--------------------------------------------------------------------------------')
+        # cycle=Task.objects.get(id=id)
+        # serializer=TaskSubmitSerializer(cycle,data=request.data)
+        # serializer.is_valid(raise_exception=True)
+        # serializer.save()
+
+        # task=Task.objects.get(id=id)
+
+        # today = timezone.localdate()
+
+        # # Do not trigger future cycles
+        # if task.schedule_date != today:
+        #     print("⏳ Future schedule → skip trigger")
+        #     return Response({
+        #         "msg": "Scheduled for future date",
+        #         "status": "scheduled"
+        #     })
+
+        # #   find first cycle
+        # first_task = Task.objects.filter(
+        #     device=task.device
+        # ).order_by("cycles").first()
+
+        # can_trigger = False
+
+        # # Case 1: first cycle
+        # if task.id == first_task.id:
+        #     print("First cycle → allowed")
+        #     can_trigger = True
+
+        # else:
+        #     # ✅ Case 2: check previous cycle
+        #     prev_task = Task.objects.filter(
+        #         device=task.device,
+        #         cycles=task.cycles - 1
+        #     ).first()
+
+        #     if prev_task and prev_task.status in ["completed", "abort"]:
+        #         print("✅ Previous cycle completed/aborted → allowed")
+        #         can_trigger = True
+        #     else:
+        #         print("⛔ Previous cycle not finished → blocked")
+
+        # # 🔥 final trigger
+        # if can_trigger:
+        #     success = trigger_device(task.device.device_id, task.id)
+        #     if not success:
+        #         print("⚠️ Device busy, could not trigger")
+
         
-        return Response({"sms":"Send to Fedding Check....","status":"processing","Remain feedin":f"{task.feedin} Kg","to_time":f"{task.to_time}","restfeed":f"{task.restfeed}","payload": "AUTO"})
+        # return Response({"sms":"Send to Fedding Check....","status":"processing","Remain feedin":f"{task.feedin} Kg","to_time":f"{task.to_time}","restfeed":f"{task.restfeed}","payload": "AUTO"})
+        # device_id = request.data.get("device_id")
+        # cycles_data = request.data.get("cycles")
+
+        # if not device_id or not cycles_data:
+        #     return Response({"error": "device_id and cycles required"}, status=400)
+
+        # # 🔥 get all tasks (OPTIMIZED QUERY)
+        # tasks = Task.objects.filter(
+        #     device__device_id=device_id,
+        #     status = "pending"
+        # ).order_by("cycles")
+        # print(tasks)
+        # if not tasks.exists():
+        #     return Response({"error": "No tasks found"}, status=404)
+
+        # today = datetime.now().date()
+
+        # with transaction.atomic():
+
+        #     # ✅ STEP 1: update all cycles (NO TRIGGER)
+        #     for task in tasks:
+        #         task.refresh_from_db()
+        #         cycle_payload = cycles_data.get(str(task.cycles))
+
+        #         if not cycle_payload:
+        #             continue  # skip if not provided
+
+        #         serializer = TaskSubmitSerializer(
+        #             task,
+        #             data=cycle_payload,
+        #             partial=True
+        #         )
+        #         serializer.is_valid(raise_exception=True)
+        #         serializer.save()
+
+        # # ✅ STEP 2: trigger ONLY FIRST CYCLE (if today)
+        # first_task = tasks.first()
+
+        # if first_task.schedule_date == today:
+        #     success = trigger_device(
+        #         first_task.device.device_id,
+        #         first_task.id
+        #     )
+
+        #     if not success:
+        #         return Response({"msg": "Device busy"}, status=400)
+
+        # return Response({
+        #     "msg": "All cycles scheduled successfully",
+        #     "first_cycle": first_task.id,
+        #     "status": "scheduled"
+        # })
+
+        device_id = request.data.get("device_id")
+        cycles_data = request.data.get("cycles")
+
+        if not device_id or not cycles_data:
+            return Response({"error": "device_id and cycles required"}, status=400)
+
+        # 🔥 ONLY THIS PART CHANGED
+        from django.db.models import Subquery
+
+        latest_batch = Task.objects.filter(
+            device__device_id=device_id,
+            status="pending"
+        ).order_by("-id").values("batch_id")[:1]
+
+        tasks = Task.objects.filter(
+            device__device_id=device_id,
+            status="pending",
+            batch_id=Subquery(latest_batch)
+        ).order_by("cycles")
+
+        print(tasks)
+
+        if not tasks.exists():
+            return Response({"error": "No tasks found"}, status=404)
+
+        today = datetime.now().date()
+
+        with transaction.atomic():
+
+            for task in tasks:
+                task.refresh_from_db()
+                cycle_payload = cycles_data.get(str(task.cycles))
+
+                if not cycle_payload:
+                    continue
+
+                serializer = TaskSubmitSerializer(
+                    task,
+                    data=cycle_payload,
+                    partial=True
+                )
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+
+        first_task = tasks.first()
+
+        if first_task.schedule_date == today:
+            success = trigger_device(
+                first_task.device.device_id,
+                first_task.id
+            )
+
+            if not success:
+                return Response({"msg": "Device busy"}, status=400)
+
+        return Response({
+            "msg": "All cycles scheduled successfully",
+            "first_cycle": first_task.id,
+            "status": "scheduled"
+        })
 
 # ===============================================================================================================
 #                                           TASK GET Total Feed 
@@ -2637,116 +2799,359 @@ class FeedTryGenerateview(APIView):
 
 import paho.mqtt.client as mqtt
 import time
+from .utils import trigger_device
 BROKER = "mqttbroker.bc-pl.com"   # same as subscriber
 PORT = 1883
 USERNAME = "mqttuser"
 PASSWORD = "Bfl@2025"
 
 class DeviceCommandStateView(APIView):
+    def post(self, request, id, tid):
 
-    def post(self, request,id,tid):
-        obj, created = DeviceCommandState.objects.update_or_create(
-            device_id=id,
-            defaults={"step":1,"task_id":tid}
-        )
-        print('id=',id)
-        DEVICE_ID = id
-        TOPIC = f"auto_feeder/{DEVICE_ID}/mode/switch"
-        client = mqtt.Client(
-        client_id=f"tasksubmit_{DEVICE_ID}_{int(time.time())}",
-        protocol=mqtt.MQTTv311
-        )
+        success = trigger_device(id, tid)
 
-        def on_connect(client, userdata, flags, rc):
-            print("Connected with rc:", rc)
-
-        client.on_connect = on_connect
-        if USERNAME and PASSWORD:
-            client.username_pw_set(USERNAME, PASSWORD)
-
-        client.loop_start()
-        client.connect(BROKER, 1883, 60)
-        # payload={"MODE": "AUTO"}
-
-        client.publish(TOPIC,"AUTO", qos=1)
-        time.sleep(1)
-
-        client.loop_stop()
-        client.disconnect()
+        if not success:
+            return Response({
+                "status": "blocked",
+                "message": "Device already has a scheduled cycle"
+            })
 
         return Response({
             "status": "success",
             "message": "AUTO mode command sent",
             "payload": "AUTO"
         })
-        
+
+    # def post(self, request,id,tid):
+    #     obj, created = DeviceCommandState.objects.update_or_create(
+    #         device_id=id,
+    #         defaults={"step":1,"task_id":tid}
+    #     )
+    #     running_task = Task.objects.filter(
+    #             device=id,
+    #             is_published=True
+    #         ).exclude(status="completed").exists()
+
+    #     if running_task:
+    #         return Response({
+    #             "status": "blocked",
+    #             "message": "Device already has a scheduled cycle"
+    #             })
+    #     print('id=',id)
+    #     DEVICE_ID = id
+    #     TOPIC = f"auto_feeder/{DEVICE_ID}/mode/switch"
+    #     client = mqtt.Client(
+    #     client_id=f"tasksubmit_{DEVICE_ID}_{int(time.time())}",
+    #     protocol=mqtt.MQTTv311
+    #     )
+
+    #     def on_connect(client, userdata, flags, rc):
+    #         print("Connected with rc:", rc)
+
+    #     client.on_connect = on_connect
+    #     if USERNAME and PASSWORD:
+    #         client.username_pw_set(USERNAME, PASSWORD)
+
+    #     client.loop_start()
+    #     client.connect(BROKER, 1883, 60)
+    #     # payload={"MODE": "AUTO"}
+
+    #     client.publish(TOPIC,"AUTO", qos=1)
+    #     time.sleep(1)
+    #     client.loop_stop()
+    #     client.disconnect()
+
+    #     return Response({
+    #         "status": "success",
+    #         "message": "AUTO mode command sent",
+    #         "payload": "AUTO"
+    #     })
+    
 ################# Calculate the Feed in Abort Situation #################
 
-def Feedcalculate(tid):
-    try:
-        task=Task.objects.get(id=tid)
-    except Exception as e:
-        return Response({"message":f"Task with {tid} not found."})
+# def Feedcalculate(tid):
+#     try:
+#         task=Task.objects.get(id=tid)
+#     except Exception as e:
+#         return Response({"message":f"Task with {tid} not found."})
     
-    restfeed=getattr(task,"feedin")
-    from_time = getattr(task, "from_time")  # time object
-    current_time = datetime.now().time()
+#     restfeed=getattr(task,"feedin")
+#     from_time = getattr(task, "from_time")  # time object
+#     current_time = datetime.now().time()
 
-    # convert both to datetime using today's date
-    today = date.today()
+#     # convert both to datetime using today's date
+#     today = date.today()
+#     from_dt = datetime.combine(today, from_time)
+#     current_dt = datetime.combine(today, current_time)
+#     status = getattr(task,"status")
+#     second=0
+#     Seed_spreded_inKG=0
+#     duration=0
+#     restf=0
+#     # tidnext=int(tid)+1
+#     # status == "processing"
+#     # tasknext=None
+#     if current_dt > from_dt and status == "processing":
+#         # Calculate the Rest Feed At the Abort Situation
+#         duration = current_dt - from_dt
+#         second = round(duration.total_seconds())
+#         Seed_spreded_inKG= (second*13)/1000
+#         # restf=int(restfeed) - Seed_spreded_inKG
+#         restf = max(0, float(restfeed) - float(Seed_spreded_inKG))
+#         setattr(task,"restfeed",restf)
+#         setattr(task,"to_time",current_dt.time())
+        
+#         # Check the Availibility of next Task or update feedin
+        
+#         # try:
+#         #     tasknext=Task.objects.get(id=tidnext)
+#         #     setattr(tasknext,"feedin",restf)
+#         # except Exception as e:
+#         #     pass
+
+#         # find last cycle for this device
+#         last_task = Task.objects.filter(
+#             device=task.device
+#         ).order_by('-cycles').first()
+
+#         # store extra feed in last cycle
+#         if last_task:
+#             last_task.extra_feed = float(last_task.extra_feed or 0) + float(restf)
+#             last_task.save()
+            
+#     elif current_dt <= from_dt and status == "processing":
+#         setattr(task,"restfeed",restfeed)
+#         setattr(task,"to_time",current_dt.time())
+        
+        
+#         # try:
+#         #     tasknext=Task.objects.get(id=tidnext)
+            
+#         # except Exception as e:
+#         #     pass
+#         # if tasknext:
+#         #     setattr(tasknext,"feedin",restfeed)
+            
+#         # find last cycle
+#         last_task = Task.objects.filter(
+#             device=task.device
+#         ).order_by('-cycles').first()
+
+#         # store full feed if aborted before start
+#         if last_task:
+#             last_task.extra_feed = float(last_task.extra_feed or 0) + float(restfeed)
+#             last_task.save()
+
+
+#     task.save()
+#     # if tasknext:
+#     #     tasknext.save()
+#     # else: 
+#     #     pass
+    
+#     print('status::',status)
+#     print('second:',second,type(second))
+#     print('Seed_spreded_inKG:',Seed_spreded_inKG)
+#     print("from_dt::",from_dt)
+#     print("current_dt::",current_dt.time())
+#     print('duration::',duration)
+#     print('restf::',restf)
+
+from django.utils import timezone
+
+# def Feedcalculate(tid):
+#     try:
+#         task = Task.objects.get(id=tid)
+#     except:
+#         print(f"Task {tid} not found")
+#         return
+
+#     restfeed = float(task.feedin or 0)
+
+#     from_time = task.from_time
+#     if not from_time:
+#         return
+
+#     # FIX timezone
+#     current_time = timezone.localtime(timezone.now()).time()
+
+#     today = date.today()
+#     from_dt = datetime.combine(today, from_time)
+#     current_dt = datetime.combine(today, current_time)
+
+#     second = 0
+#     Seed_spreded_inKG = 0
+
+#     # 🔥 SIMPLE LOGIC (no status dependency)
+#     if current_dt > from_dt:
+#         duration = current_dt - from_dt
+#         second = round(duration.total_seconds())
+
+#         Seed_spreded_inKG = max(0, (second * 13) / 1000)
+
+#         restf = max(0, restfeed - Seed_spreded_inKG)
+
+#     else:
+#         # 🔥 not started → full feed remains
+#         restf = restfeed
+
+#     # 🔥 update current task
+#     # task.restfeed = restf
+#     task.to_time = current_dt.time()
+#     task.save()
+
+#     # 🔥 update ONLY last cycle
+#     last_task = Task.objects.filter(
+#         device=task.device
+#     ).order_by('-cycles').first()
+
+#     # 🔥 avoid duplicate addition
+#     if last_task:
+#         last_task.extra_feed = float(last_task.extra_feed or 0) + restf
+#         last_task.save()
+
+#     print("✅ Abort feed stored:", restf)
+#     print("second:", second)
+#     print("spread:", Seed_spreded_inKG)
+
+from django.utils import timezone
+from datetime import datetime, date
+
+# def Feedcalculate(tid):
+#     now = datetime.now()
+#     try:
+#         task = Task.objects.get(id=tid)
+#     except:
+#         print(f"Task {tid} not found")
+#         return
+
+#     from_time = task.from_time
+#     if not from_time:
+#         print("No start time found")
+#         return
+
+#     # CAPTURE TIME ONCE (VERY IMPORTANT)
+
+#     current_time = now.time()
+#     today = now.date()
+
+#     # NAIVE datetime for calculation
+#     from_dt = datetime.combine(today, from_time)
+#     current_dt = datetime.combine(today, current_time)
+
+#     second = 0
+#     used_feed = 0
+
+#     # GET TOTAL FEED (cycle 1)
+#     first_task = Task.objects.filter(
+#         device=task.device,
+#         cycles=1
+#     ).first()
+
+#     if not first_task:
+#         print("First cycle not found")
+#         return
+
+#     total_feed = float(first_task.feedin or 0)
+
+#     # GET THIS CYCLE FEED
+#     cycle_feed = (total_feed * float(task.feed_weight or 0)) / 100
+
+#     # CALCULATE USED + REMAINING
+#     if current_dt > from_dt:
+#         duration = current_dt - from_dt
+#         second = round(duration.total_seconds())
+
+#         # feed spread rate (your logic)
+#         used_feed = max(0, (second * 13) / 1000)
+
+#         # ONLY THIS GOES TO EXTRA FEED
+#         remaining_cycle_feed = max(0, cycle_feed - used_feed)
+
+#     else:
+#         # not started → full cycle remains
+#         remaining_cycle_feed = cycle_feed
+
+#     # UPDATE CURRENT TASK TIME (CONSISTENT TIME)
+#     # task.to_time = current_time
+#     # task.save()
+
+#     # ADD ONLY CYCLE REMAINING TO LAST CYCLE
+#     last_task = Task.objects.filter(
+#         device=task.device
+#     ).order_by('-cycles').first()
+
+#     if last_task:
+#         last_task.extra_feed = float(last_task.extra_feed or 0) + remaining_cycle_feed
+#         last_task.save()
+
+#     # DEBUG LOGS
+#     print("✅ Abort Feed Calculation Done")
+#     print("Cycle Feed:", cycle_feed)
+#     print("Used Feed:", used_feed)
+#     print("Remaining (Extra Feed):", remaining_cycle_feed)
+#     print("Duration (sec):", second)
+from datetime import datetime
+from django.utils import timezone
+
+def Feedcalculate(tid):
+    now = datetime.now()   # local naive
+
+    try:
+        task = Task.objects.get(id=tid)
+    except:
+        return
+
+    from_time = task.from_time
+    if not from_time:
+        return
+
+    current_time = now.time()
+    today = now.date()
+
+    # pure naive datetime
     from_dt = datetime.combine(today, from_time)
     current_dt = datetime.combine(today, current_time)
-    status = getattr(task,"status")
-    second=0
-    Seed_spreded_inKG=0
-    duration=0
-    restf=0
-    tidnext=int(tid)+1
-    # status == "processing"
-    tasknext=None
-    if current_dt > from_dt and status == "processing":
-        # Calculate the Rest Feed At the Abort Situation
+
+    second = 0
+    used_feed = 0
+
+    first_task = Task.objects.filter(device=task.device,batch_id=task.batch_id, cycles=1).first()
+    if not first_task:
+        return
+
+    total_feed = float(first_task.feedin or 0)
+    cycle_feed = round((total_feed * float(task.feed_weight or 0)) / 100,2)
+
+    if current_dt >= from_dt:
         duration = current_dt - from_dt
         second = round(duration.total_seconds())
-        Seed_spreded_inKG= (second*13)/1000
-        restf=int(restfeed) - Seed_spreded_inKG
-        setattr(task,"restfeed",restf)
-        setattr(task,"to_time",current_dt.time())
-        
-        # Check the Availibility of next Task or update feedin
-        
-        try:
-            tasknext=Task.objects.get(id=tidnext)
-            setattr(tasknext,"feedin",restf)
-        except Exception as e:
-            pass
-            
-    elif current_dt <= from_dt and status == "processing":
-        setattr(task,"restfeed",restfeed)
-        setattr(task,"to_time",current_dt.time())
-        
-        
-        try:
-            tasknext=Task.objects.get(id=tidnext)
-            
-        except Exception as e:
-            pass
-        if tasknext:
-            setattr(tasknext,"feedin",restfeed)
-            
-    task.save()
-    if tasknext:
-        tasknext.save()
-    else: 
-        pass
-    
-    print('status::',status)
-    print('second:',second,type(second))
-    print('Seed_spreded_inKG:',Seed_spreded_inKG)
-    print("from_dt::",from_dt)
-    print("current_dt::",current_dt.time())
-    print('duration::',duration)
-    print('restf::',restf)
+        used_feed = max(0, (second * 13) / 1000)
+        remaining_cycle_feed = round(max(0, cycle_feed - used_feed),2)
+    else:
+        remaining_cycle_feed = cycle_feed
+
+    last_task = Task.objects.filter(device=task.device,batch_id=task.batch_id).order_by('-cycles').first()
+
+    if last_task:
+        last_task.extra_feed = float(last_task.extra_feed or 0) + remaining_cycle_feed
+        last_task.save()
+
+    print("✅ Abort Feed Calculation Done")
+    # print("Cycle Feed:", cycle_feed)
+    # print("Used Feed:", used_feed)
+    # print("Remaining:", remaining_cycle_feed)
+    # print("Duration (sec):", second)
+    print("------ DEBUG START ------")
+    print("TASK ID:", task.id)
+    print("FROM TIME (DB):", from_time)
+    print("NOW (datetime.now):", now)
+    print("CURRENT TIME:", current_time)
+    print("FROM_DT:", from_dt)
+    print("CURRENT_DT:", current_dt)
+    print("COMPARISON current_dt > from_dt:", current_dt > from_dt)
+    print("DIFF (sec):", (current_dt - from_dt).total_seconds())
+    print("------ DEBUG END ------")
     
 ############################################################################
     
@@ -2760,6 +3165,12 @@ class DeviceCommandAbortView(APIView):
         client_id=f"tasksubmit_{DEVICE_ID}_{int(time.time())}",
         protocol=mqtt.MQTTv311
         )
+        try:
+            task = Task.objects.get(id=tid)
+            task.status = "abort"
+            task.save(update_fields=["status"])
+        except:
+            return Response({"error": "Task not found"}, status=404)
         Feedcalculate(tid)
         def on_connect(client, userdata, flags, rc):
             print("Connected with rc:", rc)
@@ -2773,9 +3184,6 @@ class DeviceCommandAbortView(APIView):
         # payload={"MODE": "AUTO"}
 
         client.publish(TOPIC_Abort,"abort", qos=1)
-        task = Task.objects.get(id=tid)
-        task.status = "abort"
-        task.save() 
         time.sleep(1)
 
         client.loop_stop()
@@ -2805,10 +3213,28 @@ class TaskclearView(APIView):
         serializer.is_valid(raise_exception=True)
         device=serializer.validated_data['device']
         print(device)
-        try:
-            tasks = Task.objects.filter(device=device)
-        except Task.DoesNotExist:
-            return Response({"message":"Task NotFound.."})
-        tasks.delete()
-        return Response({"message":f"Tasks Related to {device} Deleted Successfully."},status=200)
+        
+        today = datetime.now().date()
 
+        # ONLY TODAY'S TASKS
+        tasks = Task.objects.filter(
+            device=device,
+            schedule_date=today
+        )
+
+        # CHECK CONDITION
+        if tasks.filter(status="processing").exists():
+            return Response(
+                {"message": "Cannot delete tasks while a cycle is processing."},
+                status=400
+            )
+
+        if not tasks.exists():
+            return Response({"message": "Task NotFound.."}, status=404)
+
+        tasks.delete()
+
+        return Response(
+            {"message": f"Today's tasks for {device} deleted successfully."},
+            status=200
+        )

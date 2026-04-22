@@ -31,7 +31,7 @@ class ParameterAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class Task(admin.ModelAdmin):
-    list_display = ['id','created_at','device','taskcatagory','cycles',"feedin",'feedin_percentage','feed_weight','restfeed','from_time','to_time','worker_name','time_interval','auto_feed_rate','auto_sprinkle_rate','auto_door','status']  
+    list_display = ['id','created_at','device','taskcatagory','cycles',"feedin",'feedin_percentage','feed_weight','restfeed','from_time','to_time','worker_name','time_interval','auto_feed_rate','auto_sprinkle_rate','auto_door','status','is_published','extra_feed']  
 
 @admin.register(Task_status)
 class Task_statu(admin.ModelAdmin):
