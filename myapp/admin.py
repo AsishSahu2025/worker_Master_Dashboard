@@ -31,7 +31,7 @@ class ParameterAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class Task(admin.ModelAdmin):
-    list_display = ['id','created_at','device','taskcatagory','cycles',"feedin",'feedin_percentage','feed_weight','restfeed','from_time','to_time','worker_name','time_interval','auto_feed_rate','auto_sprinkle_rate','auto_door','status','is_published','extra_feed']  
+    list_display = ['id','created_at','device','taskcatagory','cycles',"feedin",'feedin_percentage','feed_weight','restfeed','from_time','to_time','worker_name','time_interval','auto_feed_rate','auto_sprinkle_rate','auto_door','status','is_published','extra_feed','schedule_date']  
 
 @admin.register(Task_status)
 class Task_statu(admin.ModelAdmin):
@@ -50,10 +50,6 @@ class Device(admin.ModelAdmin):
 class Worker_detail(admin.ModelAdmin):
     list_display = ['mobno','name','user','manager']
     
-    
-# @admin.register(Telegram_data)
-# class Telegram_data(admin.ModelAdmin):
-#     list_display = ['user_name','message','time']
     
 ############################## service payment Table ################################
 

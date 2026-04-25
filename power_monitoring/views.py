@@ -240,13 +240,15 @@ class MonitoringSessionViewSet(ModelViewSet):
             for i, cycle_data in enumerate(cycles):
                 # ----------- PARSE DATETIME ----------- #
                 try:
-                    start_time = parser.parse(cycle_data['start_time'])
-                    if timezone.is_naive(start_time):
-                        start_time = timezone.make_aware(start_time)
+                    # start_time = parser.parse(cycle_data['start_time'])
+                    # if timezone.is_naive(start_time):
+                    #     start_time = timezone.make_aware(start_time)
 
-                    end_time = parser.parse(cycle_data['end_time'])
-                    if timezone.is_naive(end_time):
-                        end_time = timezone.make_aware(end_time)
+                    # end_time = parser.parse(cycle_data['end_time'])
+                    # if timezone.is_naive(end_time):
+                    #     end_time = timezone.make_aware(end_time)
+                    start_time = parser.parse(cycle_data['start_time']).replace(tzinfo=None)
+                    end_time = parser.parse(cycle_data['end_time']).replace(tzinfo=None)
                 except Exception:
                     raise ValidationError({"error": f"Cycle {i+1}: Invalid datetime format"})
 

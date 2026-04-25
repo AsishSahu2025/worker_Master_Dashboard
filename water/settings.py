@@ -29,12 +29,17 @@ try:
 except TypeError:
     load_dotenv(_env_path)
 
-### For Check Tray Telegram
-AZURE_COMMUNICATION_CONNECTION_STRING = os.getenv("AZURE_COMMUNICATION_CONNECTION_STRING")
-TELEGRAM_BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip() or None
-_raw_chat = os.getenv("TELEGRAM_GROUP_CHAT_ID")
-TELEGRAM_GROUP_CHAT_ID = (_raw_chat.strip() if _raw_chat else None) or None
 
+AZURE_COMMUNICATION_CONNECTION_STRING = os.getenv("AZURE_COMMUNICATION_CONNECTION_STRING")
+CHECKTRAY_BOT_TOKEN = (os.getenv("Checktray_BOT_TOKEN") or "").strip() or None
+_raw_checktray = os.getenv("Checktray_GROUP_CHAT_ID")
+CHECKTRAY_GROUP_CHAT_ID = (_raw_checktray.strip() if _raw_checktray else None) or None
+
+
+# ✅ Feeding
+FEEDING_BOT_TOKEN = (os.getenv("Feeding_BOT_TOKEN") or "").strip() or None
+_raw_feeding = os.getenv("Feeding_GROUP_CHAT_ID")
+FEEDING_GROUP_CHAT_ID = (_raw_feeding.strip() if _raw_feeding else None) or None
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -239,3 +244,14 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 60.0,  # every 60 seconds
     },
 }
+
+
+TWILIO_ACCOUNT_SID = 'AC931ff4ba974d7654408d789502a4b2e9'
+TWILIO_AUTH_TOKEN  = '1e56b355e128ac775230af50d8a9339d'
+TWILIO_FROM_NUMBER = '+12182775309'   # your Twilio number
+MANAGER_PHONE      = '+918260582181'  # manager's number
+
+
+# Daily schedule reminder time (24hr format)
+DAILY_SCHEDULE_CALL_HOUR   = 6   # 6:30 AM = 30 mins before 7:00 AM
+DAILY_SCHEDULE_CALL_MINUTE = 30

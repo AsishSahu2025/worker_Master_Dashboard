@@ -7,7 +7,6 @@ class ChecktrayTask(models.Model):
     YES_NO_CHOICES=(("YES","YES"),("No","No"))
     device_id = models.ForeignKey(Device, on_delete=models.CASCADE)
     worker_name = models.ForeignKey(Worker_details,on_delete=models.CASCADE,null=True,blank=True)
-    # manager_id = models.ForeignKey(Manager)
     spray_cycle= models.CharField(choices=YES_NO_CHOICES, max_length=4, null=True, blank=True)
     image_update= models.CharField(choices=YES_NO_CHOICES,max_length=4, null=True, blank=True)
     water_level= models.FloatField(default=0)
@@ -26,14 +25,6 @@ class ChecktrayTask(models.Model):
             models.Index(fields=["status"]),
             models.Index(fields=["start_time"]),
         ]
-    def save(self, *args, **kwargs):
-        import traceback
-
-        if self.status == "Device Disconnected, Status Unknown":
-            print("\n🚨 WHO IS SETTING DISCONNECTED?")
-            traceback.print_stack()
-
-        super().save(*args, **kwargs)
 
 
 class Image(models.Model):

@@ -1,11 +1,7 @@
 from django.utils import timezone
 from django.contrib.gis.geos import Point
 from django.db import models
-from django.contrib.gis.db import models 
-from django.db import models as django_models
-import datetime
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.db import models
 
 #********************************************** MASTER MODEL ****************************************************#
 class Master(models.Model):
@@ -52,9 +48,7 @@ class User(models.Model):
     Pan_no = models.CharField(max_length=50)
     GST_no = models.CharField(max_length=50)
     user_category = models.CharField(max_length=50 ,null=True,blank=True)                 
-    # customer_category = models.CharField(max_length=50, blank=True, null=True)     #commented by Abhisek
-    token = models.CharField(max_length=200,blank=True,null=True)                    #commented by soumya
-    # telegram_username = models.CharField(max_length=50, null=True, blank=True)
+    token = models.CharField(max_length=200,blank=True,null=True)
     def __str__(self):
         return str(self.Company_name)
     
@@ -197,8 +191,8 @@ class Task(models.Model):
         ("scheduled", "Scheduled"),
         ("processing", "Processing"),
         ("completed", "Completed"),
-        ("abort", "Abort"),
-        ("pending","Pending")
+        ("aborted", "Aborted"),
+        ("unknown State", "Unknown State")
         )
     )
     is_published = models.BooleanField(default=False)
@@ -236,14 +230,6 @@ class Task_status(models.Model):
     def __str__(self):
           name=f"{self.name}"
           return name
-
-# class   Telegram_data(models.Model):
-#     user_name = models.CharField(max_length=50)
-#     message = models.TextField()
-#     time = models.DateTimeField(auto_now_add=True)
-    
-#     def __str__(self):
-#         return str(self.user_name)
 
 
 from django.db import models
@@ -288,5 +274,3 @@ class DeviceCommandState(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return f"{self.step}"
-    
-

@@ -19,7 +19,6 @@ def checktrayGenerate(request):
             data=json.loads(request.body)
 
             device_id=data.get("device_id")
-            # cycle_no=data.get("cycle_no")
 
             if not device_id:
                 return JsonResponse({'error':'device_id is required.'}, status=400)
@@ -39,7 +38,6 @@ def checktrayGenerate(request):
             with transaction.atomic():
                 task = ChecktrayTask.objects.create(
                     device_id_id=device_id,
-                    # cycle_no=int(cycle_no)+1,
                     spray_cycle="YES",
                     image_update="YES",
                     water_level=0,
@@ -50,8 +48,6 @@ def checktrayGenerate(request):
                 response_rows.append({
                     "id": task.id,
                     "device_id": device_id,
-                    # "cycle_no": f"C{0}",
-                    # "water_level": 0,
                     "status": "No Status"
                 })
             return JsonResponse({"tasks": response_rows}, status=200)
@@ -76,7 +72,6 @@ def scheduling(request):
         device_id = data.get('device_id')
         start_time_str= data.get("from_time")
         worker = data.get('worker_name')
-        # manager = data.get("manager")
 
 
         if not all([task_id, device_id, start_time_str, worker]):
@@ -85,8 +80,6 @@ def scheduling(request):
         try:
             start_time = timezone.datetime.strptime(start_time_str, '%Y-%m-%d %H:%M')
             print(start_time)
-            # start_time = timezone.make_aware(start_time)
-            # print()
         except ValueError:
             return JsonResponse({'error': 'Invalid time format. Use YYYY-MM-DD HH:MM'}, status=400)
         
@@ -104,67 +97,24 @@ def scheduling(request):
 
             task.start_time = start_time
             task.worker_name = worker_obj
-            # task.manager_id = manager
             task.status = "ScheduleRequested"
             task.save()
-            # After commit: avoids notifying while holding the row lock and ensures the row is visible.
-            # _scheduled_task_id = task.id
-            # transaction.on_commit(
-            #     lambda tid=_scheduled_task_id: notify_checktray_task(tid)
-            # )
-            # _scheduled_task_id = task.id
-            # transaction.on_commit(
-            # lambda tid=_scheduled_task_id: enqueue_telegram(tid)
-            # )
         
         mqtt_message = f"morning_feed|{start_time_str}|1|0"
         topic = f"feeder/{device_id}/schedule_set"
         
-        # success= publish_schedule_to_device(topic, mqtt_message)
         print('ser tiopic')
-        # publish_mqtt_command(topic, mqtt_message)
         enqueue_mqtt_command(topic, mqtt_message)
         print('publish topic')
-        # if not success:
-        #     ChecktrayTask.objects.filter(id=task_id).update(status="No Status", start_time=None)
-        #     return JsonResponse({'error':'Not scheduled'})
-
+        
         return JsonResponse({
             'status': 'success',
         }, status=200)
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
 
-
-# @csrf_exempt
-# def checktrayTask(request):
-#     if request.method == "GET":
-#         try:
-#             device_id = request.GET.get("device_id")
-
-#             if not device_id:
-#                 return JsonResponse({'error':'device_id is required.'}, status=400)
-            
-            
-#             tasks= ChecktrayTask.objects.filter(device_id__device_id=device_id).order_by("start_time").values(
-#             "id",
-#             "device_id",
-#             "spray_cycle",
-#             "image_update",
-#             "water_level",
-#             "start_time",
-#             "stop_time",
-#             "status"
-#         )
-#             # tasks=list(tasks)
-#             # print(tasks)
-
-
-#             return JsonResponse({'task':list(tasks)}, status=200)
-#         except Exception as e:
-#             return JsonResponse({'error':str(e)}, status=500)
-#     return JsonResponse({'error':'Invalid HTTP method, Use POST'}, status=405)
 
 def checktrayTask(request):
     if request.method == "GET":
@@ -176,7 +126,6 @@ def checktrayTask(request):
                 "id",
                 "device_id",
                 "worker_name",
-                # "manager_id",
                 "spray_cycle",
                 "image_update",
                 "water_level",
@@ -192,7 +141,6 @@ def checktrayTask(request):
                     "id",
                     "device_id",
                     "worker_name",
-                    # "manager_id",
                     "spray_cycle",
                     "image_update",
                     "water_level",
@@ -232,10 +180,7 @@ def deleteTask(request):
                 topic=f"feeder/{task.device_id.device_id}/cycle_abort"
                 message= "Aborted"
 
-                # publish_mqtt_command(topic, message)
                 enqueue_mqtt_command(topic, message)
-
-                # task.delete()
 
                 return JsonResponse(
                     {"status": "Cycle aborted and task deleted"},
@@ -245,10 +190,8 @@ def deleteTask(request):
                 topic = f"feeder/{task.device_id.device_id}/schedule_cancel"
                 message = "morning_feed"
 
-                # publish_mqtt_command(topic, message)
                 enqueue_mqtt_command(topic, message)
 
-                # task.delete()
 
                 return JsonResponse({"status": "schedule cancelled and task deleted"}, status=200)
             

@@ -1,8 +1,6 @@
 from django.core.management.base import BaseCommand
 import threading
 import time
-# from app1.mqtt_worker import worker_loop
-# from app1.db_worker import db_worker_loop
 
 import checktray.paho_mqtt as paho_mqtt
 from myapp.models import Device
@@ -25,10 +23,6 @@ class Command(BaseCommand):
         while not paho_mqtt.mqtt_connected:
             print('not connected')
             time.sleep(1)
-        # threading.Thread(
-        #     target=start_mqtt_client,
-        #     daemon=True
-        # ).start()
 
         # Start scheduler
         threading.Thread(
@@ -37,10 +31,12 @@ class Command(BaseCommand):
         ).start()
 
         threading.Thread(target=watchdog_loop, daemon=True).start()
+        
         threading.Thread(
             target=mqtt_command_worker,
             daemon=True
         ).start()
+        
         threading.Thread(
             target=telegram_worker,
             daemon=True

@@ -1,8 +1,7 @@
 import paho.mqtt.client as mqtt
 from django.core.management.base import BaseCommand
-from myapp.models import *  
-from django.utils import timezone
-from myapp.utils import apply_extra_feed_if_last_cycle, trigger_device
+from myapp.models import *
+from myapp.utils import trigger_device
 import math
 # MQTT Broker Configuration
 BROKER = "mqttbroker.bc-pl.com"  # Remote broker
@@ -36,7 +35,6 @@ class Command(BaseCommand):
         def on_message(client, userdata, msg):
             try:
                 payload = msg.payload.decode()
-                # print(payload)
                 topic_parts = msg.topic.split('/')
                 device_id = None
                 
@@ -63,7 +61,6 @@ class Command(BaseCommand):
                 start_time=getattr(task,'from_time')
                 formatted_time = start_time.strftime("%H:%M")
             
-                # auto_feed=getattr(task,'auto_feed_rate')
                 auto_feed = int(task.feedin or 0)
                 auto_sprinkle=getattr(task,'auto_sprinkle_rate')
                 door=getattr(task,'auto_door')
@@ -93,12 +90,6 @@ class Command(BaseCommand):
                         print("❌ Duration missing, skipping trigger")
                         return
 
-                    # 🔥 UPDATE END TIME (your same logic, just using existing duration)
-                    if task.from_time:
-                        start_dt = datetime.combine(date.today(), task.from_time)
-                        end_dt = start_dt + timedelta(minutes=int(duration))
-                        task.to_time = end_dt.time()
-
                     # 🔥 PREPARE PAYLOAD (NO CHANGE IN FORMAT)
                     formatted_time = task.from_time.strftime("%H:%M")
                     auto_feed = int(task.auto_feed_rate or 0)
@@ -116,89 +107,6 @@ class Command(BaseCommand):
                     client.publish(TOPIC_SCHEDULE, load, qos=1)
 
                     print("step 2 success")
-                    # task = Task.objects.get(id=state.task_id)
-                    # # 🔥 APPLY FINAL FEED LOGIC
-
-                    # # 🔥 RECALCULATE TIME BASED ON FEED
-                    # # feed_kg = float(task.feedin or 0)
-                    # # get total feed from cycle 1
-                    # first_task = Task.objects.filter(
-                    #     device=task.device,
-                    #     cycles=1
-                    # ).first()
-
-                    # total_feed = float(first_task.feedin or 0)
-
-                    # # calculate current cycle feed
-                    # feed_kg = (total_feed * task.feed_weight) / 100
-
-                    # # seconds = int((feed_kg * 1000) / 13)   # your formula
-                    # # minutes = seconds // 60
-
-                    # # task.time_interval = str(minutes)
-                    # use_feed = feed_kg * 1000   # convert to grams
-                    # duration = math.ceil(use_feed / 800)  # minutes
-                    # task.time_interval = str(duration)
-
-                    # # update time
-                    # # if task.from_time:
-                    # #     start_dt = datetime.combine(date.today(), task.from_time)
-                    # #     end_dt = start_dt + timedelta(seconds=seconds)
-                    # #     task.to_time = end_dt.time()
-                    # if task.from_time:
-                    #     start_dt = datetime.combine(date.today(), task.from_time)
-                    #     end_dt = start_dt + timedelta(minutes=duration)
-                    #     task.to_time = end_dt.time()
-
-                    # # 🔥 NOW PREPARE PAYLOAD
-                    # formatted_time = task.from_time.strftime("%H:%M")
-                    # duration = task.time_interval
-
-                    # auto_feed = int(task.auto_feed_rate or 0)
-                    # auto_sprinkle = getattr(task, 'auto_sprinkle_rate')
-
-                    # load = f"{formatted_time},{duration},{auto_feed},{auto_sprinkle}"
-                    # print(load)
-
-                    # # 🔥 SAVE BEFORE SENDING
-                    # task.status = "processing"
-                    # task.is_published = True
-                    # task.save()
-
-                    # client.publish(TOPIC_SCHEDULE, load, qos=1)
-
-                    # print("step 2 success")
-
-                    # # 🔥 APPLY EXTRA FEED HERE
-                    # task = apply_extra_feed_if_last_cycle(task)
-
-                    # # reload updated values
-                    # start_time = task.from_time
-                    # formatted_time = start_time.strftime("%H:%M")
-                    # duration = task.time_interval
-
-                    # # 🔥 USE UPDATED FEED
-                    # auto_feed = int(task.feedin or 0)
-                    # auto_sprinkle = getattr(task, 'auto_sprinkle_rate')
-
-                    # load = f"{formatted_time},{duration},{auto_feed},{auto_sprinkle}"
-                    # print(load)
-
-                    # client.publish(TOPIC_SCHEDULE, load, qos=1)
-
-                    # task.status = "processing"
-                    # task.is_published = True
-                    # task.save()
-                    # load=f"{formatted_time},{duration},{auto_feed},{auto_sprinkle}"
-                    # print(load)
-                    # client.publish(TOPIC_SCHEDULE,load, qos=1)
-                    # task = Task.objects.get(id=state.task_id)
-                    # task.status = "processing"
-                    # task.is_published = True
-                    # task.save()
-                    # print("step 2 success")
-                    # state.step = 0
-                    # state.save()
 
                 elif "Auto event completed at" in payload:
                     print("✅ Cycle completed, moving to next")
@@ -209,6 +117,26 @@ class Command(BaseCommand):
                     # Mark completed + release device
                     task.status = "completed"  # VERY IMPORTANT
                     task.save()
+
+                    # Send Telegram notification for completion
+                    try:
+                        from myapp.telegram_notifications import notify_task_completion
+                        
+                        device_id_str = device_id
+                        cycle_no = getattr(task, 'cycles', '—')
+                        worker_name_obj = getattr(task, 'worker_name', None)
+                        worker_name = str(worker_name_obj) if worker_name_obj else 'Unknown'
+                        
+                        completion_data = {
+                            "device_id": device_id_str,
+                            "cycle": cycle_no,
+                            "worker_name": worker_name
+                        }
+                        
+                        notify_task_completion(completion_data)
+                        print(f"[TELEGRAM COMPLETE] Notification sent for Device {device_id_str}, Cycle {cycle_no}")
+                    except Exception as e:
+                        print(f"[TELEGRAM COMPLETE ERROR] {e}")
 
                     # Find NEXT cycle strictly (NO reuse, NO same task)
                     next_task = Task.objects.filter(
@@ -238,12 +166,12 @@ class Command(BaseCommand):
                     trigger_device(device_id, next_task.id)
 
                 elif "Auto event aborted" in payload:
-                    print("⚠️ Abort received from device")
+                    print("⚠️ Aborted received from device")
 
                     task = Task.objects.get(id=state.task_id)
 
                     # mark abort + release device
-                    task.status = "abort"
+                    task.status = "aborted"
                     task.to_time = datetime.now().time()
                     task.is_published = True   # IMPORTANT
                     task.save()

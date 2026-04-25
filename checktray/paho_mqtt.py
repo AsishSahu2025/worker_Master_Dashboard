@@ -1,12 +1,8 @@
-import threading
 import time
-import json
 import paho.mqtt.client as mqtt
 from django.utils import timezone
 from django.core.cache import cache
 from django.db import close_old_connections
-# from app1.bms.utils import build_update_dict, buffer_bms_snapshot
-# from .mqtt_worker import *
 from .models import *
 from myapp.models import *
 from checktray.telegram_queue import enqueue_telegram
@@ -22,8 +18,6 @@ SCHEDULE_STATUS= "feeder/+/schedule_status"
 SCHEDULE_CANCLE= "feeder/+/schedule_cancle"
 STATUS_TOPIC = "feeder/+/cycle_status"
 ABORT_TOPIC = "feeder/+/cycle_abort"
-# TOPIC_TELEMETRY = f"feeder/+/telemetry/signal"
-# BMS_TOPICS="bms/+/+"
 ALIVE_TOPIC="feeder/+/heartbeat"
 mqtt_client = None
 mqtt_connected= False
@@ -52,29 +46,6 @@ def on_connect(client, userdata, flags, rc):
         print(f"Failed to connect, return code {rc}")
 
 
-# def get_running_schedule_for_device(device_id):
-#     return ChecktrayTask.objects.filter(
-#         device_id__Device_id=device_id,
-#         is_running=True
-#     ).first()
-
-# def device_offline_watchdog(device, poll_seconds=WATCHDOG_SLEEP):
-#     device_id = device.Device_id
-
-#     while True:
-#         try:
-#             last_seen = cache.get(f"last_seen_{device_id}")
-#             now = timezone.now()
-
-#             offline = (
-#                 last_seen is None or
-#                 (now - last_seen).total_seconds() > DEVICE_OFFLINE_TIMEOUT
-#             )
-
-#         except Exception as e:
-#             print(f"[WATCHDOG ERROR] {device_id}", e)
-
-#         time.sleep(poll_seconds)
 
 def cleanup_stale_running_schedules():
     """
@@ -210,48 +181,6 @@ def watchdog_loop():
         time.sleep(WATCHDOG_SLEEP)
 
 
-# def scheduler_loop():
-#     while True:
-#         close_old_connections()
-#         try:
-#             now_time = timezone.localtime().time()
-#             ready_schedules = (
-#             #     Device.objects
-#             #     .filter(checktraytask__status="Scheduled")
-#             #     .distinct()
-#             # )
-#                 ChecktrayTask.objects
-#                 .filter(
-#                     status="Scheduled",
-#                     start_time__lte=now_time
-#                 )
-#                 .select_related("device_id")
-#                 .order_by("start_time")
-#             )
-#             # for device in devices:
-#             #     pick_next_schedule_for_device(device)
-
-#             for sched in ready_schedules:
-
-#                 updated = ChecktrayTask.objects.filter(
-#                     id=sched.id,
-#                     status="Scheduled"
-#                 ).update(
-#                     status="Running"
-#                 )
-
-#                 if updated:
-#                     print(
-#                         f"[STARTED] Device={sched.device_id.Device_id}, "
-#                         f"Schedule={sched.id}"
-#                     )
-
-
-#         except Exception as e:
-#             print("[SCHEDULER ERROR]", e)
-
-#         time.sleep(CHECK_INTERVAL)
-
 def scheduler_loop():
     while True:
         close_old_connections()
@@ -304,7 +233,6 @@ def on_message(client, userdata, msg):
     
     topic = msg.topic
     message = msg.payload.decode().strip()
-    # normalized = " ".join(message.split()).lower()
 
     # 🔹 Extract device_id ONCE
     device_id = topic.split("/")[1]
@@ -315,42 +243,18 @@ def on_message(client, userdata, msg):
         return
     
     is_heartbeat = topic.endswith("heartbeat")
-    # is_signal = topic.endswith("telemetry/signal")
     is_cycle_status = topic.endswith("cycle_status")
     is_abort = topic.endswith("cycle_abort")
     sche_status= topic.endswith("schedule_status")
-    # is_bms= topic.startswith("bms/")
 
-    # if is_signal:
-    #     now = timezone.now()
-    #     # FIX 1: ANY valid MQTT message means device is alive
-    #     cache.set(f"last_seen_{device_id}", now, None)
     print(f"[MQTT] {topic} -> {message}")
-
-    # cache.set(f"last_seen_{device_id}", timezone.now(), None)
-    # print(f"[HEARTBEAT] {device_id} alive", timezone.now())
 
     if is_heartbeat:
         now = timezone.now()
         cache.set(f"last_seen_{device_id}", timezone.now(), None)
+        print("last seen time",cache.get(f"last_seen_{device_id}"))
         print(f"[HEARTBEAT] {device_id} alive at {now}")
         return
-
-        # state = LastServiceState.objects.filter(
-        # device_id=device_id,
-        # interface="DEVICE",
-        # service="OFFLINE"
-        # ).first()
-
-        # if not state or state.recent_value != "false":
-        #     update_state_and_log(
-        #         device_id,
-        #         "DEVICE",
-        #         "OFFLINE",
-        #         False,
-        #         human_msg="Heartbeat received — device online"
-        #     )
-        # return
 
     msg_lower=message.lower()
     print('msg lower',msg_lower)
@@ -366,7 +270,6 @@ def on_message(client, userdata, msg):
         if not sched:
             print(f"[WARN] schedule_status received but no ScheduleRequested for {device_id}")
             return
-        
 
         sched.status = "Pending"
         sched.submit = "True"
@@ -376,15 +279,6 @@ def on_message(client, userdata, msg):
         print(f"[DEVICE CONFIRMED SCHEDULE] {sched.device_id}")
 
         enqueue_telegram(sched.id)
-
-        # sched = (
-        # ChecktrayTask.objects
-        # .filter(device_id__device_id=device_id, status="pending")
-        # .order_by("-start_time")
-        # .first())
-        # if not sched:
-        #     return
-        # print(sched)
 
         return
     
@@ -404,9 +298,6 @@ def on_message(client, userdata, msg):
         
         print(f"[DEVICE CONFIRMED SCHEDULE CANCLE] {sched.device_id}")
 
-
-
-    # schedule = get_running_schedule_for_device(device_id)
     schedule = (
     ChecktrayTask.objects
     .filter(device_id__device_id=device_id, status="Running")
@@ -435,10 +326,9 @@ def on_message(client, userdata, msg):
 
     # ABORTED
     if is_abort and "aborted" in msg_lower:
-        # schedule.status = "Aborted"
-        # schedule.stop_time= timezone.now()
-        # schedule.save(update_fields=["status", "stop_time"])
         schedule.delete()
+        from checktray.telegram_notifications import notify_checktray_abort
+        notify_checktray_abort(schedule)
 
         pick_next_schedule_for_device(schedule.device_id)
         return

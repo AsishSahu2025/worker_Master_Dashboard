@@ -1,3 +1,4 @@
+
 """
 Telegram alerts for Checktray tasks — sends a styled PNG card via sendPhoto.
 Requires: pip install playwright && playwright install chromium
@@ -54,41 +55,10 @@ def _format_start_line(dt) -> str:
         return "—"
     return dt.strftime("%I:%M %p").lstrip("0") + "  ·  " + dt.strftime("%d %b %Y")
 
-# def _starts_in_line(task: ChecktrayTask) -> str:
-#     st = task.start_time
-#     raw = (task.status or "").strip()
-#     if st and timezone.is_naive(st):
-#         st = timezone.make_aware(st, timezone.get_current_timezone())
-#     now = timezone.now()
-
-#     if raw == "Completed":
-#         if task.stop_time:
-#             lt = timezone.localtime(task.stop_time)
-#             return "Finished at " + lt.strftime("%I:%M %p").lstrip("0") + "  ·  " + lt.strftime("%d %b %Y")
-#         return "Finished ✅"
-#     if raw == "Running":
-#         return "Running now 🏃"
-#     if not st:
-#         return "—"
-
-#     sec = int((st - now).total_seconds())
-#     if sec < -300:
-#         return "Start time passed — waiting ⏳"
-#     if sec <= 90:
-#         return "Starting now 🚀"
-#     if sec < 3600:
-#         m = max(1, (sec + 59) // 60)
-#         return f"in {m} min"
-#     if sec < 86400:
-#         h, rem = divmod(sec, 3600)
-#         m = rem // 60
-#         return f"in {h}h {m}m" if m else f"in {h}h"
-#     d = sec // 86400
-#     return "in 1 day" if d == 1 else f"in {d} days"
 
 def _starts_in_line(task: ChecktrayTask) -> str:
     st = task.start_time
-    now = timezone.now()   # still works fine (naive)
+    now = timezone.now()
     raw = (task.status or "").strip()
 
     if raw == "Completed":
@@ -131,19 +101,13 @@ def _build_html_card(task: ChecktrayTask) -> str:
     raw_status  = (task.status or "").strip()
     meta        = _status_meta(raw_status)
 
-    # ── banner per status ─────────────────────────────────────────
-    if raw_status == "Running":
-        banner_bg    = "#0a1f3a"
-        banner_color = "#5dade2"
-        banner_icon  = "⚙️"
-        banner_text  = "Device is Running"
-        banner_sub   = "Task is actively being processed on device"
-    elif raw_status == "Completed":
-        banner_bg    = "#0a2e1a"
-        banner_color = "#2ecc71"
-        banner_icon  = "🏁"
-        banner_text  = "Device Cycle is Completed"
-        banner_sub   = "Task finished successfully"
+    # ── banner for Pending only ───────────────────────────────────
+    if raw_status == "Pending":
+        banner_bg    = "#2e2200"
+        banner_color = "#f5b942"
+        banner_icon  = "⏳"
+        banner_text  = "Device Schedule Confirmed"
+        banner_sub   = "Task is queued and waiting to run"
     else:
         banner_bg = banner_color = banner_icon = banner_text = banner_sub = None
 
@@ -178,7 +142,6 @@ def _build_html_card(task: ChecktrayTask) -> str:
           </div>
         </div>"""
 
-    # ── All sizes doubled for 2x HD render (viewport 840px) ──────
     return f"""<!DOCTYPE html>
 <html>
 <head>
@@ -368,7 +331,6 @@ def _build_html_card(task: ChecktrayTask) -> str:
         <span class="header-icon">📋</span>
         <span class="header-title">Check Tray Update</span>
       </div>
-      
     </div>
 
     {banner_html}
@@ -396,7 +358,6 @@ async def _render_png(html_content: str, output_path: str) -> None:
     from playwright.async_api import async_playwright
     async with async_playwright() as p:
         browser = await p.chromium.launch()
-        # ── 2x viewport + device_scale_factor=2 = true HD/Retina PNG ──
         page = await browser.new_page(
             viewport={"width": 840, "height": 1200},
             device_scale_factor=2,
@@ -408,8 +369,10 @@ async def _render_png(html_content: str, output_path: str) -> None:
 
 
 def _send_photo(image_path: str) -> dict | None:
-    token = (getattr(settings, "TELEGRAM_BOT_TOKEN", None) or "").strip() or None
-    chat_id = _normalize_chat_id(getattr(settings, "TELEGRAM_GROUP_CHAT_ID", None))
+    # token = (getattr(settings, "TELEGRAM_BOT_TOKEN", None) or "").strip() or None
+    # chat_id = _normalize_chat_id(getattr(settings, "TELEGRAM_GROUP_CHAT_ID", None))
+    token = (getattr(settings, "CHECKTRAY_BOT_TOKEN", None) or "").strip() or None
+    chat_id = _normalize_chat_id(getattr(settings, "CHECKTRAY_GROUP_CHAT_ID", None))
     if not token or chat_id is None:
         print("[Checktray Telegram] TELEGRAM_BOT_TOKEN or TELEGRAM_GROUP_CHAT_ID not set.")
         return None
@@ -437,10 +400,42 @@ def _send_photo(image_path: str) -> dict | None:
         return None
 
 
+def _send_message(text: str) -> dict | None:
+    """Send a plain text message via Telegram sendMessage."""
+    # token = (getattr(settings, "TELEGRAM_BOT_TOKEN", None) or "").strip() or None
+    # chat_id = _normalize_chat_id(getattr(settings, "TELEGRAM_GROUP_CHAT_ID", None))
+    token = (getattr(settings, "CHECKTRAY_BOT_TOKEN", None) or "").strip() or None
+    chat_id = _normalize_chat_id(getattr(settings, "CHECKTRAY_GROUP_CHAT_ID", None))
+    if not token or chat_id is None:
+        print("[Checktray Telegram] TELEGRAM_BOT_TOKEN or TELEGRAM_GROUP_CHAT_ID not set.")
+        return None
+    try:
+        r = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data={"chat_id": chat_id, "text": text},
+            timeout=30,
+        )
+        if r.status_code != 200:
+            print("[Checktray Telegram] HTTP", r.status_code, r.text[:600])
+            return None
+        try:
+            data = r.json()
+        except ValueError:
+            print("[Checktray Telegram] Non-JSON body:", r.text[:600])
+            return None
+        if not data.get("ok"):
+            print("[Checktray Telegram] API:", data)
+        return data
+    except Exception as ex:
+        print("[Checktray Telegram] Exception:", repr(ex))
+        return None
+
+
 def notify_checktray_task(task_id: int) -> dict | None:
     """
-    Reload the task from DB, render a 2x HD PNG card, and send via sendPhoto.
-    Only fires for Running and Completed statuses.
+    - Pending   → PNG card
+    - Completed → plain text message
+    - Running / anything else → do nothing
     """
     try:
         task = ChecktrayTask.objects.select_related("device_id", "worker_name").get(pk=task_id)
@@ -448,52 +443,42 @@ def notify_checktray_task(task_id: int) -> dict | None:
         print(f"[Checktray Telegram] Task id={task_id} not found.")
         return None
 
-    html_card = _build_html_card(task)
+    raw_status = (task.status or "").strip()
 
-    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
-        tmp_path = tmp.name
+    # ── Pending: send PNG card ──
+    if raw_status == "Pending":
+        html_card = _build_html_card(task)
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
+            tmp_path = tmp.name
+        try:
+            asyncio.run(_render_png(html_card, tmp_path))
+            return _send_photo(tmp_path)
+        finally:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
 
+    # ── Completed: plain text only ──
+    if raw_status == "Completed":
+        dev = task.device_id
+        device_pk = dev.device_id if dev else "—"
+        text = f"Device ({device_pk}) completed successfully ✅"
+        return _send_message(text)
+
+    # ── Running / anything else: do nothing ──
+    print(f"[Checktray Telegram] Skipping notification for status: {raw_status}")
+    return None
+
+
+def notify_checktray_abort(task) -> dict | None:
+    """
+    Called directly with the task object BEFORE it is deleted in paho_mqtt.py.
+    Sends a plain text abort message to Telegram.
+    """
     try:
-        asyncio.run(_render_png(html_card, tmp_path))
-        return _send_photo(tmp_path)
-    finally:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
-
-
-# ── Django signals — watch status field changes in DB ────────────
-
-# @receiver(pre_save, sender=ChecktrayTask)
-# def _checktray_pre_save(sender, instance, **kwargs):
-#     """
-#     Store the previous status on the instance before saving
-#     so post_save can compare old vs new.
-#     """
-#     if instance.pk:
-#         try:
-#             instance._prev_status = ChecktrayTask.objects.values_list(
-#                 "status", flat=True
-#             ).get(pk=instance.pk)
-#         except ChecktrayTask.DoesNotExist:
-#             instance._prev_status = None
-#     else:
-#         instance._prev_status = None
-
-
-# @receiver(post_save, sender=ChecktrayTask)
-# def _checktray_post_save(sender, instance, created, **kwargs):
-#     """
-#     Fire Telegram alert only when status transitions TO Running or Completed.
-#     Ignores all other saves to avoid duplicate alerts.
-#     """
-#     new_status = (instance.status or "").strip()
-#     old_status = (getattr(instance, "_prev_status", None) or "").strip()
-
-#     if new_status not in ("Running", "Completed"):
-#         return
-
-#     if new_status == old_status:
-#         return
-
-#     print(f"[Checktray Telegram] Status changed {old_status!r} → {new_status!r} for Task #{instance.pk}. Sending alert.")
-#     notify_checktray_task(instance.pk)
+        dev = task.device_id
+        device_pk = dev.device_id if dev else "—"
+        text = f"Device ({device_pk}) Cycle is ABORTED ❌"
+        return _send_message(text)
+    except Exception as ex:
+        print("[Checktray Telegram] Abort notify exception:", repr(ex))
+        return None
