@@ -22,21 +22,4 @@ def checktray_task_cache_prev_status(sender, instance, **kwargs):
 
 @receiver(post_save, sender=ChecktrayTask)
 def checktray_task_notify_running_completed(sender, instance, created, **kwargs):
-    """Send the same Telegram card whenever status becomes Running or Completed (DB save, not QuerySet.update)."""
-    cur = (instance.status or "").strip()
-    if cur != "Completed":
-        return
-    prev = getattr(instance, "_checktray_prev_status", None)
-
-    # ✅ Only trigger on actual transition
-    if prev == "Completed":
-        return
-    print("🚨 SIGNAL CALLED:", instance.id, instance.status, id(instance))
-    updated = ChecktrayTask.objects.filter(
-        id=instance.id,
-        notified=False
-    ).update(notified=True)
-
-    if not updated:
-        return
-    transaction.on_commit(lambda: enqueue_telegram(instance.pk))
+    pass

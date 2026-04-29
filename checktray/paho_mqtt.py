@@ -319,6 +319,7 @@ def on_message(client, userdata, msg):
         schedule.status = "Completed"
         schedule.stop_time = timezone.now()
         schedule.save(update_fields=["status", "stop_time"])
+        enqueue_telegram(schedule.id)  # ← ADD THIS LINE
 
         pick_next_schedule_for_device(schedule.device_id)
         return

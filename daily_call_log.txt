@@ -1,0 +1,422 @@
+2026-04-28 11:31:59,610 — Watching for file changes with StatReloader
+2026-04-28 11:32:14,820 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 11:32:40,437 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 11:32:41,424 — Watching for file changes with StatReloader
+2026-04-28 11:34:08,204 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\models.py changed, reloading.
+2026-04-28 11:34:09,127 — Watching for file changes with StatReloader
+2026-04-28 11:34:12,247 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\models.py changed, reloading.
+2026-04-28 11:34:13,292 — Watching for file changes with StatReloader
+2026-04-28 11:34:38,456 — Watching for file changes with StatReloader
+2026-04-28 11:35:01,800 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\settings.py changed, reloading.
+2026-04-28 11:35:03,001 — Watching for file changes with StatReloader
+2026-04-28 11:39:37,774 — Watching for file changes with StatReloader
+2026-04-28 11:41:44,290 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 11:41:45,486 — Watching for file changes with StatReloader
+2026-04-28 11:41:56,246 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 11:41:57,237 — Watching for file changes with StatReloader
+2026-04-28 11:42:06,901 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 11:42:07,856 — Watching for file changes with StatReloader
+2026-04-28 11:44:10,839 — -- BEGIN Twilio API Request --
+2026-04-28 11:44:10,840 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 11:44:10,840 — Headers:
+2026-04-28 11:44:10,840 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 11:44:10,840 — X-Twilio-Client : python-9.1.1
+2026-04-28 11:44:10,840 — Accept-Charset : utf-8
+2026-04-28 11:44:10,840 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 11:44:10,840 — Accept : application/json
+2026-04-28 11:44:10,840 — -- END Twilio API Request --
+2026-04-28 11:44:12,133 — Response Status Code: 201
+2026-04-28 11:44:12,133 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 06:14:11 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA0d14a8ac1e655bbd90e0711927603e21', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ5002b232d05866ba8affb088f521726c', 'Twilio-Request-Duration': '0.103', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 081f4dccbf59d5fd34750786ea392d28.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'UbXKZlxtQBTo_3WQySGTGwFkl029bhAnTD_Xkc0P9vvKOfsplyeJCw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 11:44:12,133 — \u2705 Worker call placed to Trinath (+918260582181) task 501 — SID=CA0d14a8ac1e655bbd90e0711927603e21
+2026-04-28 11:46:04,233 — -- BEGIN Twilio API Request --
+2026-04-28 11:46:04,233 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 11:46:04,233 — Headers:
+2026-04-28 11:46:04,233 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 11:46:04,233 — X-Twilio-Client : python-9.1.1
+2026-04-28 11:46:04,233 — Accept-Charset : utf-8
+2026-04-28 11:46:04,233 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 11:46:04,233 — Accept : application/json
+2026-04-28 11:46:04,233 — -- END Twilio API Request --
+2026-04-28 11:46:04,880 — Response Status Code: 201
+2026-04-28 11:46:04,880 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 06:16:04 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAfd11bfb86493ca4861d194bbc7a08d24', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQc9dd285a28612e64498b549463d8da58', 'Twilio-Request-Duration': '0.096', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 ad4d8134b7edbfc8b2d709b8e2f72270.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'lujXghCsZMvF8xruSFewzlXLemQMf2GPY-NPlyJQoUggcgfpx5_HUw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 11:46:04,889 — \u2705 Manager morning call placed to +919348998989 — SID=CAfd11bfb86493ca4861d194bbc7a08d24
+2026-04-28 11:49:28,306 — Conflict: /checktray_generate/
+2026-04-28 11:53:41,982 — Watching for file changes with StatReloader
+2026-04-28 11:54:44,193 — -- BEGIN Twilio API Request --
+2026-04-28 11:54:44,193 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 11:54:44,194 — Headers:
+2026-04-28 11:54:44,194 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 11:54:44,194 — X-Twilio-Client : python-9.1.1
+2026-04-28 11:54:44,194 — Accept-Charset : utf-8
+2026-04-28 11:54:44,194 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 11:54:44,194 — Accept : application/json
+2026-04-28 11:54:44,194 — -- END Twilio API Request --
+2026-04-28 11:54:44,788 — Response Status Code: 201
+2026-04-28 11:54:44,788 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 06:24:44 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA7a1e3bcb40a8ae2221f1698dae143b13', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ09ed129072e0c29abefda5cb91ce0271', 'Twilio-Request-Duration': '0.104', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 56edf389b493b074fc07c069f9012562.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': '6G4HfKTix5VJM9nVCpXU-usqSHHrRHO4HVXFHXcD0FzB9URPXEeaLQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 11:54:44,788 — \u2705 Worker call placed to Abhishek (+917735200735) task 504 — SID=CA7a1e3bcb40a8ae2221f1698dae143b13
+2026-04-28 12:06:57,943 — -- BEGIN Twilio API Request --
+2026-04-28 12:06:57,943 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 12:06:57,943 — Headers:
+2026-04-28 12:06:57,943 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 12:06:57,943 — X-Twilio-Client : python-9.1.1
+2026-04-28 12:06:57,943 — Accept-Charset : utf-8
+2026-04-28 12:06:57,943 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 12:06:57,943 — Accept : application/json
+2026-04-28 12:06:57,943 — -- END Twilio API Request --
+2026-04-28 12:06:58,638 — Response Status Code: 201
+2026-04-28 12:06:58,638 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 06:36:58 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA5b2246997ed77b9864959517e40aeef0', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ6d9cfae90745ec73b7410ab1da96eef4', 'Twilio-Request-Duration': '0.110', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 22d8712791101fb14b1c4a35f6f38d58.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': '1BRcAkUyTZjkxvpqznzE_QxpFsa2xpq0nPfz84rkuP6LyTrWF_XxyQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 12:06:58,638 — \u2705 Worker call placed to Jitesh (+919348998989) task 505 — SID=CA5b2246997ed77b9864959517e40aeef0
+2026-04-28 12:12:14,608 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 12:12:15,657 — Watching for file changes with StatReloader
+2026-04-28 12:12:22,385 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 12:12:23,384 — Watching for file changes with StatReloader
+2026-04-28 12:12:32,800 — Watching for file changes with StatReloader
+2026-04-28 12:13:34,539 — -- BEGIN Twilio API Request --
+2026-04-28 12:13:34,539 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 12:13:34,539 — Headers:
+2026-04-28 12:13:34,539 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 12:13:34,539 — X-Twilio-Client : python-9.1.1
+2026-04-28 12:13:34,539 — Accept-Charset : utf-8
+2026-04-28 12:13:34,539 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 12:13:34,539 — Accept : application/json
+2026-04-28 12:13:34,539 — -- END Twilio API Request --
+2026-04-28 12:13:35,363 — Response Status Code: 201
+2026-04-28 12:13:35,363 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 06:43:35 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA640af51943c8ad3aca4388efeb308f90', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQcef4b08a4fd54f02f036de8c1335e4ae', 'Twilio-Request-Duration': '0.096', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d5cd038617a87be7fffeb86d2af3d7e6.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'fgLjVDAA-oM8fqFCDHSF3Cekk4W6xbKXctg6bc5OZeccjFWBNb5sTw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 12:13:35,363 — \u2705 Worker call placed to Abhishek (+917735200735) task 506 — SID=CA640af51943c8ad3aca4388efeb308f90
+2026-04-28 12:32:52,296 — -- BEGIN Twilio API Request --
+2026-04-28 12:32:52,296 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 12:32:52,296 — Headers:
+2026-04-28 12:32:52,296 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 12:32:52,296 — X-Twilio-Client : python-9.1.1
+2026-04-28 12:32:52,296 — Accept-Charset : utf-8
+2026-04-28 12:32:52,296 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 12:32:52,296 — Accept : application/json
+2026-04-28 12:32:52,296 — -- END Twilio API Request --
+2026-04-28 12:32:53,350 — Response Status Code: 201
+2026-04-28 12:32:53,350 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 07:02:53 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAa1435d3343d891bd49bde5235c0e6ef7', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ78c96da6bf404e4020c2237a97cc201e', 'Twilio-Request-Duration': '0.081', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 7ab61ce3d7d648e0eaae5b45a81a89dc.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'nMyklxex4Y9B5fEgPRbOyoJ2voIEzkFGG79a_Uq5o67uZugvqxMqPg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 12:32:53,350 — \u2705 Manager morning call placed to +919348998989 — SID=CAa1435d3343d891bd49bde5235c0e6ef7
+2026-04-28 13:53:50,229 — Not Found: /taskclear/
+2026-04-28 14:11:06,052 — Not Found: /tasksubmit/1292/
+2026-04-28 14:14:44,807 — Bad Request: /tasksubmit/
+2026-04-28 14:16:36,975 — Bad Request: /tasksubmit/
+2026-04-28 14:17:16,871 — Not Found: /taskclear/
+2026-04-28 14:17:40,352 — Bad Request: /tasksubmit/
+2026-04-28 14:18:13,412 — Internal Server Error: /workerview/9327939342/
+2026-04-28 14:18:39,219 — Bad Request: /tasksubmit/
+2026-04-28 14:20:02,762 — Watching for file changes with StatReloader
+2026-04-28 14:21:43,209 — Not Found: /tasksubmit/1302/
+2026-04-28 14:31:13,297 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call.py changed, reloading.
+2026-04-28 14:31:14,329 — Watching for file changes with StatReloader
+2026-04-28 14:31:16,449 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call.py changed, reloading.
+2026-04-28 14:31:17,462 — Watching for file changes with StatReloader
+2026-04-28 14:31:21,717 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call.py changed, reloading.
+2026-04-28 14:31:22,701 — Watching for file changes with StatReloader
+2026-04-28 14:31:24,876 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call.py changed, reloading.
+2026-04-28 14:31:25,855 — Watching for file changes with StatReloader
+2026-04-28 14:31:29,042 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call.py changed, reloading.
+2026-04-28 14:31:30,077 — Watching for file changes with StatReloader
+2026-04-28 14:32:49,560 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call.py changed, reloading.
+2026-04-28 14:32:50,534 — Watching for file changes with StatReloader
+2026-04-28 14:33:51,510 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:33:52,532 — Watching for file changes with StatReloader
+2026-04-28 14:34:42,037 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:34:43,195 — Watching for file changes with StatReloader
+2026-04-28 14:34:48,522 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:34:49,566 — Watching for file changes with StatReloader
+2026-04-28 14:35:28,302 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:35:29,365 — Watching for file changes with StatReloader
+2026-04-28 14:35:31,519 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:35:32,502 — Watching for file changes with StatReloader
+2026-04-28 14:36:01,147 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:36:02,145 — Watching for file changes with StatReloader
+2026-04-28 14:36:43,295 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:36:44,313 — Watching for file changes with StatReloader
+2026-04-28 14:36:48,552 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 14:36:49,513 — Watching for file changes with StatReloader
+2026-04-28 14:38:01,184 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\myapp\models.py changed, reloading.
+2026-04-28 14:38:02,279 — Watching for file changes with StatReloader
+2026-04-28 14:38:04,545 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\myapp\models.py changed, reloading.
+2026-04-28 14:38:05,550 — Watching for file changes with StatReloader
+2026-04-28 14:38:14,984 — Internal Server Error: /pond-task/
+Traceback (most recent call last):
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column myapp_task.worker_call_notified does not exist
+LINE 1: ...task"."created_at", "myapp_task"."schedule_date", "myapp_tas...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\myapp\views.py", line 529, in get
+    "tasks": serializer.data,
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\serializers.py", line 795, in data
+    ret = super().data
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\rest_framework\serializers.py", line 713, in to_representation
+    return [
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\models\query.py", line 400, in __iter__
+    self._fetch_all()
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\env\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column myapp_task.worker_call_notified does not exist
+LINE 1: ...task"."created_at", "myapp_task"."schedule_date", "myapp_tas...
+                                                             ^
+
+2026-04-28 14:38:54,925 — Watching for file changes with StatReloader
+2026-04-28 14:39:45,318 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 14:39:46,370 — Watching for file changes with StatReloader
+2026-04-28 14:39:57,048 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 14:39:58,119 — Watching for file changes with StatReloader
+2026-04-28 14:40:09,949 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 14:40:10,949 — Watching for file changes with StatReloader
+2026-04-28 14:40:26,698 — Not Found: /test-autofeeder-worker-call/
+2026-04-28 14:41:06,296 — Watching for file changes with StatReloader
+2026-04-28 14:41:21,501 — -- BEGIN Twilio API Request --
+2026-04-28 14:41:21,502 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 14:41:21,502 — Headers:
+2026-04-28 14:41:21,502 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 14:41:21,502 — X-Twilio-Client : python-9.1.1
+2026-04-28 14:41:21,502 — Accept-Charset : utf-8
+2026-04-28 14:41:21,502 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 14:41:21,502 — Accept : application/json
+2026-04-28 14:41:21,503 — -- END Twilio API Request --
+2026-04-28 14:41:22,106 — Response Status Code: 201
+2026-04-28 14:41:22,106 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 09:11:22 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAb6b5c9d901a30b1bb3630c1bb9a7b9e4', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ387be15daec914aef32a2b76fe3379dc', 'Twilio-Request-Duration': '0.100', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 42711b32043ef413dd139e4e07296056.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'vQa1MJTgvrEoo23wU9RUC6C_-mStzMZ_T8d8kAv3m7BXXInBJm1V0A==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 14:41:22,106 — \u2705 Autofeeder worker call to Jitesh (+919348998989) task 1307 — SID=CAb6b5c9d901a30b1bb3630c1bb9a7b9e4
+2026-04-28 14:42:40,453 — Not Found: /tasksubmit/1305/
+2026-04-28 14:42:42,703 — Not Found: /tasksubmit/1305/
+2026-04-28 14:50:48,093 — -- BEGIN Twilio API Request --
+2026-04-28 14:50:48,093 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 14:50:48,093 — Headers:
+2026-04-28 14:50:48,093 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 14:50:48,093 — X-Twilio-Client : python-9.1.1
+2026-04-28 14:50:48,093 — Accept-Charset : utf-8
+2026-04-28 14:50:48,093 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 14:50:48,093 — Accept : application/json
+2026-04-28 14:50:48,093 — -- END Twilio API Request --
+2026-04-28 14:50:48,764 — Response Status Code: 201
+2026-04-28 14:50:48,765 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 09:20:48 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAff0b51c69d3fe8ccc0491f3e641ab0ff', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ456adef692215ff6e6060f8a604d84f7', 'Twilio-Request-Duration': '0.102', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 6351d3e8471da479fac82ee90436e69c.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'HfnTX28mlko_NTG_0dFVx2hDA7f8SiFdJZgxK9cf_M1BXzRD1g79VQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 14:50:48,765 — \u2705 Autofeeder worker call to Trinath (+918260582181) task 1309 — SID=CAff0b51c69d3fe8ccc0491f3e641ab0ff
+2026-04-28 14:51:45,718 — Not Found: /tasksubmit/1309/
+2026-04-28 14:53:33,390 — Watching for file changes with StatReloader
+2026-04-28 14:54:35,470 — -- BEGIN Twilio API Request --
+2026-04-28 14:54:35,470 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 14:54:35,470 — Headers:
+2026-04-28 14:54:35,470 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 14:54:35,470 — X-Twilio-Client : python-9.1.1
+2026-04-28 14:54:35,470 — Accept-Charset : utf-8
+2026-04-28 14:54:35,470 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 14:54:35,470 — Accept : application/json
+2026-04-28 14:54:35,470 — -- END Twilio API Request --
+2026-04-28 14:54:36,254 — Response Status Code: 201
+2026-04-28 14:54:36,254 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 09:24:36 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA342a570cbd1f9a2a826bb694d8654c7c', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQecad1ce52a0a01358e7ce3c85582be9e', 'Twilio-Request-Duration': '0.062', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 e5eaa631976c97edbab36eccc07ffe30.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': '06kDoR6lcllp-bQvEfxk3gO0bLUBHlOb1ZoKKKP6agE4u6tFy9wO1A==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 14:54:36,254 — \u2705 Worker call placed to Jitesh (+919348998989) task 507 — SID=CA342a570cbd1f9a2a826bb694d8654c7c
+2026-04-28 14:59:07,370 — Watching for file changes with StatReloader
+2026-04-28 15:08:53,875 — Not Found: /tasksubmit/1311/
+2026-04-28 15:41:28,177 — Watching for file changes with StatReloader
+2026-04-28 15:45:13,928 — Not Found: /tasksubmit/1315/
+2026-04-28 15:45:50,145 — Bad Request: /tasksubmit/
+2026-04-28 15:46:24,696 — Watching for file changes with StatReloader
+2026-04-28 15:46:34,561 — Not Found: /taskclear/
+2026-04-28 15:47:58,795 — Not Found: /tasksubmit/1320/
+2026-04-28 15:50:56,956 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 15:50:58,116 — Watching for file changes with StatReloader
+2026-04-28 15:51:02,692 — Watching for file changes with StatReloader
+2026-04-28 15:51:25,121 — Not Found: /tasksubmit/1322/
+2026-04-28 15:52:05,725 — Bad Request: /tasksubmit/
+2026-04-28 15:52:55,476 — Watching for file changes with StatReloader
+2026-04-28 15:58:22,637 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\checktray\daily_call_scheduler.py changed, reloading.
+2026-04-28 15:58:23,670 — Watching for file changes with StatReloader
+2026-04-28 15:58:24,745 — -- BEGIN Twilio API Request --
+2026-04-28 15:58:24,745 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 15:58:24,745 — Headers:
+2026-04-28 15:58:24,745 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 15:58:24,745 — X-Twilio-Client : python-9.1.1
+2026-04-28 15:58:24,745 — Accept-Charset : utf-8
+2026-04-28 15:58:24,745 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 15:58:24,745 — Accept : application/json
+2026-04-28 15:58:24,745 — -- END Twilio API Request --
+2026-04-28 15:58:25,891 — Response Status Code: 201
+2026-04-28 15:58:25,893 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 10:28:25 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA2768d35a0afb990a7f38efee3939c1e8', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQe73da07562a65c4b17ad6a0f843bee49', 'Twilio-Request-Duration': '0.091', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 6351d3e8471da479fac82ee90436e69c.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'hF7pDI8Z3qaDV-HlAw2_9IOTOFeaVZ_AKcu-_WxKFl3t0q8NUYBufg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 15:58:25,893 — \u2705 Autofeeder worker call to Trinath (+918260582181) task 1325 — SID=CA2768d35a0afb990a7f38efee3939c1e8
+2026-04-28 16:00:27,753 — -- BEGIN Twilio API Request --
+2026-04-28 16:00:27,753 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:00:27,754 — Headers:
+2026-04-28 16:00:27,754 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:00:27,754 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:00:27,754 — Accept-Charset : utf-8
+2026-04-28 16:00:27,754 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:00:27,754 — Accept : application/json
+2026-04-28 16:00:27,754 — -- END Twilio API Request --
+2026-04-28 16:00:29,084 — Response Status Code: 201
+2026-04-28 16:00:29,084 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 10:30:29 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA660c70950855011fa48cd93aec899a35', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ151cb3b6d7e167af0afd844b40c8d5ad', 'Twilio-Request-Duration': '0.091', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 9b54024ea9e954a7b4ed1fb94b9efefe.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': '9wU-8N-F1kqQuLRtBME0XUP4JsdB9wHNPS6b-2Sh9ehRkXv_tk75bA==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:00:29,084 — \u2705 Autofeeder worker call to Trinath (+918260582181) task 1325 — SID=CA660c70950855011fa48cd93aec899a35
+2026-04-28 16:00:57,374 — Not Found: /tasksubmit/1325/
+2026-04-28 16:02:31,057 — -- BEGIN Twilio API Request --
+2026-04-28 16:02:31,057 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:02:31,057 — Headers:
+2026-04-28 16:02:31,057 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:02:31,057 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:02:31,057 — Accept-Charset : utf-8
+2026-04-28 16:02:31,057 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:02:31,057 — Accept : application/json
+2026-04-28 16:02:31,057 — -- END Twilio API Request --
+2026-04-28 16:02:32,176 — Response Status Code: 201
+2026-04-28 16:02:32,176 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 10:32:32 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAe8fc9639b69f5160c49305ed81968a8c', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ60c9baf4999048c4685bbab4c36ba5d9', 'Twilio-Request-Duration': '0.069', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 fb01e6c024b96d582d90bf120bcc597c.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'KuHoSnkqLzm8UIvkl27JJFYwric_sGNToEKFYhPAzz_nWQdWLMZmmw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:02:32,176 — \u2705 Autofeeder worker call to Trinath (+918260582181) task 1327 — SID=CAe8fc9639b69f5160c49305ed81968a8c
+2026-04-28 16:10:08,876 — -- BEGIN Twilio API Request --
+2026-04-28 16:10:08,876 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:10:08,876 — Headers:
+2026-04-28 16:10:08,877 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:10:08,877 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:10:08,877 — Accept-Charset : utf-8
+2026-04-28 16:10:08,877 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:10:08,877 — Accept : application/json
+2026-04-28 16:10:08,877 — -- END Twilio API Request --
+2026-04-28 16:10:10,038 — Response Status Code: 201
+2026-04-28 16:10:10,038 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 10:40:10 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA77f43a54c1fc6c53374075f7f1cc4fe5', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ82f2c51e0a253e5378c8a86030d24cb8', 'Twilio-Request-Duration': '0.109', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 42080748a17c3909d506e05107d8f428.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'u2tTb0MO72K6RQf3852jiQDm2o9K3bdkhS3jfiHYKEB3umShEaMCog==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:10:10,038 — \u2705 Autofeeder worker call to Jitesh (+919348998989) task 1328 — SID=CA77f43a54c1fc6c53374075f7f1cc4fe5
+2026-04-28 16:11:39,354 — Watching for file changes with StatReloader
+2026-04-28 16:12:41,442 — -- BEGIN Twilio API Request --
+2026-04-28 16:12:41,442 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:12:41,442 — Headers:
+2026-04-28 16:12:41,442 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:12:41,442 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:12:41,442 — Accept-Charset : utf-8
+2026-04-28 16:12:41,442 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:12:41,442 — Accept : application/json
+2026-04-28 16:12:41,442 — -- END Twilio API Request --
+2026-04-28 16:12:42,594 — Response Status Code: 201
+2026-04-28 16:12:42,594 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 10:42:42 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA516cd7578402262d4502f95fd289a578', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ8051290d45b76e1b1145ff3dbc13b316', 'Twilio-Request-Duration': '0.091', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 5795cfb7762205b7d50d5ba7ce4d8746.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'P7sbztO5IE8985c36XtuRcHQXayBh4uamdIdE6zbl_yLjawHhknMuQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:12:42,594 — \u2705 Worker call placed to Abhishek (+917735200735) task 508 — SID=CA516cd7578402262d4502f95fd289a578
+2026-04-28 16:31:15,013 — Watching for file changes with StatReloader
+2026-04-28 16:32:30,974 — Not Found: /tasksubmit/1328/
+2026-04-28 16:34:18,930 — -- BEGIN Twilio API Request --
+2026-04-28 16:34:18,930 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:34:18,930 — Headers:
+2026-04-28 16:34:18,930 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:34:18,930 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:34:18,930 — Accept-Charset : utf-8
+2026-04-28 16:34:18,930 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:34:18,930 — Accept : application/json
+2026-04-28 16:34:18,930 — -- END Twilio API Request --
+2026-04-28 16:34:20,046 — Response Status Code: 201
+2026-04-28 16:34:20,046 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 11:04:20 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA52de2e6c2c4f5cba8b1fb240c868db59', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ0ddf97908c878d07fb0bb41d9777db55', 'Twilio-Request-Duration': '0.083', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 65e8babe56aad9956f3a9a29e26eabac.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': '0_qL2vCu-IOLhVgTCfdEbS5tPLbffLoYr2CI3FM1-CNWn23LOmXxkg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:34:20,047 — \u2705 Autofeeder worker call to Trinath (+918260582181) task 1329 — SID=CA52de2e6c2c4f5cba8b1fb240c868db59
+2026-04-28 16:45:30,483 — -- BEGIN Twilio API Request --
+2026-04-28 16:45:30,483 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:45:30,483 — Headers:
+2026-04-28 16:45:30,483 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:45:30,483 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:45:30,483 — Accept-Charset : utf-8
+2026-04-28 16:45:30,483 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:45:30,483 — Accept : application/json
+2026-04-28 16:45:30,483 — -- END Twilio API Request --
+2026-04-28 16:45:31,615 — Response Status Code: 201
+2026-04-28 16:45:31,615 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 11:15:31 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAbb8d5676b29ea5a64e14093e089d226d', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQb85a058585544e00561cb40739dda048', 'Twilio-Request-Duration': '0.081', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 44dd3bb75c40a6b0e432843186941cfe.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'nYDFEeeuY0h_9Cw56GHUdcnvjXSLZTKWzeh7gV03RP3qFKVN7ajJng==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:45:31,615 — \u2705 Autofeeder worker call to Jitesh (+919348998989) task 1330 — SID=CAbb8d5676b29ea5a64e14093e089d226d
+2026-04-28 16:51:15,063 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:51:16,130 — Watching for file changes with StatReloader
+2026-04-28 16:51:20,387 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:51:21,418 — Watching for file changes with StatReloader
+2026-04-28 16:51:36,340 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:51:37,465 — Watching for file changes with StatReloader
+2026-04-28 16:51:54,300 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:00,818 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:03,220 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:03,520 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:04,093 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:04,261 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:04,449 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:04,779 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:13,583 — Watching for file changes with StatReloader
+2026-04-28 16:52:32,545 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:33,636 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:34,292 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:34,545 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:34,811 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:35,014 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:35,320 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:35,496 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:35,702 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:35,878 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:36,036 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:36,200 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:36,361 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:52:57,604 — Not Found: /test-autofeeder-manager-call/
+2026-04-28 16:53:54,417 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:53:55,490 — Watching for file changes with StatReloader
+2026-04-28 16:54:18,239 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:54:19,351 — Watching for file changes with StatReloader
+2026-04-28 16:54:52,528 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:54:53,636 — Watching for file changes with StatReloader
+2026-04-28 16:54:58,986 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:54:59,964 — Watching for file changes with StatReloader
+2026-04-28 16:55:22,623 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:55:23,574 — Watching for file changes with StatReloader
+2026-04-28 16:55:27,101 — C:\Users\BFL-SYS-GP1\Documents\Updated_Master_Dashboard\water\urls.py changed, reloading.
+2026-04-28 16:55:28,200 — Watching for file changes with StatReloader
+2026-04-28 16:55:31,527 — -- BEGIN Twilio API Request --
+2026-04-28 16:55:31,527 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 16:55:31,527 — Headers:
+2026-04-28 16:55:31,527 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 16:55:31,527 — X-Twilio-Client : python-9.1.1
+2026-04-28 16:55:31,527 — Accept-Charset : utf-8
+2026-04-28 16:55:31,527 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 16:55:31,527 — Accept : application/json
+2026-04-28 16:55:31,527 — -- END Twilio API Request --
+2026-04-28 16:55:32,807 — Response Status Code: 201
+2026-04-28 16:55:32,807 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 11:25:32 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA4e51734496915fafb4db3c0408479848', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQd62b0160640bef0ec1430354ed580056', 'Twilio-Request-Duration': '0.095', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 8378f09761db68ab0db137d2ada9ad68.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': '9kPUhwA7EWFsMLiFjxlmyz4pfnWedEZFv1_SQ3LbVmOvIs4NRItvfg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 16:55:32,807 — \u2705 Autofeeder manager call placed to +919348998989 — SID=CA4e51734496915fafb4db3c0408479848
+2026-04-28 18:00:02,290 — Not Found: /tasksubmit/1331/
+2026-04-28 18:04:00,811 — Watching for file changes with StatReloader
+2026-04-28 18:08:04,991 — Not Found: /delete_task/
+2026-04-28 18:17:17,014 — -- BEGIN Twilio API Request --
+2026-04-28 18:17:17,014 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-28 18:17:17,014 — Headers:
+2026-04-28 18:17:17,014 — User-Agent : twilio-python/9.1.1 (Windows AMD64) Python/3.10.10
+2026-04-28 18:17:17,014 — X-Twilio-Client : python-9.1.1
+2026-04-28 18:17:17,014 — Accept-Charset : utf-8
+2026-04-28 18:17:17,014 — Content-Type : application/x-www-form-urlencoded
+2026-04-28 18:17:17,014 — Accept : application/json
+2026-04-28 18:17:17,014 — -- END Twilio API Request --
+2026-04-28 18:17:17,641 — Response Status Code: 201
+2026-04-28 18:17:17,641 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Tue, 28 Apr 2026 12:47:17 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA5f6a51697a61b0fe6e053d1260d76d41', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQe939e2c373dce9c5f54d0b3c5fe6d79e', 'Twilio-Request-Duration': '0.102', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d5d581324f7c00665941b8e3d5683e78.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'RVIMTgyaCInF2jft9RqyFi8OX4GW2imaH9Cnvce6wuGlHMphoZMHGA==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-28 18:17:17,641 — \u2705 Autofeeder worker call to Trinath (+918260582181) task 1332 — SID=CA5f6a51697a61b0fe6e053d1260d76d41
+2026-04-29 09:59:44,651 — Watching for file changes with StatReloader
+2026-04-29 10:02:38,028 — Watching for file changes with StatReloader
