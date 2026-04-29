@@ -482,3 +482,20 @@ def notify_checktray_abort(task) -> dict | None:
     except Exception as ex:
         print("[Checktray Telegram] Abort notify exception:", repr(ex))
         return None
+    
+
+def notify_checktray_cancel(task) -> dict | None:
+    """
+    Called directly BEFORE deleting task when schedule is cancelled.
+    """
+    try:
+        dev = task.device_id
+        device_pk = dev.device_id if dev else "—"
+
+        text = f"Device ({device_pk}) schedule has been CANCELLED ❌"
+
+        return _send_message(text)
+
+    except Exception as ex:
+        print("[Checktray Telegram] Cancel notify exception:", repr(ex))
+        return None

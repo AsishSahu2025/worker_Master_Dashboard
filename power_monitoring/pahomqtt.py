@@ -3,7 +3,7 @@ import sys
 import json
 import time
 import threading
-from datetime import timedelta
+from datetime import datetime
 
 # ---------------- DJANGO SETUP ---------------- #
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -65,7 +65,8 @@ def on_message(client, userdata, msg):
     print(f"📦 Raw Payload: {raw_payload}")
 
     device_id = topic.split("/")[1]
-    now = timezone.localtime()
+    # now = timezone.localtime()
+    now = datetime.now()
 
     # ---------------- ALERT ---------------- #
     if topic.endswith("/rnd/alert"):
