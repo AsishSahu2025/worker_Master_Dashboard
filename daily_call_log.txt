@@ -2667,3 +2667,51 @@ server closed the connection unexpectedly
 2026-04-29 15:08:05,276 — Watching for file changes with StatReloader
 2026-04-29 15:08:25,332 — /home/kanhucharan/Desktop/Bariflo Projects/Updated _master_dashboard/Master_Dashboard/checktray/apps.py changed, reloading.
 2026-04-29 15:08:26,094 — Watching for file changes with StatReloader
+2026-04-30 11:11:00,704 — -- BEGIN Twilio API Request --
+2026-04-30 11:11:00,704 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 11:11:00,704 — Headers:
+2026-04-30 11:11:00,704 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 11:11:00,704 — X-Twilio-Client : python-9.1.1
+2026-04-30 11:11:00,704 — Accept-Charset : utf-8
+2026-04-30 11:11:00,704 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 11:11:00,705 — Accept : application/json
+2026-04-30 11:11:00,705 — -- END Twilio API Request --
+2026-04-30 11:11:01,534 — Response Status Code: 201
+2026-04-30 11:11:01,534 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 05:41:01 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA62af16f86a59fe517994d1510b0bc5dd', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQe994513c9a41dc5c2b40b542d07d65ee', 'Twilio-Request-Duration': '0.115', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 a33f26ffdd9ca5db5788887c8a32d416.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'gMxUELee8VNxjW-f34cgMzumtrV0DHlnLbh0tOxTFIFRpFqLi1YvTw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 11:11:01,534 — ✅ Worker call placed to Trinath (+918260582181) task 529 — SID=CA62af16f86a59fe517994d1510b0bc5dd
+2026-04-30 11:11:01,599 — -- BEGIN Twilio API Request --
+2026-04-30 11:11:01,599 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 11:11:01,599 — Headers:
+2026-04-30 11:11:01,599 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 11:11:01,599 — X-Twilio-Client : python-9.1.1
+2026-04-30 11:11:01,599 — Accept-Charset : utf-8
+2026-04-30 11:11:01,600 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 11:11:01,600 — Accept : application/json
+2026-04-30 11:11:01,600 — -- END Twilio API Request --
+2026-04-30 11:11:02,293 — Response Status Code: 201
+2026-04-30 11:11:02,294 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 05:41:02 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAf0dc74e3720163e64f403b49b3110aef', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ9d17d10917db6992b2002c0f657189ee', 'Twilio-Request-Duration': '0.152', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 780d97ec62056eadd62bb02a47daf7ce.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': '9khbEjihb6N4jGDgig4S4ARMv4vF6jRTvVSJ37PBPGPdRCuNVX32ew==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 11:11:02,294 — ✅ Worker call placed to Asish (+919178336630) task 530 — SID=CAf0dc74e3720163e64f403b49b3110aef
+2026-04-30 11:21:05,674 — -- BEGIN Twilio API Request --
+2026-04-30 11:21:05,674 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 11:21:05,674 — Headers:
+2026-04-30 11:21:05,675 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 11:21:05,675 — X-Twilio-Client : python-9.1.1
+2026-04-30 11:21:05,675 — Accept-Charset : utf-8
+2026-04-30 11:21:05,675 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 11:21:05,675 — Accept : application/json
+2026-04-30 11:21:05,675 — -- END Twilio API Request --
+2026-04-30 11:21:06,886 — Response Status Code: 201
+2026-04-30 11:21:06,887 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 05:51:06 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAfc8d3b5c09142e603bafc9a835711ebb', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ78faa3e2bbaf2cefdabf1a830d7f566b', 'Twilio-Request-Duration': '0.108', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 e73ceb03329c1b0335e4da88434588b0.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'jYEkmMdXVm5he7QeomppMBr6ennVICxXxdftrY5K5xkMf_3oIEql9w==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 11:21:06,887 — ✅ Worker call placed to Asish (+919178336630) task 531 — SID=CAfc8d3b5c09142e603bafc9a835711ebb
+2026-04-30 11:23:08,554 — -- BEGIN Twilio API Request --
+2026-04-30 11:23:08,555 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 11:23:08,555 — Headers:
+2026-04-30 11:23:08,555 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 11:23:08,555 — X-Twilio-Client : python-9.1.1
+2026-04-30 11:23:08,555 — Accept-Charset : utf-8
+2026-04-30 11:23:08,555 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 11:23:08,556 — Accept : application/json
+2026-04-30 11:23:08,556 — -- END Twilio API Request --
+2026-04-30 11:23:09,797 — Response Status Code: 201
+2026-04-30 11:23:09,797 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 05:53:09 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA2a21fb2dc8b75e3b5b2f8d5abbafe083', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ1e82ccd8adf1cc8ca76e1a43c190566e', 'Twilio-Request-Duration': '0.087', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 43e3c69aa153c73686e43d2a95ae9d52.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'gZwt8yO88l4YEgUZMgQ7HmC0Fodwi0NSXiGQA02zmkeBvS4535ir4g==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 11:23:09,798 — ✅ Worker call placed to Asish (+919178336630) task 532 — SID=CA2a21fb2dc8b75e3b5b2f8d5abbafe083
