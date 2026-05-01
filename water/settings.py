@@ -81,7 +81,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com'] 
+ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com',"*"] 
 
   
 
@@ -251,14 +251,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT ="/home/bariflo/Desktop"
 
 
-# AZURE_STORAGE_ACCOUNT_NAME="vertoxlabblob1"
-# AZURE_STORAGE_CONTAINER="vertoxdb"
-# AZURE_STORAGE_ACCOUNT_KEY="aYOMbNdrpbzGqmCNkwHFGmcmRw+s0bRskVcy3nDjLsG7fle1zyWyY39YG1dKcGEuTHL+yldRdpty+AStdh1wsg=="
+AZURE_STORAGE_ACCOUNT_NAME="vertoxlabblob1"
+AZURE_STORAGE_CONTAINER="vertoxdb"
+AZURE_STORAGE_ACCOUNT_KEY="aYOMbNdrpbzGqmCNkwHFGmcmRw+s0bRskVcy3nDjLsG7fle1zyWyY39YG1dKcGEuTHL+yldRdpty+AStdh1wsg=="
 
 
-MINIO_ENDPOINT = '192.168.1.2:9000'
-MINIO_ACCESS_KEY = 'bariflo'
-MINIO_SECRET_KEY = 'Bariflo@2026'
+# MINIO_ENDPOINT = '192.168.1.2:9000'
+# MINIO_ACCESS_KEY = 'bariflo'
+# MINIO_SECRET_KEY = 'Bariflo@2026'
 
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
