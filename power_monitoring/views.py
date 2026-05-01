@@ -1,6 +1,10 @@
 import json
 import paho.mqtt.publish as publish
 
+from power_monitoring.services.session_service import update_session_status
+from .utils.telegram_cards import generate_cycle_card, generate_schedule_card, generate_abort_card
+import requests
+import io
 from django.db import transaction
 from django.db.models import Sum
 from django.utils import timezone
@@ -16,40 +20,34 @@ from dateutil import parser
 from .models import SensorData, MonitoringSession
 from .serializers import SensorDataSerializer, MonitoringSessionSerializer
 from myapp.models import Device, Worker_details
-
 # ---------------- MQTT CONFIG ---------------- #
 MQTT_BROKER = "mqttbroker.bc-pl.com"
 MQTT_PORT = 1883
 MQTT_USER = "mqttuser"
 MQTT_PASSWORD = "Bfl@2025"
 
+TELEGRAM_BOT_TOKEN = "8650685796:AAEWB2H-Jsr-34Oycq2EDi-EgbzGTKS0hkw"
+TELEGRAM_GROUPCHAT_IDS = [-5186117690, 1836771564]
 
-# ================= STATUS HELPER ================= #
-def update_session_status(session):
-    try:
-        now = timezone.now()
-        if session.status in ["COMPLETED", "FAILED", "ABORTED"]:
-            return
-        if not session.start_time or not session.end_time:
-            new_status = "PENDING"
-            duration = None
-        else:
-            has_data = session.readings.exists() if hasattr(session, 'readings') else False
-            if now < session.start_time:
-                new_status = "PENDING"
-            elif session.start_time <= now <= session.end_time:
-                new_status = "PROCESSING"
-            else:
-                new_status = "COMPLETED" if has_data else "FAILED"
+def send_telegram_image(image_buffer, caption=""):
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
 
-            duration = session.end_time - session.start_time
-        MonitoringSession.objects.filter(id=session.id).update(
-            status=new_status,
-            duration=duration
-        )
-    except Exception as e:
-        print(f"⚠️ update_session_status error for {session.id}: {e}")
+    for chat_id in TELEGRAM_GROUPCHAT_IDS:
+        try:
+            image_buffer.seek(0)
 
+            files = {"photo": image_buffer}
+            data = {
+                "chat_id": chat_id,
+                "caption": caption,
+                "parse_mode": "HTML"
+            }
+
+            res = requests.post(url, files=files, data=data)
+            print("📸 Telegram:", res.text)
+
+        except Exception as e:
+            print("❌ Telegram Error:", e)
 
 # ================= SENSOR DATA ================= #
 class SensorDataViewSet(ModelViewSet):
@@ -113,7 +111,6 @@ class GenerateCyclesView(APIView):
             last_cycle = MonitoringSession.objects.filter(device=device).order_by("-cycle_number").first()
             next_cycle_number = last_cycle.cycle_number + 1 if last_cycle else 1
 
-            # AUTO MAIN LOGIC
             main_value = 1 if device.device_id == "BFL_PomonA001" else 2
 
             session = MonitoringSession.objects.create(
@@ -122,15 +119,29 @@ class GenerateCyclesView(APIView):
                 start_time=None,
                 end_time=None,
                 status="PENDING",
-                main=main_value 
+                main=main_value
             )
 
             created_cycles.append({
-                "cycle_number": session.cycle_number,
-                "start_time": session.start_time,
-                "end_time": session.end_time
+                "cycle_number": session.cycle_number
             })
 
+        # ================= TELEGRAM IMAGE ALERT ================= #
+        try:
+            now = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            image = generate_cycle_card(
+                device_id=device.device_id,
+                cycles=created_cycles,
+                timestamp=now
+            )
+
+            send_telegram_image(image)
+
+        except Exception as e:
+            print("⚠️ Telegram Image Failed:", e)
+
+        # -------- RESPONSE -------- #
         return Response({
             "success": True,
             "device_id": device.device_id,
@@ -202,21 +213,21 @@ class EmptySessionsDetailView(APIView):
         })
 
 # ================= MONITORING SESSION CREATE/UPDATE ================= #
-
 class MonitoringSessionViewSet(ModelViewSet):
     queryset = MonitoringSession.objects.all().order_by("-start_time")
     serializer_class = MonitoringSessionSerializer
 
     def create(self, request, *args, **kwargs):
         device_id = request.data.get("device_id")
-        cycles = request.data.get("cycles")  
-        worker_id = request.data.get("worker_id")
+        cycles = request.data.get("cycles")
 
-        # ----------- VALIDATION ----------- #
+        # ===== BASIC VALIDATION ===== #
         if not device_id:
             raise ValidationError({"device_id": "Device ID required"})
+
         if not cycles or not isinstance(cycles, list):
             raise ValidationError({"cycles": "Cycles must be a list"})
+
         if len(cycles) > 5:
             raise ValidationError({"cycles": "Max 5 cycles allowed"})
 
@@ -225,54 +236,90 @@ class MonitoringSessionViewSet(ModelViewSet):
         except Device.DoesNotExist:
             raise ValidationError({"device_id": "Invalid device"})
 
-        worker = None
-        if worker_id:
-            try:
-                worker = Worker_details.objects.get(mobno=worker_id)
-            except Worker_details.DoesNotExist:
-                raise ValidationError({"worker_id": "Invalid worker"})
-
         main_default = 1 if device.device_id == "BFL_PomonA001" else 2
-        now = timezone.now()
         created_sessions = []
+
+        now = timezone.now()
+        next_start_time = now + timedelta(seconds=60)
+
+        MIN_GAP_SECONDS = 120  
+
+        last_start_time = None  
 
         with transaction.atomic():
             for i, cycle_data in enumerate(cycles):
-                # ----------- PARSE DATETIME ----------- #
-                try:
-                    # start_time = parser.parse(cycle_data['start_time'])
-                    # if timezone.is_naive(start_time):
-                    #     start_time = timezone.make_aware(start_time)
 
-                    # end_time = parser.parse(cycle_data['end_time'])
-                    # if timezone.is_naive(end_time):
-                    #     end_time = timezone.make_aware(end_time)
-                    start_time = parser.parse(cycle_data['start_time']).replace(tzinfo=None)
-                    end_time = parser.parse(cycle_data['end_time']).replace(tzinfo=None)
-                except Exception:
-                    raise ValidationError({"error": f"Cycle {i+1}: Invalid datetime format"})
+                # ===== WORKER ===== #
+                worker_id = cycle_data.get("worker_id")
+                if not worker_id:
+                    raise ValidationError({"error": f"Cycle {i+1}: worker_id required"})
+
+                try:
+                    worker = Worker_details.objects.get(mobno=worker_id)
+                except Worker_details.DoesNotExist:
+                    raise ValidationError({"error": f"Cycle {i+1}: invalid worker_id"})
 
                 main = cycle_data.get("main", main_default)
 
-                # ----------- TIME VALIDATION ----------- #
-                if start_time < now + timedelta(seconds=60):
-                    raise ValidationError({"error": f"Cycle {i+1}: start_time must be at least 60s from now"})
+                # ===== AUTO MODE ===== #
+                if "duration" in cycle_data:
+                    try:
+                        duration = int(cycle_data["duration"])
+                    except:
+                        raise ValidationError({"error": f"Cycle {i+1}: invalid duration"})
+
+                    if duration <= 60:
+                        raise ValidationError({
+                            "error": f"Cycle {i+1}: duration must be > 60 seconds"
+                        })
+
+                    start_time = next_start_time
+                    end_time = start_time + timedelta(seconds=duration)
+
+                    next_start_time = end_time + timedelta(seconds=MIN_GAP_SECONDS)
+
+                # ===== MANUAL MODE ===== #
+                else:
+                    try:
+                        start_time = parser.parse(cycle_data["start_time"])
+                        end_time = parser.parse(cycle_data["end_time"])
+                    except:
+                        raise ValidationError({"error": f"Cycle {i+1}: invalid datetime"})
+
+                # ===== BASIC VALIDATIONS ===== #
                 if end_time <= start_time:
-                    raise ValidationError({"error": f"Cycle {i+1}: end_time must be after start_time"})
-                if (end_time - start_time).total_seconds() < 60:
-                    raise ValidationError({"error": f"Cycle {i+1}: duration must be >= 60s"})
+                    raise ValidationError({"error": f"Cycle {i+1}: end must be after start"})
 
-                # ----------- OVERLAP CHECK ----------- #
-                overlap = MonitoringSession.objects.filter(
-                    device=device,
-                    start_time__lt=end_time,
-                    end_time__gt=start_time
-                )
-                if overlap.exists():
-                    raise ValidationError({"error": f"Cycle {i+1}: overlaps with existing session"})
+                duration_check = (end_time - start_time).total_seconds()
 
-                # ----------- CREATE SESSION ----------- #
-                # Get first empty session
+                if duration_check <= 60:
+                    raise ValidationError({
+                        "error": f"Cycle {i+1}: duration must be > 60 seconds"
+                    })
+
+                # =========================================================
+                # RULE 1: FIRST CYCLE MUST BE >= NOW + 120 SEC
+                # =========================================================
+                if i == 0:
+                    min_first_start = now + timedelta(seconds=100)
+                    if start_time < min_first_start:
+                        raise ValidationError({
+                            "error": "First cycle start_time must be at least 100 seconds greater than current time"
+                        })
+
+                # =========================================================
+                # RULE 2: GAP BETWEEN CYCLES >= 120 SEC
+                # =========================================================
+                if last_start_time:
+                    gap = (start_time - last_start_time).total_seconds()
+                    if gap < MIN_GAP_SECONDS:
+                        raise ValidationError({
+                            "error": f"Cycle {i+1}: minimum gap between cycles must be 120 seconds"
+                        })
+
+                last_start_time = start_time
+
+                # ===== GET EMPTY SLOT ===== #
                 session = MonitoringSession.objects.filter(
                     device=device,
                     start_time__isnull=True,
@@ -280,51 +327,29 @@ class MonitoringSessionViewSet(ModelViewSet):
                 ).order_by("cycle_number").first()
 
                 if not session:
-                    raise ValidationError({"error": "No empty cycle available. Generate cycles first."})
+                    raise ValidationError({"error": "No empty cycle available"})
 
-                # UPDATE instead of CREATE
+                # ===== SAVE ===== #
                 session.worker = worker
                 session.start_time = start_time
                 session.end_time = end_time
                 session.main = main
                 session.status = "PENDING"
-
+                session.mqtt_sent = False
                 session.save()
 
-                update_session_status(session)
                 created_sessions.append(session)
-
-                # ----------- MQTT PUBLISH ----------- #
-                payload = {
-                    "start_time": start_time.strftime("%H:%M"),
-                    "duration": int((end_time - start_time).total_seconds()),
-                    "main": main
-                }
-
-                topic = f"pomon/{device.device_id}/rnd/schedule"
-
-                try:
-                    publish.single(
-                        topic,
-                        json.dumps(payload, separators=(',', ':')),  
-                        hostname=MQTT_BROKER,
-                        port=MQTT_PORT,
-                        auth={"username": MQTT_USER, "password": MQTT_PASSWORD}
-                    )
-                    print(f"📤 MQTT SENT: {payload}")
-                except Exception as e:
-                    print("❌ MQTT Error:", e)
 
         return Response({
             "success": True,
-            "message": f"{len(created_sessions)} cycles scheduled successfully",
+            "message": f"{len(created_sessions)} cycles scheduled",
             "device": device.device_id,
             "cycles": [
                 {
-                    "cycle_number": s.cycle_number,
+                    "cycle": s.cycle_number,
                     "start_time": s.start_time,
                     "end_time": s.end_time,
-                    "main": s.main
+                    "status": s.status
                 } for s in created_sessions
             ]
         })
@@ -333,6 +358,7 @@ class MonitoringSessionViewSet(ModelViewSet):
 class AbortSessionView(APIView):
     def post(self, request):
         session_id = request.data.get("session_id")
+
         if not session_id:
             return Response({"error": "session_id required"}, status=400)
 
@@ -344,7 +370,10 @@ class AbortSessionView(APIView):
         if session.status in ["COMPLETED", "FAILED", "ABORTED"]:
             return Response({"error": "Cannot abort"}, status=400)
 
-        session.abort()
+        session.status = "ABORTED"
+        session.end_time = timezone.now()
+        session.duration = session.end_time - session.start_time if session.start_time else None
+        session.save()
 
         topic = f"pomon/{session.device.device_id}/rnd/abort"
         try:
@@ -358,7 +387,25 @@ class AbortSessionView(APIView):
         except Exception as e:
             print("MQTT Abort Error:", e)
 
-        return Response({"success": True})
+        # ================= TELEGRAM IMAGE ================= #
+        try:
+            current_time = timezone.now().strftime("%H:%M:%S")
+
+            img = generate_abort_card(
+                device_id=session.device.device_id,
+                cycle_no=session.cycle_number,
+                timestamp=current_time
+            )
+
+            send_telegram_image(img)
+
+        except Exception as e:
+            print("❌ Telegram Abort Image Error:", e)
+
+        return Response({
+            "success": True,
+            "message": f"Session {session.id} aborted successfully"
+        })
 
 
 # ================= ENERGY SUMMARY ================= #

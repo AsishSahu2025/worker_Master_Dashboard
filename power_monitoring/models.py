@@ -22,7 +22,9 @@ class MonitoringSession(models.Model):
         on_delete=models.CASCADE,
         related_name="monitoring_sessions"
     )
+
     cycle_number = models.IntegerField(default=1)
+
     worker = models.ForeignKey(
         Worker_details,
         on_delete=models.SET_NULL,
@@ -48,8 +50,10 @@ class MonitoringSession(models.Model):
 
     main = models.IntegerField(default=1)
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    # ✅ NEW FIELD (VERY IMPORTANT)
+    mqtt_sent = models.BooleanField(default=False)
 
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ("device", "cycle_number")
@@ -110,6 +114,7 @@ class MonitoringSession(models.Model):
             if has_data:
                 self.status = "COMPLETED"
             else:
+                # 🔥 small delay before marking FAILED
                 if now > self.end_time + timedelta(seconds=20):
                     self.status = "FAILED"
 

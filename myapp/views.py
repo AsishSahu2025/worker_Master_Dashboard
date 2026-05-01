@@ -237,6 +237,7 @@ def workerview(request, mob):
         response = []
         for i in result:
             response.append({
+                "worker_id": i.mobno,
                 "name": i.name
             })
 
