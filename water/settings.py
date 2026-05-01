@@ -81,7 +81,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com',"*"] 
+ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com'] 
 
   
 
@@ -210,7 +210,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://newiot.bc-pl.com'
 ]
 CORS_ALLOWED_ORIGINS = [
-   'https://newiot.bc-pl.com'
+   'https://newiot.bc-pl.com',
+   'https://newiotbg.bc-pl.com'
 ]
 # CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOW_CREDENTIALS = True
