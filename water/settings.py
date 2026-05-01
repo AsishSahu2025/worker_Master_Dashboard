@@ -207,11 +207,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://newiot.bc-pl.com'
+    'https://newiot.bc-pl.com',
+   'https://newiotbg.bc-pl.com'
 ]
 CORS_ALLOWED_ORIGINS = [
    'https://newiot.bc-pl.com',
-   'https://newiotbg.bc-pl.com'
 ]
 # CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOW_CREDENTIALS = True
