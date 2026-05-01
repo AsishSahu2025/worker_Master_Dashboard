@@ -2715,3 +2715,41 @@ server closed the connection unexpectedly
 2026-04-30 11:23:09,797 — Response Status Code: 201
 2026-04-30 11:23:09,797 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 05:53:09 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA2a21fb2dc8b75e3b5b2f8d5abbafe083', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ1e82ccd8adf1cc8ca76e1a43c190566e', 'Twilio-Request-Duration': '0.087', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 43e3c69aa153c73686e43d2a95ae9d52.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'gZwt8yO88l4YEgUZMgQ7HmC0Fodwi0NSXiGQA02zmkeBvS4535ir4g==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
 2026-04-30 11:23:09,798 — ✅ Worker call placed to Asish (+919178336630) task 532 — SID=CA2a21fb2dc8b75e3b5b2f8d5abbafe083
+2026-04-30 14:20:01,098 — -- BEGIN Twilio API Request --
+2026-04-30 14:20:01,099 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 14:20:01,099 — Headers:
+2026-04-30 14:20:01,099 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 14:20:01,099 — X-Twilio-Client : python-9.1.1
+2026-04-30 14:20:01,099 — Accept-Charset : utf-8
+2026-04-30 14:20:01,099 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 14:20:01,099 — Accept : application/json
+2026-04-30 14:20:01,099 — -- END Twilio API Request --
+2026-04-30 14:20:01,834 — Response Status Code: 201
+2026-04-30 14:20:01,834 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 08:50:01 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA58ce4b8832f9c0dd40581958077cb11e', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQa51883d25d991159e3de45cb85968249', 'Twilio-Request-Duration': '0.098', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 9b54024ea9e954a7b4ed1fb94b9efefe.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'Y2xFxYlSz5g_RQyPygbC9d-w97f4-Ur1Zw9yOZc7T4W7NeMRS5T4TQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 14:20:01,834 — ✅ Autofeeder worker call to Abhishek (+917735200735) task 1370 — SID=CA58ce4b8832f9c0dd40581958077cb11e
+2026-04-30 14:39:40,959 — [MyApp Telegram] TELEGRAM_BOT_TOKEN or TELEGRAM_GROUP_CHAT_ID not set.
+2026-04-30 14:40:19,209 — -- BEGIN Twilio API Request --
+2026-04-30 14:40:19,209 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 14:40:19,209 — Headers:
+2026-04-30 14:40:19,210 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 14:40:19,210 — X-Twilio-Client : python-9.1.1
+2026-04-30 14:40:19,210 — Accept-Charset : utf-8
+2026-04-30 14:40:19,210 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 14:40:19,210 — Accept : application/json
+2026-04-30 14:40:19,210 — -- END Twilio API Request --
+2026-04-30 14:40:20,015 — Response Status Code: 201
+2026-04-30 14:40:20,015 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 09:10:19 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CA8b57412b4dd0939d67341abd611c3201', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ6778b5ae40dcefcea1efdb8761d41112', 'Twilio-Request-Duration': '0.094', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 9b54024ea9e954a7b4ed1fb94b9efefe.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'OhMW7-z2jYKB7oKGeyP1TXih8j9f1xSiP-1as26dMas5LTq6HWvA0Q==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 14:40:20,015 — ✅ Autofeeder worker call to Trinath (+918260582181) task 1374 — SID=CA8b57412b4dd0939d67341abd611c3201
+2026-04-30 14:44:00,766 — [MyApp Telegram Complete] TELEGRAM_BOT_TOKEN or TELEGRAM_GROUP_CHAT_ID not set.
+2026-04-30 14:52:01,670 — -- BEGIN Twilio API Request --
+2026-04-30 14:52:01,670 — POST Request: https://api.twilio.com/2010-04-01/Accounts/AC2ff989757ab78d4cc7cd13163ada5e13/Calls.json
+2026-04-30 14:52:01,671 — Headers:
+2026-04-30 14:52:01,671 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-04-30 14:52:01,671 — X-Twilio-Client : python-9.1.1
+2026-04-30 14:52:01,671 — Accept-Charset : utf-8
+2026-04-30 14:52:01,671 — Content-Type : application/x-www-form-urlencoded
+2026-04-30 14:52:01,671 — Accept : application/json
+2026-04-30 14:52:01,671 — -- END Twilio API Request --
+2026-04-30 14:52:02,364 — Response Status Code: 201
+2026-04-30 14:52:02,365 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 09:22:02 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAe40f74078d2bad3e355caf70db9e8271', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQdfbdb6c93390c74aa66b84f7c3d155de', 'Twilio-Request-Duration': '0.093', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 44dd3bb75c40a6b0e432843186941cfe.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'aXcjV8jqP0tPG_mNR_LB7xF9LgmjwJc3toN2nF5riXzIoORrPMgDVQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-04-30 14:52:02,365 — ✅ Autofeeder worker call to Trinath (+918260582181) task 1377 — SID=CAe40f74078d2bad3e355caf70db9e8271
