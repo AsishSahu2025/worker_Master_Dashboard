@@ -5,8 +5,6 @@ from datetime import timedelta
 
 from myapp.models import Device, Worker_details
 
-
-# ================= MONITORING SESSION ================= #
 class MonitoringSession(models.Model):
 
     STATUS_CHOICES = [
@@ -16,15 +14,12 @@ class MonitoringSession(models.Model):
         ("FAILED", "Failed"),
         ("ABORTED", "Aborted"),
     ]
-
     device = models.ForeignKey(
         Device,
         on_delete=models.CASCADE,
         related_name="monitoring_sessions"
     )
-
     cycle_number = models.IntegerField(default=1)
-
     worker = models.ForeignKey(
         Worker_details,
         on_delete=models.SET_NULL,
@@ -32,7 +27,6 @@ class MonitoringSession(models.Model):
         blank=True,
         related_name="sessions"
     )
-
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
     duration = models.DurationField(null=True, blank=True)
@@ -43,14 +37,9 @@ class MonitoringSession(models.Model):
         default="PENDING",
         db_index=True
     )
-
     total_wh = models.FloatField(default=0)
-
     description = models.CharField(max_length=255, blank=True)
-
     main = models.IntegerField(default=1)
-
-    # ✅ NEW FIELD (VERY IMPORTANT)
     mqtt_sent = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)

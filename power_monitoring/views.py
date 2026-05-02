@@ -1,25 +1,27 @@
 import json
+import requests
 import paho.mqtt.publish as publish
 
-from power_monitoring.services.session_service import update_session_status
-from .utils.telegram_cards import generate_cycle_card, generate_schedule_card, generate_abort_card
-import requests
-import io
 from django.db import transaction
 from django.db.models import Sum
 from django.utils import timezone
 from datetime import timedelta
 
-from requests import request
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
+
 from dateutil import parser
+from PIL import Image
+from power_monitoring.pahomqtt import send_telegram_alert
+from power_monitoring.services.session_service import update_session_status
+from power_monitoring.utils.telegram_cards import notify_power_schedule
 
 from .models import SensorData, MonitoringSession
 from .serializers import SensorDataSerializer, MonitoringSessionSerializer
 from myapp.models import Device, Worker_details
+
 # ---------------- MQTT CONFIG ---------------- #
 MQTT_BROKER = "mqttbroker.bc-pl.com"
 MQTT_PORT = 1883
@@ -125,21 +127,6 @@ class GenerateCyclesView(APIView):
             created_cycles.append({
                 "cycle_number": session.cycle_number
             })
-
-        # ================= TELEGRAM IMAGE ALERT ================= #
-        try:
-            now = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
-
-            image = generate_cycle_card(
-                device_id=device.device_id,
-                cycles=created_cycles,
-                timestamp=now
-            )
-
-            send_telegram_image(image)
-
-        except Exception as e:
-            print("⚠️ Telegram Image Failed:", e)
 
         # -------- RESPONSE -------- #
         return Response({
@@ -286,7 +273,6 @@ class MonitoringSessionViewSet(ModelViewSet):
                     except:
                         raise ValidationError({"error": f"Cycle {i+1}: invalid datetime"})
 
-                # ===== BASIC VALIDATIONS ===== #
                 if end_time <= start_time:
                     raise ValidationError({"error": f"Cycle {i+1}: end must be after start"})
 
@@ -298,7 +284,7 @@ class MonitoringSessionViewSet(ModelViewSet):
                     })
 
                 # =========================================================
-                # RULE 1: FIRST CYCLE MUST BE >= NOW + 120 SEC
+                # FIRST CYCLE MUST BE >= NOW + 120 SEC
                 # =========================================================
                 if i == 0:
                     min_first_start = now + timedelta(seconds=100)
@@ -308,7 +294,7 @@ class MonitoringSessionViewSet(ModelViewSet):
                         })
 
                 # =========================================================
-                # RULE 2: GAP BETWEEN CYCLES >= 120 SEC
+                # GAP BETWEEN CYCLES >= 120 SEC
                 # =========================================================
                 if last_start_time:
                     gap = (start_time - last_start_time).total_seconds()
@@ -319,7 +305,6 @@ class MonitoringSessionViewSet(ModelViewSet):
 
                 last_start_time = start_time
 
-                # ===== GET EMPTY SLOT ===== #
                 session = MonitoringSession.objects.filter(
                     device=device,
                     start_time__isnull=True,
@@ -339,6 +324,16 @@ class MonitoringSessionViewSet(ModelViewSet):
                 session.save()
 
                 created_sessions.append(session)
+
+        # ================= TELEGRAM ALERT ================= #
+        try:
+            notify_power_schedule(
+                device_id=device.device_id,
+                sessions=created_sessions
+            )
+
+        except Exception as e:
+            print("⚠️ Telegram Schedule Failed:", e)
 
         return Response({
             "success": True,
@@ -387,26 +382,25 @@ class AbortSessionView(APIView):
         except Exception as e:
             print("MQTT Abort Error:", e)
 
-        # ================= TELEGRAM IMAGE ================= #
+        # ================= TELEGRAM ALERT ================= #
         try:
-            current_time = timezone.now().strftime("%H:%M:%S")
+            worker_name = session.worker.name if session.worker else "—"
 
-            img = generate_abort_card(
-                device_id=session.device.device_id,
-                cycle_no=session.cycle_number,
-                timestamp=current_time
+            message = (
+                f"🛑 Cycle Aborted | Device: {session.device.device_id} | "
+                f"Cycle: {session.cycle_number} | "
+                f"Worker: {worker_name}"
             )
 
-            send_telegram_image(img)
+            send_telegram_alert(message)
 
         except Exception as e:
-            print("❌ Telegram Abort Image Error:", e)
+            print("❌ Telegram Abort Alert Failed:", e)
 
         return Response({
             "success": True,
             "message": f"Session {session.id} aborted successfully"
         })
-
 
 # ================= ENERGY SUMMARY ================= #
 class EnergySummaryView(APIView):

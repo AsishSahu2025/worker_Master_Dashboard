@@ -12,7 +12,6 @@ from .views import (
     AbortSessionView,
 )
 
-# DRF router for ViewSets
 router = DefaultRouter()
 router.register(r"sensor-data", SensorDataViewSet, basename="sensor-data")
 router.register(r"sessions", MonitoringSessionViewSet, basename="sessions")

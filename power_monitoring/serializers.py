@@ -37,7 +37,6 @@ class MonitoringSessionSerializer(serializers.ModelSerializer):
         return round(obj.total_wh / 1000, 4)
 
     def create(self, validated_data):
-        # Pop device_id from incoming data
         device_id = validated_data.pop("device_id", None)
         if not device_id:
             raise serializers.ValidationError({"device_id": "This field is required"})
@@ -47,9 +46,7 @@ class MonitoringSessionSerializer(serializers.ModelSerializer):
         except Device.DoesNotExist:
             raise serializers.ValidationError({"device_id": "Invalid device_id"})
 
-        # Assign the actual ForeignKey
         validated_data["device"] = device
 
-        # Create the MonitoringSession
         session = MonitoringSession.objects.create(**validated_data)
         return session

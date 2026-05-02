@@ -1,247 +1,276 @@
-from PIL import Image, ImageDraw, ImageFont
-import io
+import asyncio
+import tempfile
+import os
+from django.utils import timezone
+import requests
 
-def generate_cycle_card(device_id, cycles, timestamp):
-    width, height = 900, 500
-    img = Image.new("RGB", (width, height), (10, 15, 30))
-    draw = ImageDraw.Draw(img)
+async def _render_png(html_content: str, output_path: str) -> None:
+    from playwright.async_api import async_playwright
 
-    # -------- Fonts -------- #
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+
+        page = await browser.new_page(
+            viewport={"width": 900, "height": 1200},
+            device_scale_factor=2,
+        )
+
+        await page.set_content(html_content)
+        await page.wait_for_selector(".card")
+
+        card = await page.query_selector(".card")
+
+        if not card:
+            raise Exception("Card not found")
+
+        await card.screenshot(path=output_path)
+        await browser.close()
+
+
+
+def _send_photo(image_path: str):
+    token = "8650685796:AAEWB2H-Jsr-34Oycq2EDi-EgbzGTKS0hkw"
+    chat_id = [-5186117690, 1836771564]   
+
+    with open(image_path, "rb") as f:
+        return requests.post(
+            f"https://api.telegram.org/bot{token}/sendPhoto",
+            data={"chat_id": chat_id},
+            files={"photo": f},
+        )
+    
+
+def notify_power_schedule(device_id, sessions):
+
+    # -------- BUILD CYCLE CARDS -------- #
+    cycle_html = ""
+
+    for s in sessions:
+        time = s.start_time.strftime("%I:%M %p").lstrip("0") if s.start_time else "--"
+        worker = s.worker.name if s.worker else "--"
+
+        cycle_html += f"""
+        <div class="cycle">
+            <div class="cycle-left">C{s.cycle_number}</div>
+            <div class="cycle-right">
+                <div class="assigned">Assigned to</div>
+                <div class="name">{worker}</div>
+                <div class="time">⏰ {time}</div>
+            </div>
+        </div>
+        """
+
+    now = timezone.now()
+
+    schedule_date = now.strftime("%d %b %Y")
+    generated_time = now.strftime("%I:%M %p").lstrip("0")
+
+    # -------- HTML -------- #
+    html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <style>
+
+    body {{
+        background: #0f1a24;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }}
+
+    .card {{
+        width: 820px;
+        background: #1c2b3a;
+        border-radius: 28px;
+        overflow: hidden;
+        color: white;
+    }}
+
+    .header {{
+        padding: 25px 30px;
+        font-size: 26px;
+        font-weight: 700;
+        color: #c8d6e5;
+        border-bottom: 1px solid #24394d;
+    }}
+
+    .status-bar {{
+        background: #0c3b2e;
+        color: #2ecc71;
+        padding: 14px 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }}
+
+    .info {{
+        padding: 25px 30px;
+        border-bottom: 1px solid #24394d;
+    }}
+
+    .info-row {{
+        display: grid;
+        grid-template-columns: 40px 1fr auto;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid #223344;
+        gap: 10px;
+    }}
+
+    .icon {{
+    font-size: 18px;
+    text-align: center;
+    }}
+
+    .label {{
+        color: #f5b942;
+        font-weight: 600;
+    }}
+
+    .value {{
+        color: #ffffff;
+        font-weight: 500;
+    }}
+
+    .section-title {{
+        padding: 20px 30px 10px;
+        color: #6fa8dc;
+        font-weight: 700;
+        font-size: 20px;
+    }}
+
+    .cycles {{
+        padding: 10px 20px 25px;
+    }}
+
+    .cycle {{
+        display: flex;
+        background: #223447;
+        border-radius: 16px;
+        padding: 15px;
+        margin-bottom: 15px;
+        align-items: center;
+    }}
+
+    .cycle-left {{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #2f4b63;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin-right: 15px;
+    }}
+
+    .cycle-right {{
+        display: flex;
+        flex-direction: column;
+    }}
+
+    .assigned {{
+        color: #8aa4bf;
+        font-size: 14px;
+    }}
+
+    .name {{
+        font-size: 20px;
+        font-weight: 600;
+        margin: 3px 0;
+    }}
+
+    .time {{
+        color: #f5b942;
+        font-weight: 600;
+    }}
+
+    .footer {{
+        padding: 18px 30px;
+        background: #16232f;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }}
+
+    .footer-left {{
+        color: #5d7a95;
+    }}
+
+    .footer-right {{
+        background: #0c3b2e;
+        color: #2ecc71;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: 600;
+    }}
+
+    </style>
+    </head>
+
+    <body>
+
+    <div class="card">
+
+        <div class="header">📅 Task Schedule Confirmed</div>
+
+        <div class="status-bar">● ✔ SCHEDULE CONFIRMED</div>
+
+        <div class="info">
+
+            <div class="info-row">
+                <span class="icon">🆔</span>
+                <span class="label">DEVICE ID</span>
+                <span class="value">{device_id}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="icon">🔁</span>
+                <span class="label">TOTAL CYCLES</span>
+                <span class="value">{len(sessions)}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="icon">📅</span>
+                <span class="label">SCHEDULE DATE</span>
+                <span class="value">{schedule_date}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="icon">⏰</span>
+                <span class="label">GENERATED AT</span>
+                <span class="value">{generated_time}</span>
+            </div>
+
+        </div>
+
+        <div class="section-title">👷 Cycle Assignments</div>
+
+        <div class="cycles">
+            {cycle_html}
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">myapp · Schedule Notification</div>
+            <div class="footer-right">📋 MANAGER SCHEDULED</div>
+        </div>
+
+    </div>
+
+    </body>
+    </html>
+    """
+
+    # -------- RENDER -------- #
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
+        path = tmp.name
+
     try:
-        title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 48)
-        sub_title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 34)
-        label_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 28)
-        value_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 30)
-    except:
-        title_font = sub_title_font = label_font = value_font = None
-
-    # -------- HEADER -------- #
-    draw.text((40, 30), "⚡ POWER MONITORING", fill=(0, 255, 200), font=title_font)
-    draw.text((40, 90), "🚀 New Cycle Generated", fill=(0, 200, 255), font=sub_title_font)
-
-    # Divider
-    draw.line((40, 140, 860, 140), fill=(80, 80, 120), width=2)
-
-    # -------- DETAILS -------- #
-    y_start = 170
-    gap = 60
-
-    # Device ID
-    draw.text((60, y_start), "📟 Device ID", fill="white", font=label_font)
-    draw.text((350, y_start), f":  {device_id}", fill=(255, 215, 0), font=value_font)
-
-    # Total Cycles
-    draw.text((60, y_start + gap), "🔢 Total Cycles", fill="white", font=label_font)
-    draw.text((350, y_start + gap), f":  {len(cycles)}", fill=(0, 255, 255), font=value_font)
-
-    # Status
-    draw.text((60, y_start + gap*2), "📊 Status", fill="white", font=label_font)
-    draw.text((350, y_start + gap*2), ":  PENDING", fill=(255, 165, 0), font=value_font)
-
-    # Current Time
-    draw.text((60, y_start + gap*3), "🕒 Time", fill="white", font=label_font)
-    draw.text((350, y_start + gap*3), f":  {timestamp}", fill=(180, 180, 180), font=value_font)
-
-    # -------- FOOTER LINE -------- #
-    draw.line((40, 460, 860, 460), fill=(80, 80, 120), width=2)
-
-    # -------- SAVE -------- #
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-
-    return buffer
-
-
-def generate_schedule_card(device_id, sessions, timestamp):
-    width, height = 1100, 600
-    img = Image.new("RGB", (width, height), (10, 15, 30))
-    draw = ImageDraw.Draw(img)
-
-    try:
-        title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 45)
-        label_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 26)
-        value_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 26)
-        small_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)
-    except:
-        title_font = label_font = value_font = small_font = None
-
-    # -------- HEADER -------- #
-    draw.text((40, 30), "⚡ POWER MONITORING", fill=(0, 255, 200), font=title_font)
-    draw.text((40, 85), "📅 Schedule Created", fill=(0, 200, 255), font=label_font)
-
-    draw.line((40, 120, 1060, 120), fill=(80, 80, 120), width=2)
-
-    # -------- DEVICE -------- #
-    draw.text((40, 140), "📟 Device", fill="white", font=label_font)
-    draw.text((200, 140), f": {device_id}", fill=(255, 215, 0), font=value_font)
-
-    # -------- TABLE HEADER -------- #
-    y = 200
-    draw.text((40, y), "Cycle", fill=(0,255,255), font=label_font)
-    draw.text((120, y), "Worker", fill=(0,255,255), font=label_font)
-    draw.text((300, y), "Start", fill=(0,255,255), font=label_font)
-    draw.text((480, y), "End", fill=(0,255,255), font=label_font)
-    draw.text((660, y), "Status", fill=(0,255,255), font=label_font)
-
-    # -------- DATA -------- #
-    y += 50
-    for s in sessions[:5]:
-        start = s.start_time.strftime("%H:%M:%S") if s.start_time else "-"
-        end = s.end_time.strftime("%H:%M:%S") if s.end_time else "-"
-        worker_name = s.worker.name if s.worker else "N/A"
-
-        draw.text((40, y), str(s.cycle_number), fill="white", font=label_font)
-        draw.text((120, y), worker_name, fill=(255,255,255), font=label_font)
-        draw.text((300, y), start, fill=(0,255,150), font=label_font)
-        draw.text((480, y), end, fill=(0,255,150), font=label_font)
-        draw.text((660, y), s.status, fill=(255,165,0), font=label_font)
-
-        y += 40
-
-    # -------- FOOTER -------- #
-    draw.line((40, 540, 1060, 540), fill=(80, 80, 120), width=2)
-    draw.text((40, 560), f"🕒 {timestamp}", fill="gray", font=small_font)
-
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-
-    return buffer
-
-def generate_live_data_card(device_id, session_id, r, y, b, wh, timestamp):
-    width, height = 900, 500
-    img = Image.new("RGB", (width, height), (10, 15, 30))
-    draw = ImageDraw.Draw(img)
-
-    try:
-        title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 40)
-        label_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 26)
-        value_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 28)
-    except:
-        title_font = label_font = value_font = None
-
-    # -------- HEADER -------- #
-    draw.text((40, 20), "⚡ LIVE ENERGY DATA", fill=(0, 255, 200), font=title_font)
-    draw.line((40, 80, 860, 80), fill=(80, 80, 120), width=2)
-
-    # -------- DEVICE INFO -------- #
-    draw.text((60, 110), "Device", fill="white", font=label_font)
-    draw.text((300, 110), f": {device_id}", fill=(255, 215, 0), font=value_font)
-
-    draw.text((60, 150), "Session", fill="white", font=label_font)
-    draw.text((300, 150), f": {session_id}", fill=(0, 255, 255), font=value_font)
-
-    # -------- CURRENT -------- #
-    draw.text((60, 200), "Current (A)", fill="white", font=label_font)
-    draw.text((300, 200), f": R={r:.2f}  Y={y:.2f}  B={b:.2f}", fill=(0, 255, 150), font=value_font)
-
-    # -------- VOLTAGE -------- #
-    draw.text((60, 250), "Voltage (V)", fill="white", font=label_font)
-    draw.text((300, 250), ": 230 / 230 / 230", fill=(200, 200, 255), font=value_font)
-
-    # -------- ENERGY -------- #
-    draw.text((60, 300), "Energy", fill="white", font=label_font)
-    draw.text((300, 300), f": {wh:.4f} Wh", fill=(255, 140, 0), font=value_font)
-
-    # -------- TIME -------- #
-    draw.text((60, 360), "Time", fill="white", font=label_font)
-    draw.text((300, 360), f": {timestamp}", fill=(180, 180, 180), font=value_font)
-
-    # -------- SAVE -------- #
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-
-    return buffer
-
-def generate_abort_card(device_id, cycle_no, timestamp):
-    width, height = 900, 400
-    img = Image.new("RGB", (width, height), (20, 10, 10))
-    draw = ImageDraw.Draw(img)
-
-    try:
-        title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 40)
-        text_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 26)
-    except:
-        title_font = text_font = None
-
-    # Header
-    draw.text((40, 20), "🛑 SESSION ABORTED", fill=(255, 80, 80), font=title_font)
-
-    # Box
-    draw.rounded_rectangle((40, 100, 860, 300), radius=20, fill=(40, 20, 20))
-
-    draw.text((80, 140), f"Device ID  : {device_id}", fill="white", font=text_font)
-    draw.text((80, 190), f"Cycle No   : {cycle_no}", fill="white", font=text_font)
-    draw.text((80, 240), f"Status     : ABORTED", fill=(255, 100, 100), font=text_font)
-
-    # Footer
-    draw.text((40, 340), f"🕒 {timestamp}", fill="gray", font=text_font)
-
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-
-    return buffer
-
-
-def generate_status_update_card(device_id, cycle_no, status, timestamp):
-    # -------- Canvas -------- #
-    width, height = 900, 450
-    img = Image.new("RGB", (width, height), (20, 20, 20))
-    draw = ImageDraw.Draw(img)
-
-    # -------- Colors -------- #
-    WHITE = (255, 255, 255)
-    GRAY = (160, 160, 160)
-    LINE = (60, 60, 60)
-
-    # Status colors
-    STATUS_COLOR = {
-        "PENDING": (255, 193, 7),
-        "PROCESSING": (0, 123, 255),
-        "COMPLETED": (40, 167, 69),
-        "FAILED": (220, 53, 69),
-        "ABORTED": (255, 87, 34)
-    }
-
-    color = STATUS_COLOR.get(status, WHITE)
-
-    # -------- Fonts -------- #
-    try:
-        title_font = ImageFont.truetype("arial.ttf", 40)
-        label_font = ImageFont.truetype("arial.ttf", 26)
-        value_font = ImageFont.truetype("arial.ttf", 32)
-    except:
-        title_font = ImageFont.load_default()
-        label_font = ImageFont.load_default()
-        value_font = ImageFont.load_default()
-
-    # -------- Title -------- #
-    draw.text((30, 30), "📊 SESSION STATUS UPDATE", fill=WHITE, font=title_font)
-
-    # -------- Divider -------- #
-    draw.line((30, 90, width - 30, 90), fill=LINE, width=2)
-
-    # -------- Content -------- #
-    y = 120
-
-    def row(label, value, val_color=WHITE):
-        nonlocal y
-        draw.text((40, y), label, fill=GRAY, font=label_font)
-        draw.text((300, y), value, fill=val_color, font=value_font)
-        y += 60
-
-    row("Session ID:", str(cycle_no))
-    row("Device:", device_id)
-    row("Status:", status, color)
-    row("Updated At:", timestamp)
-
-    # -------- Save to buffer -------- #
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.name = "status.png"
-    buffer.seek(0)
-
-    return buffer
+        asyncio.run(_render_png(html, path))
+        _send_photo(path)
+    finally:
+        if os.path.exists(path):
+            os.remove(path)

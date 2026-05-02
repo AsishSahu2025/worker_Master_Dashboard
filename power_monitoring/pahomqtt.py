@@ -24,7 +24,6 @@ from django.utils import timezone
 
 # ================= PROJECT ================= #
 from power_monitoring.models import SensorData, MonitoringSession
-from power_monitoring.utils.telegram_cards import generate_live_data_card
 from power_monitoring.services.session_service import update_session_status
 
 
@@ -47,7 +46,7 @@ TELEGRAM_GROUPCHAT_IDS = [-5186117690, 1836771564]
 LAST_SENT = {}
 LAST_VALUES = {}
 INTERVAL = 2
-
+COMPLETED_SENT = set()  
 # ================= TELEGRAM ================= #
 def send_telegram_alert(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
@@ -91,6 +90,7 @@ def on_message(client, userdata, msg):
 
     device_id = topic.split("/")[1]
     now = timezone.now()
+                # ===============================
 
     # ===== ALERT ===== #
     if topic.endswith("/alert"):
@@ -124,28 +124,22 @@ def on_message(client, userdata, msg):
         if not dev:
             return
 
-        # ================= SAFE SENSOR VALUES ================= #
         r = float(dev.get("R") or 0)
         y = float(dev.get("Y") or 0)
         b = float(dev.get("B") or 0)
 
-        # ================= FIXED VOLTAGE (IMPORTANT) ================= #
-        # 👉 prevents NULL DB crash
         vr = 230.0
         vy = 230.0
         vb = 230.0
 
-        # ================= ENERGY CALC ================= #
         power = 230 * (r + y + b)
         wh = power * (5 / 3600)
 
-        # ================= SAFE DB INSERT ================= #
         try:
             SensorData.objects.create(
                 session=session,
                 timestamp=now,
 
-                # ⚠ REQUIRED FIELDS (FIXED)
                 voltage_r=vr,
                 voltage_y=vy,
                 voltage_b=vb,
@@ -161,28 +155,9 @@ def on_message(client, userdata, msg):
 
         print(f"⚡ Session {session.id}: {wh:.4f} Wh")
 
-        # ================= TELEGRAM ================= #
-        try:
-            img = generate_live_data_card(
-                device_id=device_id,
-                session_id=session.id,
-                r=r, y=y, b=b,
-                wh=wh,
-                timestamp=now.strftime("%H:%M:%S")
-            )
-
-            key = f"{device_id}_{session.id}"
-            values = (round(r, 2), round(y, 2), round(b, 2), round(wh, 2))
-
-            if LAST_VALUES.get(key) != values:
-                send_telegram_image(img)
-                LAST_VALUES[key] = values
-
-        except Exception as e:
-            print("❌ Telegram Error:", e)
-
 
 # ================= WATCHER ================= #
+ 
 def schedule_watcher():
     while True:
         close_old_connections()
@@ -201,6 +176,27 @@ def schedule_watcher():
                 session.refresh_from_db()
 
                 # ===============================
+                #  COMPLETION ALERT
+                # ===============================
+                if session.status == "COMPLETED" and session.id not in COMPLETED_SENT:
+                    try:
+                        worker_name = session.worker.name if session.worker else "No Worker"
+                        message = (
+                                f"✅ Cycle Completed | Device: {session.device.device_id} | "
+                                f"Cycle: {session.cycle_number} | "
+                                f"Worker: {worker_name}"
+                            )
+
+                        send_telegram_alert(message)
+
+                        COMPLETED_SENT.add(session.id)
+
+                        print(f"📩 Completion alert sent → Session {session.id}")
+
+                    except Exception as e:
+                        print("❌ Completion Telegram Error:", e)
+
+                # ===============================
                 # PRE-START WINDOW
                 # ===============================
                 if (
@@ -210,21 +206,14 @@ def schedule_watcher():
                 ):
                     print(f"⏰ PRE-START → Session {session.id}")
 
-                    # ===============================
-                    # STRICT DURATION CALCULATION
-                    # ===============================
                     duration = int(
                         (session.end_time - session.start_time).total_seconds()
                     )
 
-                    # ❌ HARD STOP RULE (IMPORTANT)
                     if duration <= 60:
                         print(f"❌ SKIP Session {session.id} (duration={duration})")
                         continue
 
-                    # ===============================
-                    # DEVICE EXPECTED FORMAT FIX
-                    # ===============================
                     payload = {
                         "start_time": session.start_time.strftime("%H:%M"),
                         "duration": duration,

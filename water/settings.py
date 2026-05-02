@@ -56,7 +56,6 @@ ALLOWED_HOSTS = ['*','masterbg.bc-pl.com']
 
   
 
-# Application definition
 INSTALLED_APPS = [   
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,15 +64,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+
     'corsheaders',
     'googlemaps',
     'mobile_app',
     'myapp',
     'geoposition',
+
     'rest_framework',
     'rest_framework.authtoken',
+
     'checktray.apps.ChecktrayConfig',
-    'power_monitoring',
+
+    'power_monitoring.apps.PowerMonitoringConfig',
 ]
 
 
