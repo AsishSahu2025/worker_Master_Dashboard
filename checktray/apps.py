@@ -9,6 +9,7 @@
 #         import checktray.signals
 
 from django.apps import AppConfig
+import threading
 import os
 
 
@@ -18,11 +19,4 @@ class ChecktrayConfig(AppConfig):
 
     def ready(self):
         # ── Prevent double execution from Django autoreloader ──
-        if os.environ.get("RUN_MAIN") != "true":
-            return
-
         import checktray.signals
-
-        # ── daily morning call thread ──
-        from checktray.daily_call_scheduler import start_daily_call_thread
-        start_daily_call_thread()

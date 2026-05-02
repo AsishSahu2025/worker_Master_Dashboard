@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import threading
+from datetime import datetime
 
 from datetime import timedelta
 from django.db import close_old_connections
@@ -91,6 +92,8 @@ def on_message(client, userdata, msg):
     device_id = topic.split("/")[1]
     now = timezone.now()
                 # ===============================
+    # now = timezone.localtime()
+    now = datetime.now()
 
     # ===== ALERT ===== #
     if topic.endswith("/alert"):

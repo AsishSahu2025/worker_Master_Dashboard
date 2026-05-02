@@ -22,3 +22,6 @@ sudo docker run --name aqua_container -p 8000:8000 aqua
 ```bash
 python3 manage.py runserver 0.0.0.0:8000
 ```
+# Install card for telegram
+ pip install playwright 
+ playwright install chromium

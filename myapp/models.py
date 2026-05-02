@@ -183,6 +183,7 @@ class Task(models.Model):
     time_interval = models.CharField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     schedule_date = models.DateField(null=True, blank=True)
+    worker_call_notified = models.BooleanField(default=False)
     status = models.CharField(
     max_length=20,
     default="pending",

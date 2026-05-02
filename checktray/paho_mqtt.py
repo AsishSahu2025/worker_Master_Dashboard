@@ -6,6 +6,7 @@ from django.db import close_old_connections
 from .models import *
 from myapp.models import *
 from checktray.telegram_queue import enqueue_telegram
+from checktray.telegram_notifications import notify_checktray_abort, notify_checktray_cancel
 
 SERVER_START_TIME = timezone.now()
 
@@ -282,7 +283,27 @@ def on_message(client, userdata, msg):
 
         return
     
-    if sche_status and ("canceled:" in msg_lower or "rejected:" in msg_lower):
+    if sche_status and "rejected:" in msg_lower:
+        print('inside reject schedule')
+
+        sched = (
+            ChecktrayTask.objects
+            .filter(device_id__device_id=device_id, status__in=["Pending","ScheduleRequested"])
+            .order_by("-start_time")
+            .first()
+        )
+
+        if not sched:
+            print(f"[WARN] reject received but no pending status for {device_id}")
+            return
+
+        # no telegram here
+        sched.delete()
+
+        print(f"[DEVICE REJECTED] {sched.device_id}")
+        return
+    
+    if sche_status and "canceled:" in msg_lower:
         print('inside cancle schedule')
         sched = (
         ChecktrayTask.objects
@@ -294,6 +315,7 @@ def on_message(client, userdata, msg):
             print(f"[WARN] schedule_status received but no pending status for {device_id}")
             return
         
+        notify_checktray_cancel(sched)
         sched.delete()
         
         print(f"[DEVICE CONFIRMED SCHEDULE CANCLE] {sched.device_id}")
@@ -319,6 +341,7 @@ def on_message(client, userdata, msg):
         schedule.status = "Completed"
         schedule.stop_time = timezone.now()
         schedule.save(update_fields=["status", "stop_time"])
+        enqueue_telegram(schedule.id)  # ← ADD THIS LINE
 
         pick_next_schedule_for_device(schedule.device_id)
         return
@@ -327,7 +350,6 @@ def on_message(client, userdata, msg):
     # ABORTED
     if is_abort and "aborted" in msg_lower:
         schedule.delete()
-        from checktray.telegram_notifications import notify_checktray_abort
         notify_checktray_abort(schedule)
 
         pick_next_schedule_for_device(schedule.device_id)

@@ -15,6 +15,7 @@ class ChecktrayTask(models.Model):
     status= models.CharField(max_length=100, default='Pending')
     submit= models.CharField(max_length=10, default='False')
     notified = models.BooleanField(default=False)
+    worker_call_notified = models.BooleanField(default=False)
     
     def __str__(self):
         return f"Task-{self.id} | Device-{self.device_id}"

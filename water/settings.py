@@ -44,6 +44,35 @@ FEEDING_GROUP_CHAT_ID = (_raw_feeding.strip() if _raw_feeding else None) or None
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+
+def _first_existing_path(candidates):
+    for candidate in candidates:
+        if candidate and os.path.exists(candidate):
+            return candidate
+    return None
+
+
+if os.name == "nt":
+    # Help Django GIS locate native Windows DLLs (GDAL/GEOS) in common installs.
+    gdal_candidates = []
+    geos_candidates = []
+    conda_prefixes = [
+        os.environ.get("CONDA_PREFIX"),
+        os.path.join(os.path.expanduser("~"), "anaconda3"),
+        os.path.join(os.path.expanduser("~"), "miniconda3"),
+    ]
+    for prefix in [p for p in conda_prefixes if p]:
+        gdal_candidates.extend(glob(os.path.join(prefix, "Library", "bin", "gdal*.dll")))
+        geos_candidates.extend(glob(os.path.join(prefix, "Library", "bin", "geos_c*.dll")))
+
+    GDAL_LIBRARY_PATH = _first_existing_path(gdal_candidates)
+    GEOS_LIBRARY_PATH = _first_existing_path(geos_candidates)
+
+
+
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y'
@@ -52,7 +81,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = ['*','masterbg.bc-pl.com'] 
+ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com'] 
 
   
 
@@ -181,16 +210,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://masterbg.bc-pl.com',
-    'http://20.6.11.71:3000',
+    'https://newiot.bc-pl.com',
+   'https://newiotbg.bc-pl.com'
 ]
-#CORS_ALLOWED_ORIGINS = [
-   # 'https://master.bc-pl.com',
-  #  "http://localhost:3001",
- #   "http://localhost:3000",
-#]
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+   'https://newiot.bc-pl.com',
+]
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 ########################## Email configuration ##############
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
@@ -233,6 +260,11 @@ AZURE_STORAGE_CONTAINER="vertoxdb"
 AZURE_STORAGE_ACCOUNT_KEY="aYOMbNdrpbzGqmCNkwHFGmcmRw+s0bRskVcy3nDjLsG7fle1zyWyY39YG1dKcGEuTHL+yldRdpty+AStdh1wsg=="
 
 
+# MINIO_ENDPOINT = '192.168.1.2:9000'
+# MINIO_ACCESS_KEY = 'bariflo'
+# MINIO_SECRET_KEY = 'Bariflo@2026'
+
+
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -249,12 +281,13 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 
-TWILIO_ACCOUNT_SID = 'AC931ff4ba974d7654408d789502a4b2e9'
-TWILIO_AUTH_TOKEN  = '1e56b355e128ac775230af50d8a9339d'
-TWILIO_FROM_NUMBER = '+12182775309'   # your Twilio number
-MANAGER_PHONE      = '+918260582181'  # manager's number
+TWILIO_ACCOUNT_SID = 'AC2ff989757ab78d4cc7cd13163ada5e13'
+TWILIO_AUTH_TOKEN  = '6bf63f2ecde8323e0c4fc2f6f069db7b'
+TWILIO_FROM_NUMBER = '+19478370208'   # your Twilio number
+MANAGER_PHONE      = '+919348998989'  # manager's number
 
 
 # Daily schedule reminder time (24hr format)
 DAILY_SCHEDULE_CALL_HOUR   = 6   # 6:30 AM = 30 mins before 7:00 AM
 DAILY_SCHEDULE_CALL_MINUTE = 30
+WORKER_PHONE_COUNTRY_CODE = "+91"
