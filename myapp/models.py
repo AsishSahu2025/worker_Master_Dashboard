@@ -67,7 +67,7 @@ class Manager(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.username)
+        return f"{self.username} ({self.Mob})"
     
 #********************************************** CLUSTER MODEL ****************************************************#
 class Cluster(models.Model):
@@ -92,6 +92,7 @@ class Pond(models.Model):
     telegram_group_id = models.CharField(max_length=100, null=True,blank=True)
     device_quantity = models.JSONField(default=dict)
     registration = models.ForeignKey(Cluster,on_delete=models.CASCADE,related_name='ponds')
+    manager = models.ForeignKey(Manager, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return str(self.name)
 
@@ -159,7 +160,8 @@ class Task_Category(models.Model):
 class Worker_details(models.Model):
     mobno = models.BigIntegerField(primary_key=True,unique=True)
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User,on_delete=models.CASCADE,max_length=100)
+    # user = models.ForeignKey(User,on_delete=models.CASCADE,max_length=100)
+    pond = models.ForeignKey(Pond, on_delete=models.CASCADE, null=True, blank=True)
     manager=models.ForeignKey(Manager,on_delete=models.DO_NOTHING,max_length=100)
     def __str__(self):
           name=f"{self.name}"
@@ -169,7 +171,7 @@ class Task(models.Model):
     taskcatagory = models.ForeignKey(Task_Category, on_delete=models.CASCADE)
     #------------------------------------------------------------------------
     device = models.ForeignKey(Device,on_delete=models.CASCADE)
-    worker_name = models.ForeignKey(Worker_details,on_delete=models.CASCADE,null=True,blank=True)
+    worker_name = models.CharField(max_length=50,null=True,blank=True)
     cycles = models.IntegerField()
     from_time = models.TimeField(null=True, blank=True)
     to_time = models.TimeField(null=True, blank=True)

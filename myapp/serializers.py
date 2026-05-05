@@ -308,3 +308,43 @@ class UserCluserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=["clusters"]
+
+
+
+######################################### worker add serializer ###############################################
+from rest_framework import serializers
+from .models import Worker_details, Pond
+
+
+class WorkerCreateSerializer(serializers.ModelSerializer):
+    pond_id = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = Worker_details
+        fields = ['name', 'mobno', 'pond_id']
+
+    def validate(self, data):
+        pond_id = data.get("pond_id")
+
+        try:
+            pond = Pond.objects.get(id=pond_id)
+        except Pond.DoesNotExist:
+            raise serializers.ValidationError("Invalid pond_id")
+
+        data["pond"] = pond
+        data["manager"] = pond.manager
+
+        return data
+
+    def create(self, validated_data):
+
+        worker, created = Worker_details.objects.update_or_create(
+        mobno=validated_data.get("mobno"),
+        pond=validated_data.get("pond"),
+        defaults={
+            "name": validated_data.get("name"),
+            "manager": validated_data.get("manager"),
+        }
+    )
+
+        return worker

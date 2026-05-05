@@ -48,7 +48,7 @@ class Device(admin.ModelAdmin):
 
 @admin.register(Worker_details)
 class Worker_detail(admin.ModelAdmin):
-    list_display = ['mobno','name','user','manager']
+    list_display = ['mobno','name','pond','manager']
     
     
 ############################## service payment Table ################################

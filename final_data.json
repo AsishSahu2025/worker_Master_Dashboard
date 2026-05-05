@@ -1,0 +1,214 @@
+[
+  {
+    "model": "myapp.user",
+    "pk": 9327939342,
+    "fields": {
+      "Name": "None None",
+      "Company_name": "krishnasagar",
+      "Email": "graphics@gmail.com",
+      "Customer_id": null,
+      "password": "1234",
+      "address": "bhubaneswar",
+      "Pan_no": "ABCDE1234F",
+      "GST_no": "27ABCDE1234F1Z5",
+      "user_category": "Aquafarming",
+      "token": "99IaVbvHr41w1F02TxL96pN6svBJvbeetJ8eumMEGCSmlbAM3BftWNUjCAxif0LR"
+    }
+  },
+  {
+    "model": "myapp.user",
+    "pk": 9900077885,
+    "fields": {
+      "Name": "None None",
+      "Company_name": "tcs PVT.LTD",
+      "Email": "tcs@example.com",
+      "Customer_id": null,
+      "password": "123456",
+      "address": "Bhubaneswar, Odisha",
+      "Pan_no": "ABCDE1234F",
+      "GST_no": "21ABCDE1234F1Z5",
+      "user_category": "Aquafarming",
+      "token": "OaW1DKGdZZddTr0wMckpGvymAIGGJ9NWHGQuP2E3j0WbjXKEehQTGDIWDeS4Zngj"
+    }
+  },
+  {
+    "model": "myapp.manager",
+    "pk": 7744110055,
+    "fields": {
+      "username": "Asish",
+      "password": "123456",
+      "email": "webit.bariflo@outlook.com",
+      "user_category": "Aquafarming",
+      "token": "Dvfc7jLWo6oafoseNzlPV4o3imwKZhhuw19FjBJMI778FUcmfERjVcyDlSI8fvKR",
+      "user": 9327939342
+    }
+  },
+  {
+    "model": "myapp.cluster",
+    "pk": 1,
+    "fields": {
+      "Name": "Cluster1",
+      "user": 9900077885
+    }
+  },
+  {
+    "model": "myapp.cluster",
+    "pk": 2,
+    "fields": {
+      "Name": "Cluster2",
+      "user": 9327939342
+    }
+  },
+  {
+    "model": "myapp.pond",
+    "pk": 5,
+    "fields": {
+      "name": "Pond 1",
+      "latlong": "(13.396196284040126,75.00853553224586)",
+      "location": "SRID=4326;POLYGON ((13.397014236612169 75.00768542289735, 13.397348216619516 75.00775516033174, 13.39743692998103 75.0080180168152, 13.397379527221426 75.0089192390442, 13.396967270636436 75.00906944274904, 13.396033167659029 75.00928401947023, 13.395292144840097 75.00931620597841, 13.395031220768994 75.00928401947023, 13.394838136774183 75.008162856102, 13.39502078380027 75.00789999961854, 13.395354766575057 75.00771760940553, 13.395970546100653 75.00761568546297, 13.397014236612169 75.00768542289735))",
+      "area": "11.051175196233338",
+      "address": "varenga lake",
+      "telegram_group_id": null,
+      "device_quantity": {},
+      "registration": 2
+    }
+  },
+  {
+    "model": "myapp.pond",
+    "pk": 6,
+    "fields": {
+      "name": "Pond 2",
+      "latlong": "(13.396802541784522,75.00946177901953)",
+      "location": "SRID=4326;POLYGON ((13.396988144404567 75.00920355319978, 13.397118605414267 75.00963270664217, 13.396601979401156 75.00979900360109, 13.396518484183781 75.00932157039644, 13.396988144404567 75.00920355319978))",
+      "area": "0.7111794818531755",
+      "address": "varenga",
+      "telegram_group_id": null,
+      "device_quantity": {},
+      "registration": 2
+    }
+  },
+  {
+    "model": "myapp.pond",
+    "pk": 7,
+    "fields": {
+      "name": "Pond 3",
+      "latlong": "(13.396457698117278,75.00997636056047)",
+      "location": "SRID=4326;POLYGON ((13.396894212433766 75.00968098640443, 13.396247124527164 75.00994384288789, 13.396341056750629 75.01042127609254, 13.397076857898872 75.01007795333864, 13.396894212433766 75.00968098640443))",
+      "area": "1.0253472719624699",
+      "address": "varenga",
+      "telegram_group_id": null,
+      "device_quantity": {},
+      "registration": 2
+    }
+  },
+  {
+    "model": "myapp.worker_details",
+    "pk": 7735200735,
+    "fields": {
+      "name": "Abhishek",
+      "manager": 7744110055
+    }
+  },
+  {
+    "model": "myapp.worker_details",
+    "pk": 8260582181,
+    "fields": {
+      "name": "Trinath",
+      "manager": 7744110055
+    }
+  },
+  {
+    "model": "myapp.worker_details",
+    "pk": 9124592401,
+    "fields": {
+      "name": "Dibya",
+      "manager": 7744110055
+    }
+  },
+  {
+    "model": "myapp.worker_details",
+    "pk": 9178336630,
+    "fields": {
+      "name": "Asish",
+      "manager": 7744110055
+    }
+  },
+  {
+    "model": "myapp.worker_details",
+    "pk": 9348998989,
+    "fields": {
+      "name": "Jitesh",
+      "manager": 7744110055
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "BFL_FdtryA001",
+    "fields": {
+      "maxCycles": 5,
+      "created_at": "2026-02-11T11:53:06.878",
+      "device_type": "Feeding",
+      "pond_id": 5
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "BFL_FdtryA002",
+    "fields": {
+      "maxCycles": 5,
+      "created_at": "2026-02-11T11:53:33.820",
+      "device_type": "Feeding",
+      "pond_id": 5
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "BFL_FdtryA003",
+    "fields": {
+      "maxCycles": 5,
+      "created_at": "2026-02-11T11:53:56.559",
+      "device_type": "Feeding",
+      "pond_id": 5
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "BFL_PomonA001",
+    "fields": {
+      "maxCycles": 5,
+      "created_at": "2026-04-04T12:32:58.212",
+      "device_type": "Power Monitoring",
+      "pond_id": 5
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "BFL_PomonA002",
+    "fields": {
+      "maxCycles": 5,
+      "created_at": "2026-04-08T16:58:38.231",
+      "device_type": "Power Monitoring",
+      "pond_id": 5
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "fdtryA001",
+    "fields": {
+      "maxCycles": 4,
+      "created_at": "2026-02-26T13:04:46.243",
+      "device_type": "checktray",
+      "pond_id": 5
+    }
+  },
+  {
+    "model": "myapp.device",
+    "pk": "fdtryA002",
+    "fields": {
+      "maxCycles": 4,
+      "created_at": "2026-02-26T13:05:15.846",
+      "device_type": "checktray",
+      "pond_id": 5
+    }
+  }
+]

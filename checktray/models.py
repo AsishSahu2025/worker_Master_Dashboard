@@ -6,7 +6,7 @@ from myapp.models import *
 class ChecktrayTask(models.Model):
     YES_NO_CHOICES=(("YES","YES"),("No","No"))
     device_id = models.ForeignKey(Device, on_delete=models.CASCADE)
-    worker_name = models.ForeignKey(Worker_details,on_delete=models.CASCADE,null=True,blank=True)
+    worker_name = models.CharField(max_length=50,null=True,blank=True)
     spray_cycle= models.CharField(choices=YES_NO_CHOICES, max_length=4, null=True, blank=True)
     image_update= models.CharField(choices=YES_NO_CHOICES,max_length=4, null=True, blank=True)
     water_level= models.FloatField(default=0)

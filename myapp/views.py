@@ -722,3 +722,37 @@ class TaskclearView(APIView):
             {"message": f"Today's tasks for {device} deleted successfully."},
             status=200
         )
+    
+
+
+
+from rest_framework.generics import CreateAPIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from .models import Worker_details
+from .serializers import WorkerCreateSerializer
+
+
+class CreateWorkerAPIView(CreateAPIView):
+    queryset = Worker_details.objects.all()
+    serializer_class = WorkerCreateSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        worker = serializer.save()
+
+        return Response(
+            {
+                "message": "Worker created/updated successfully",
+                "worker": {
+                    "name": worker.name,
+                    "mobno": worker.mobno,
+                    "pond": worker.pond.id,
+                    "manager": worker.manager.Mob
+                }
+            },
+            status=status.HTTP_200_OK
+        )

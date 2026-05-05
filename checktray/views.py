@@ -32,12 +32,25 @@ def checktrayGenerate(request):
                     {"error": "Cycles already generated"},
                     status=409
                 )
+            
+            # Get device
+            device = Device.objects.get(device_id=device_id)
 
+            # Get worker from same pond
+            worker = Worker_details.objects.filter(pond=device.pond_id).first()
+
+            if not worker:
+                return JsonResponse(
+                    {"error": "No worker assigned to this pond"},
+                    status=404
+                )
+            
             response_rows = []
 
             with transaction.atomic():
                 task = ChecktrayTask.objects.create(
                     device_id_id=device_id,
+                    worker_name=worker.name,
                     spray_cycle="YES",
                     image_update="YES",
                     water_level=0,
@@ -71,10 +84,10 @@ def scheduling(request):
         task_id= data.get("id")
         device_id = data.get('device_id')
         start_time_str= data.get("from_time")
-        worker = data.get('worker_name')
+        # worker = data.get('worker_name')
 
 
-        if not all([task_id, device_id, start_time_str, worker]):
+        if not all([task_id, device_id, start_time_str]):
             return JsonResponse({'error': 'Missing required fields'}, status=400)
         
         try:
@@ -82,11 +95,6 @@ def scheduling(request):
             print(start_time)
         except ValueError:
             return JsonResponse({'error': 'Invalid time format. Use YYYY-MM-DD HH:MM'}, status=400)
-        
-        try:
-            worker_obj = Worker_details.objects.get(name=worker)
-        except Worker_details.DoesNotExist:
-            return JsonResponse({'error': 'Worker not found'}, status=404)
 
         with transaction.atomic():
 
@@ -94,9 +102,9 @@ def scheduling(request):
 
             if task.status != "No Status":
                 return JsonResponse({"error": "Already scheduled or No task found."}, status=409)
+            print("5")
 
             task.start_time = start_time
-            task.worker_name = worker_obj
             task.status = "ScheduleRequested"
             task.save()
         

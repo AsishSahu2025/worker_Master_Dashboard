@@ -1,8 +1,11 @@
 from celery import shared_task
 from django.utils import timezone
 from .models import Task
+from power_monitoring.models import *
+from checktray.models import *
 from .utils import trigger_device
 from datetime import timedelta
+from datetime import datetime
 
 @shared_task
 def start_scheduled_cycles():
@@ -28,3 +31,23 @@ def start_scheduled_cycles():
             continue
 
         trigger_device(device.device.device_id, device.id)
+
+
+@shared_task
+def daily_task_cleanup():
+    today = datetime.now().date()
+
+    # Delete ALL past tasks (no status condition)
+    Task.objects.filter(
+        schedule_date__lt=today
+    ).delete()
+
+    MonitoringSession.objects.exclude(
+        status="PENDING"
+        ).delete()
+    
+    ChecktrayTask.objects.exclude(
+        status="Pending"
+    ).delete()
+
+    print("✅ All old tasks deleted")

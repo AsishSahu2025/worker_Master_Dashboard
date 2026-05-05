@@ -81,7 +81,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com'] 
+ALLOWED_HOSTS = ['*','newiotbg.bc-pl.com','www.newiotbg.bc-pl.com'] 
 
   
 
@@ -147,7 +147,7 @@ WSGI_APPLICATION = 'water.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "aquafarm",
+        "NAME": "aquafarm3",
         "USER": "Vertoxlabs1987Bfl",
         "PASSWORD": "Vtx@1987#2026#Bfl@",
         "HOST": "vertoxlabsdb.postgres.database.azure.com",
@@ -216,8 +216,8 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ORIGINS = [
    'https://newiot.bc-pl.com',
 ]
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 ########################## Email configuration ##############
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
@@ -270,6 +270,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
 CELERY_TIMEZONE = 'Asia/Kolkata'
+CELERY_ENABLE_UTC = False
 
 from celery.schedules import crontab
 
@@ -277,6 +278,11 @@ CELERY_BEAT_SCHEDULE = {
     'start-scheduled-cycles-every-1-min': {
         'task': 'myapp.tasks.start_scheduled_cycles',
         'schedule': 60.0,  # every 60 seconds
+    },
+
+    'daily-cleanup-midnight': {
+        'task': 'myapp.tasks.daily_task_cleanup',
+        'schedule': crontab(hour=10, minute=15),  # runs at 12:00 AM IST
     },
 }
 
