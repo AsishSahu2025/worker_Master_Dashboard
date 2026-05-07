@@ -308,3 +308,82 @@ class UserCluserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=["clusters"]
+##################################### Registration Serializers ##################################
+
+#------------------------------- User  Serializer --------------------------
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+        
+#------------------------------- User update Serializer ---------------------
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+        extra_kwargs = {
+            field: {"required": False} for field in fields
+        }
+
+#---------------------------- Cluster Register Serializer -------------------
+
+class ClusterRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cluster
+        fields = "__all__"
+        
+#------------------------------- Pond Register Serializer -----------------------
+
+class PondRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pond
+        fields = "__all__"
+    
+#------------------------------- Manager Register Serializer ---------------------
+
+class ManagerRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Manager
+        fields = "__all__"
+        
+#------------------------------- BankDetails Register Serializer ------------------
+
+class BankDetailsRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bank_Details
+        fields = "__all__"
+        
+        
+#------------------------------- All Cluster of User Serializer ------------------
+
+class ClusterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cluster
+        fields = "__all__"
+
+class UserClusterSerializer(serializers.ModelSerializer):
+    clusters = ClusterSerializer(read_only = True, many =True)
+    class Meta:
+        model = User
+        fields = ["Mob",'clusters']
+    
+#--------------------------- All Cluster and Pond of User Serializer ---------
+
+
+class ClusterPondSerializer(serializers.ModelSerializer):
+    ponds = PondRegisterSerializer(read_only = True,many = True)
+    class Meta:
+        model = Cluster
+        fields = ['id','Name','ponds']
+
+class UserClusterPondSerializer(serializers.ModelSerializer):
+    clusters = ClusterPondSerializer(read_only = True,many = True)
+    class Meta:
+        model = User
+        fields = ['Name',"clusters"]
+
+
+
+        

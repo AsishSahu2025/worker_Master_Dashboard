@@ -721,3 +721,400 @@ class TaskclearView(APIView):
             {"message": f"Today's tasks for {device} deleted successfully."},
             status=200
         )
+
+######################################## User Registrations Views #################################
+from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from .serializers import *
+import random
+from django.core.mail import send_mail
+from water import settings
+from django.utils import timezone
+from datetime import timedelta
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
+from django.core.cache import cache
+from django.forms.models import model_to_dict
+#---------------------------------------- Universal Functions --------------------------------------
+def generate_otp():
+    return str(random.randint(100000, 999999))
+############# Mail Send ##################
+
+def send_otp_email(email, otp):
+    subject = "Your OTP for Registration"
+
+    text_content = f"Your OTP is: {otp}"  # fallback (important)
+
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 20px;
+            }}
+            .container {{
+                max-width: 500px;
+                margin: auto;
+                background: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }}
+            .otp {{
+                font-size: 28px;
+                font-weight: bold;
+                color: #2c3e50;
+                margin: 20px 0;
+                letter-spacing: 5px;
+            }}
+            .footer {{
+                margin-top: 20px;
+                font-size: 12px;
+                color: #888;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>🔐 Email Verification</h2>
+            <p>Your One-Time Password (OTP) is:</p>
+            <div class="otp">{otp}</div>
+            <p>This OTP is valid for <b>5 minutes</b>.</p>
+            <p>If you didn’t request this, you can ignore this email.</p>
+            <div class="footer">
+                © 2026 Your Company
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+
+    email_message = EmailMultiAlternatives(
+        subject,
+        text_content,
+        settings.EMAIL_HOST_USER,
+        [email]
+    )
+
+    email_message.attach_alternative(html_content, "text/html")
+    email_message.send()
+#---------------------------------------------------------------------------------------------------
+
+# Create your views here.
+#################################### Otp Send To mail First time ######################################
+from water import settings
+from water.twillo import client
+class UserRegisterView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        mobile = serializer.validated_data['Mob']
+        country_code = serializer.validated_data.get('country_code', '+91')
+        phone = f"{country_code}{mobile}"
+        
+        if not phone:
+            return Response(
+                {"error": "Phone number required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+
+            verification = client.verify.v2.services(
+                settings.TWILIO_VERIFY_SERVICE_SID
+            ).verifications.create(
+                to=phone,
+                channel="sms"
+            )
+            
+            PhoneVerification.objects.update_or_create(
+            phone=phone,
+            defaults={
+                'data': serializer.validated_data,
+            }
+        )
+            
+            return Response({
+                "message": "OTP sent successfully",
+                "status": verification.status
+            })
+
+        except Exception as e:
+
+            return Response({
+                "error": str(e)
+            }, status=500)   
+        
+############################### Otp Verify ####################################
+
+class VerifyOTPView(APIView):
+    def post(self, request):
+
+        mobile = request.data.get('Mob')
+        country_code = request.data.get('country_code', '+91')
+        otp = request.data.get('otp')
+
+        if not mobile or not otp:
+            return Response({
+                "error": "Mobile number and OTP required"
+            }, status=400)
+
+        phone = f"{country_code}{mobile}"
+
+        try:
+            otp_obj = PhoneVerification.objects.get(phone=phone)
+
+        except PhoneVerification.DoesNotExist:
+            return Response({
+                "error": "OTP request not found"
+            }, status=400)
+
+        try:
+
+            verification_check = client.verify.v2.services(
+                settings.TWILIO_VERIFY_SERVICE_SID
+            ).verification_checks.create(
+                to=phone,
+                code=otp,
+            )
+
+            if verification_check.status == "approved":
+
+                user_data = otp_obj.data
+
+                serializer = UserSerializer(data=user_data)
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+
+                otp_obj.delete()
+
+                return Response({
+                    "message": "OTP verified successfully"
+                })
+
+            else:
+                return Response({
+                    "error": "Invalid OTP"
+                }, status=400)
+
+        except Exception as e:
+
+            return Response({
+                "error": str(e)
+            }, status=500)
+    
+############################### Otp Resend ####################################
+
+class ResendOTPView(APIView):
+    def post(self, request):
+        mobile = request.data.get('Mob')
+        country_code = request.data.get('country_code', '+91')
+        phone = f"{country_code}{mobile}"
+
+        if not phone:
+
+            return Response({
+                "error": "Phone number is required"
+            }, status=400)
+
+        try:
+
+            verification = client.verify.v2.services(
+                settings.TWILIO_VERIFY_SERVICE_SID
+            ).verifications.create(
+                to=phone,
+                channel="sms"
+            )
+
+            return Response({
+                "message": "OTP resent successfully",
+                "status": verification.status
+            })
+
+        except Exception as e:
+
+            return Response({
+                "error": str(e)
+            }, status=500)
+
+############################### Get User ####################################
+
+class UserProfileView(APIView):
+    def post(self, request):
+        mobno = request.data.get("mobno")
+        password = request.data.get("password")
+        
+        if not mobno or not password:
+            return Response({"error": "Email and password required"}, status=400)
+
+        cache_key = f"user:{mobno}"
+        cached = cache.get(cache_key)
+
+ 
+        if cached:
+            if "password" not in cached:
+                cache.delete(cache_key)
+            else:
+                if not check_password(password, cached["password"]):
+                    return Response({"error": "Invalid password"}, status=400)
+                return Response({"data": cached["data"], "cache": "hit"})
+
+        try:
+            user = User.objects.get(Mob=mobno)
+        except User.DoesNotExist:
+            return Response({"error": "User Notfound"}, status=404)
+
+        if not check_password(password, user.password):
+            return Response({"error": "Invalid password"}, status=400)
+
+
+        data = model_to_dict(user)
+
+        cache.set(cache_key, {
+            "data": data,
+            "password": user.password
+        }, timeout=600)
+
+        return Response({"data": data, "cache": "miss"})
+    
+############################### Userupdateview ####################################
+
+class UserUpdateView(APIView):
+    def patch(self, request):
+        mobno = request.data.get("mobno")
+
+        if not mobno:
+            return Response({"error": "User id required"}, status=400)
+
+        serializer = UserUpdateSerializer(data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        update_data = serializer.validated_data
+        password = update_data.pop("password", None)
+        update_data.pop("id", None)
+        
+        updated = User.objects.filter(Mob=mobno).update(**update_data)
+        if not updated:
+            return Response({"error": "User not found"}, status=404)
+        
+        # if password:
+        #     User.objects.filter(id=user_id).update(
+        #     password=make_password(password)
+        #     )
+
+        email = request.data.get("email")
+        if email:
+            cache.delete(f"user:{mobno}")
+
+        return Response({"message": "Updated successfully"})
+    
+
+################################## Cluster Registration ###############################
+
+class ClusterRegisterView(APIView):
+    def post(self,request):
+        serializer = ClusterRegisterSerializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"msg":"Cluster Successfully Registered"})
+        
+        
+################################## Pond Registration ##################################
+       
+class PondRegisterView(APIView):
+
+    def post(self, request):
+
+        ponds = request.data
+        pond_objs = []
+
+        try:
+            for pond in ponds:
+
+                pond_objs.append(
+                    Pond(
+                        name=pond.get("pondid"),
+
+                        latlong=f"{pond.get('latitude')},{pond.get('longitude')}",
+
+                        location=pond.get("location"),
+
+                        registration_id=pond.get("registration"),
+
+                        address=pond.get("address", "")
+                    )
+                )
+
+            Pond.objects.bulk_create(pond_objs)
+
+            return Response({
+                "msg": "All ponds registered"
+            })
+
+        except Exception as e:
+
+            return Response({
+                "error": str(e)
+            }, status=400)
+
+################################## Manager Registration ##################################
+
+class ManagerRegisterView(APIView):
+    def post(self,request):
+        serializer = ManagerRegisterSerializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"msg":'Manager Registered Successfully'})
+
+
+################################## BankDetails Registration ##################################
+
+class BankDetailsRegisterView(APIView):
+    def post(self,request):
+        serializer = BankDetailsRegisterSerializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"msg":'Bank_Details Registered Successfully'})
+
+
+################################## All Cluster of User ##################################
+class AllClusterViews(APIView):
+    def post(self, request):
+        try:
+            mobno = request.data.get("Mob")
+            user = User.objects.get(Mob=mobno)
+
+            serializer = UserClusterSerializer(user)
+
+            return Response(serializer.data)
+
+        except User.DoesNotExist:
+            return Response({"Error": "User Not Found"}, status=404)
+
+        except Exception as e:
+            return Response({"Error": str(e)}, status=500)
+
+#################################### All Pond Of Cluster ###################################
+
+class UserClusterPondviews(APIView):
+    def get(self,request,Mob):
+        
+        try:
+            user = User.objects.get(Mob = Mob)
+        except Exception as e:
+            return Response({"error":"User NotFound"})
+        
+        serialiser = UserClusterPondSerializer(user)
+        return Response(serialiser.data,status=200)
+        
+            
+       
+
+
+        

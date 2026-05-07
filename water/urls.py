@@ -62,6 +62,19 @@ def trigger_autofeeder_manager_test_call(request):
 
 
 urlpatterns = [
+    ######################### Registered Apis #########################
+    path('sendotp/',UserRegisterView.as_view()),
+    path('verifyotp/',VerifyOTPView.as_view()),
+    path('resendotp/',ResendOTPView.as_view()),
+    path('farmerprofile/',UserProfileView.as_view()),
+    path('farmerupdate/',UserUpdateView.as_view()),
+    path('clusterregister/',ClusterRegisterView.as_view()),
+    path('pondregister/',PondRegisterView.as_view()),
+    path('managerregister/',ManagerRegisterView.as_view()),
+    path('bankregister/',BankDetailsRegisterView.as_view()),
+    path('allcluster/',AllClusterViews.as_view()),
+    path('allpondcluster/<Mob>/',UserClusterPondviews.as_view()),
+    ###################################################################
     path('api/', include('mobile_app.urls')),
     path('admin/', admin.site.urls),
     path('admin_cluster_view/<mob>/',views.admin_cluster_view),   #admin side
@@ -78,7 +91,6 @@ urlpatterns = [
     path("alertmessage/<device_id>/",AlertMessageView.as_view()),
     path("pond-task/", PondTaskView.as_view()),
     path("userponds/<registration_id>/", views.userponds),
-    
     ######################### power monitoring #########################
     path("api/", include("power_monitoring.urls")),
     

@@ -81,7 +81,7 @@ SECRET_KEY = 'django-insecure-zxw+xuj_v)b0$akg0gkx7hmxw$10dj4ei4vt*@ym-(i3mb)p)y
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = ['newiotbg.bc-pl.com','www.newiotbg.bc-pl.com'] 
+ALLOWED_HOSTS = ['*'] 
 
   
 
@@ -141,18 +141,29 @@ WSGI_APPLICATION = 'water.wsgi.application'
 
 # ############################# DATABASE ######################
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.contrib.gis.db.backends.postgis",
+#         "NAME": "aquaregister",
+#         "USER": "abhisek",
+#         "PASSWORD": "prasad",
+#         "HOST": "192.168.1.50",
+#         "PORT": "5432",
+#         "CONN_MAX_AGE": 60,
+#         "OPTIONS": {
+#             "sslmode": "require",
+#         },
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "aquafarm",
-        "USER": "Vertoxlabs1987Bfl",
-        "PASSWORD": "Vtx@1987#2026#Bfl@",
-        "HOST": "vertoxlabsdb.postgres.database.azure.com",
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        "NAME": "aquaregister",
+        "USER": "abhisek",
+        "PASSWORD": "prasad",
+        "HOST": "192.168.1.50",
         "PORT": "5432",
-        "CONN_MAX_AGE": 60,
-        "OPTIONS": {
-            "sslmode": "require",
-        },
     }
 }
 
@@ -210,24 +221,22 @@ CSRF_TRUSTED_ORIGINS = [
     'https://newiot.bc-pl.com',
    'https://newiotbg.bc-pl.com'
 ]
-CORS_ALLOWED_ORIGINS = [
-   'https://newiot.bc-pl.com',
-]
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#    'https://newiot.bc-pl.com',
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
-########################## Email configuration ##############
-EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
+#################### EMAIL CONFIGURATIONS ####################
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'care.bariflolabs@gmail.com ' 
-EMAIL_HOST_PASSWORD = 'pgvw cgtd hkbh chak' 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-#############################################################
-# import razorpay
-# RAZORPAY_KEY_ID = 'rzp_test_M4wPEnBM4t1hog'
-# RAZORPAY_KEY_SECRET = 'P4GVB18vIsqzqKF47bYaEf9k'
+EMAIL_HOST_USER = 'bariflolabsotp@gmail.com'
+EMAIL_HOST_PASSWORD = 'ilck dhih rrjk owyt'  
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 
 ########## Redis configuration (LOCAL / LAN) ################
@@ -279,7 +288,8 @@ CELERY_BEAT_SCHEDULE = {
 
 
 TWILIO_ACCOUNT_SID = 'AC2ff989757ab78d4cc7cd13163ada5e13'
-TWILIO_AUTH_TOKEN  = '6bf63f2ecde8323e0c4fc2f6f069db7b'
+TWILIO_AUTH_TOKEN  = '0abd3dc70fcd4f8699b0728e9ecc24b5'
+TWILIO_VERIFY_SERVICE_SID='VAe2cf27df6ff13371138e188b0b14b9bb'
 TWILIO_FROM_NUMBER = '+19478370208'   # your Twilio number
 MANAGER_PHONE      = '+919348998989'  # manager's number
 
@@ -288,3 +298,9 @@ MANAGER_PHONE      = '+919348998989'  # manager's number
 DAILY_SCHEDULE_CALL_HOUR   = 6   # 6:30 AM = 30 mins before 7:00 AM
 DAILY_SCHEDULE_CALL_MINUTE = 30
 WORKER_PHONE_COUNTRY_CODE = "+91"
+
+
+################# Password Configurations ###################
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]

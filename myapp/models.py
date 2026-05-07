@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.contrib.gis.geos import Point
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.gis.db import models
 
 #********************************************** MASTER MODEL ****************************************************#
@@ -37,39 +38,57 @@ class Super(models.Model):
 
 
 #********************************************** USER MODEL ****************************************************#
-class User(models.Model):    
+class User(models.Model):
+    adharno = models.CharField(max_length=12,null=True,blank=True)
+    father_name = models.CharField(max_length=50,null=True,blank=True)
+    mother_name = models.CharField(max_length=50,null=True,blank=True)
+    certificateno = models.CharField(max_length=50,null=True,blank=True)
+    dist = models.CharField(max_length=50,null=True,blank=True)
+    state =  models.CharField(max_length=50,null=True,blank=True)
+    pin = models.CharField(max_length=6,null=True,blank=True)
     Name=models.CharField(max_length=50)            
-    Company_name=models.CharField(max_length=30,null=False,unique=True)
+    Company_name=models.CharField(max_length=30,null=False,blank=True)
+    
+    country_code = models.CharField(max_length=5, default="+91")
     Mob=models.BigIntegerField(primary_key=True)
-    Email=models.EmailField(unique=True)
+    
+    Email=models.EmailField(unique=True,null=True,blank=True)
     Customer_id=models.CharField(max_length=100,null=True,blank=True)
-    password = models.CharField(max_length=50, blank=True, null=True)
-    address=models.CharField(max_length=100, blank=True, null=True)
-    Pan_no = models.CharField(max_length=50)
-    GST_no = models.CharField(max_length=50)
+    password = models.CharField(max_length=300)
+    address=models.TextField(blank=True, null=True)
+    Pan_no = models.CharField(max_length=50,blank=True, null=True)
+    GST_no = models.CharField(max_length=50,blank=True, null=True)
     user_category = models.CharField(max_length=50 ,null=True,blank=True)                 
     token = models.CharField(max_length=200,blank=True,null=True)
+    def save(self, *args, **kwargs):
+        if not self.password.startswith('argon2$'):
+            self.password = make_password(self.password)
+        return super().save(*args, **kwargs)
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)
+    
     def __str__(self):
-        return str(self.Company_name)
+        return f"{self.Name}"
     
 #********************************************** MANAGER MODEL ****************************************************#
 class Manager(models.Model):
     username = models.CharField(max_length=100)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50 ,null=True,blank=True)
     Mob = models.BigIntegerField(primary_key=True)
     email = models.EmailField()
     USER_TYPES = (
         ('Aquafarming', 'Aquafarming'),
         ('WaterBody', 'WaterBody'),  
     )
-    user_category = models.CharField(max_length=50, choices=USER_TYPES) 
-    token=models.CharField(max_length=100,null=True)   
+    user_category = models.CharField(max_length=50, default="Aquafarming",choices=USER_TYPES) 
+    token=models.CharField(max_length=100,null=True,blank=True)   
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
         return str(self.username)
     
-#********************************************** CLUSTER MODEL ****************************************************#
+#********************************************** CLUSTER MODEL **************************************************#
 class Cluster(models.Model):
     id = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=50)
@@ -108,7 +127,7 @@ class Device(models.Model):
         return str(self.device_id)
 
  
-#********************************************** PARAMETER MODEL ****************************************************#
+#********************************************** PARAMETER MODEL **************************************************#
 class Parameter(models.Model):
     pH = models.FloatField(null=True, blank=True)
     dissolved_oxygen = models.FloatField(null=True, blank=True)
@@ -149,7 +168,7 @@ class FailedLoginAttempt(models.Model):
     def __str__(self):
         return f"Failed login attempt for {self.registration.Name} at {self.timestamp}"
 
-#********************************************* Task_Category  MODEL ***************************************************#
+#********************************************* Task_Category  MODEL **********************************************#
 class Task_Category(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
@@ -180,7 +199,7 @@ class Task(models.Model):
     feedin_percentage=models.IntegerField(null=True,blank=True)
     feed_weight = models.IntegerField(blank=True, null=True)
     restfeed=models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
-    time_interval = models.CharField(null=True,blank=True)
+    time_interval = models.CharField(max_length=20,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     schedule_date = models.DateField(null=True, blank=True)
     worker_call_notified = models.BooleanField(default=False)
@@ -275,3 +294,41 @@ class DeviceCommandState(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return f"{self.step}"
+
+
+
+##################################### BankDetails Model #########################################
+class Bank_Details(models.Model):
+    user = models.ForeignKey('User',on_delete=models.CASCADE ,related_name="banks")
+    accountholder = models.CharField(max_length=50)
+    bankname = models.CharField(max_length=50)
+    ifsccode = models.CharField(max_length=11)
+    branchname = models.CharField(max_length=50)
+    accno = models.CharField(max_length=18)
+    
+    def __str__(self):
+        return self.accountholder
+
+
+##################################### Temp Mail Model #########################################
+
+class EmailOTP(models.Model): 
+    email = models.EmailField(unique=True)
+    otp = models.CharField(max_length=6)     
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_sent = models.DateTimeField(auto_now=True)
+    data = models.JSONField()
+
+    def __str__(self):
+        return self.email
+    
+
+##################################### Temp Mail Model #########################################
+class PhoneVerification(models.Model):
+    phone = models.CharField(max_length=15,unique=True)
+    is_verified = models.BooleanField(default=False)
+    data = models.JSONField()
+    
+
+    def __str__(self):
+        return self.phone
