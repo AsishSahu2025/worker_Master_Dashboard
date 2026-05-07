@@ -769,3 +769,25 @@ class CreateWorkerAPIView(CreateAPIView):
             },
             status=status.HTTP_200_OK
         )
+    
+class WorkerListAPIView(APIView):
+
+    def get(self, request):
+
+        pond_id = request.GET.get("pond_id")
+
+        if not pond_id:
+            return Response(
+                {"error": "pond_id is required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        workers = Worker_details.objects.filter(
+            pond_id=pond_id
+        )
+
+        serializer = WorkerListSerializer(workers, many=True)
+
+        return Response({
+            "workers": serializer.data
+        })

@@ -2753,3 +2753,1131 @@ server closed the connection unexpectedly
 2026-04-30 14:52:02,364 — Response Status Code: 201
 2026-04-30 14:52:02,365 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '2011', 'Connection': 'keep-alive', 'Date': 'Thu, 30 Apr 2026 09:22:02 GMT', 'Location': 'https://call-service.us1.svc.twilio.com/v2/Accounts/CAe40f74078d2bad3e355caf70db9e8271', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQdfbdb6c93390c74aa66b84f7c3d155de', 'Twilio-Request-Duration': '0.093', 'X-Home-Region': 'us1', 'X-API-Domain': 'api.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 44dd3bb75c40a6b0e432843186941cfe.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P4', 'X-Amz-Cf-Id': 'aXcjV8jqP0tPG_mNR_LB7xF9LgmjwJc3toN2nF5riXzIoORrPMgDVQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
 2026-04-30 14:52:02,365 — ✅ Autofeeder worker call to Trinath (+918260582181) task 1377 — SID=CAe40f74078d2bad3e355caf70db9e8271
+2026-05-07 11:28:39,070 — Not Found: /
+2026-05-07 11:28:39,135 — Not Found: /favicon.ico
+2026-05-07 11:40:56,803 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:40:56,897 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:33,008 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:33,092 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:33,709 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:33,801 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:33,923 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:34,060 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:44,966 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:45,033 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:45,140 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:41:45,309 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:42:13,855 — Not Found: /addWorker/
+2026-05-07 11:42:21,558 — Not Found: /addWorker/
+2026-05-07 11:42:24,496 — Not Found: /addWorker/
+2026-05-07 11:42:24,699 — Not Found: /addWorker/
+2026-05-07 11:42:41,844 — Not Found: /addWorker/
+2026-05-07 11:45:36,136 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:45:42,140 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:45:43,125 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:51:31,838 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:51:31,914 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:51:59,141 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:52:05,415 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:53:53,574 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:55:12,652 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:55:53,136 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:55:55,205 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:55:55,311 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:39,767 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:39,839 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:45,180 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:45,271 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:45,399 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:45,533 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:45,718 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:56:45,850 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:57:12,212 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:57:12,284 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:57:46,539 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:57:46,613 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:58:06,422 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:58:06,495 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:58:06,631 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:58:06,853 — Internal Server Error: /workerview/9327939342/
+2026-05-07 11:59:29,361 — Conflict: /checktray_generate/
+2026-05-07 12:00:01,489 — Conflict: /checktray_generate/
+2026-05-07 12:00:35,018 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:00:35,109 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:05:16,045 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:05:16,119 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:05:16,235 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:05:16,351 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:07:35,166 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:07:57,147 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:09:27,563 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:09:27,641 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:07,448 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:07,671 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:07,928 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:08,062 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:08,190 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:14,169 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:14,278 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:14,353 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:14,473 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:14,582 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:20,898 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:20:21,004 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:25:00,561 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:25:00,650 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:31:14,010 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:31:14,092 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:42:12,478 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/apps.py changed, reloading.
+2026-05-07 12:43:35,736 — Method Not Allowed: /add-worker/
+2026-05-07 12:43:35,940 — Not Found: /favicon.ico
+2026-05-07 12:50:31,168 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:50:31,238 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:50:31,349 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:50:31,517 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:51:44,535 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:51:44,617 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:51:49,038 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:51:49,723 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:51:59,182 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:51:59,246 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:53:30,174 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:53:30,258 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:53:31,006 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:53:31,072 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:53:31,179 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:53:31,322 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:54:17,422 — Internal Server Error: /workerview/9327939342/
+2026-05-07 12:54:17,495 — Internal Server Error: /workerview/9327939342/
+2026-05-07 13:01:41,233 — Internal Server Error: /checktray_task/
+2026-05-07 13:01:56,253 — Internal Server Error: /checktray_task/
+2026-05-07 13:05:39,147 — Internal Server Error: /pond-task/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/myapp/views.py", line 522, in get
+    if not tasks.exists():
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/query.py", line 659, in has_results
+    return compiler.has_results()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1530, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 14:05:16,321 — Internal Server Error: /checktray_task/
+2026-05-07 14:24:43,654 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:24:43,741 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:34:31,100 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:34:31,176 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:34:31,290 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:34:31,406 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:35:24,135 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:35:24,220 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:35:24,348 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:35:24,515 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:42:05,415 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:42:05,502 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:42:15,543 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:42:16,424 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:44:18,888 — Not Found: /
+2026-05-07 14:44:18,929 — Not Found: /favicon.ico
+2026-05-07 14:46:56,612 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:46:56,676 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:46:56,779 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:46:56,881 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:48:48,591 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:48:48,689 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:53:20,966 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:53:21,053 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:10,066 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:10,146 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:10,262 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:10,417 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:11,275 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:11,356 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:18,867 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:18,939 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:19,057 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:19,166 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:21,880 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:54:22,001 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:55:07,029 — Not Found: /tasksubmit/36/
+2026-05-07 14:55:26,145 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 14:55:40,606 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:55:40,985 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:55:47,986 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/urls.py changed, reloading.
+2026-05-07 14:55:59,533 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:55:59,596 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:56:02,327 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:56:02,805 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:56:15,117 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/serializers.py changed, reloading.
+2026-05-07 14:56:35,974 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/pahomqtt.py changed, reloading.
+2026-05-07 14:57:00,989 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:57:01,069 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:57:01,187 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:57:01,305 — Internal Server Error: /workerview/9327939342/
+2026-05-07 14:57:06,879 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/pahomqtt.py changed, reloading.
+2026-05-07 14:57:22,654 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/models.py changed, reloading.
+2026-05-07 14:58:00,720 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/apps.py changed, reloading.
+2026-05-07 14:58:14,175 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/admin.py changed, reloading.
+2026-05-07 14:58:37,850 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/utils/telegram_cards.py changed, reloading.
+2026-05-07 14:58:58,465 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/services/session_service.py changed, reloading.
+2026-05-07 15:00:59,491 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:00:59,568 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:01:12,880 — /home/pradip/Desktop/worker_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-07 15:01:45,889 — /home/pradip/Desktop/worker_Master_Dashboard/myapp/serializers.py changed, reloading.
+2026-05-07 15:03:09,184 — /home/pradip/Desktop/worker_Master_Dashboard/water/urls.py changed, reloading.
+2026-05-07 15:03:43,140 — /home/pradip/Desktop/worker_Master_Dashboard/myapp/serializers.py changed, reloading.
+2026-05-07 15:03:45,565 — /home/pradip/Desktop/worker_Master_Dashboard/myapp/serializers.py changed, reloading.
+2026-05-07 15:05:35,803 — Bad Request: /add-worker/
+2026-05-07 15:05:41,328 — Bad Request: /add-worker/
+2026-05-07 15:06:26,433 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:06:26,492 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:06:26,591 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:06:26,693 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:06:54,880 — Bad Request: /add-worker/
+2026-05-07 15:08:28,352 — Bad Request: /add-worker/
+2026-05-07 15:13:43,924 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:13:43,993 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:13:44,104 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:13:44,215 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:13:44,322 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:13:44,429 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:14:08,488 — Bad Request: /api/generate-cycles/
+2026-05-07 15:14:46,845 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:14:46,922 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:14:47,040 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:14:47,159 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:14:47,643 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:14:47,725 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:15:17,332 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:15:17,399 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:15:17,545 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:15:18,377 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:15:19,637 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:15:19,711 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:16:20,689 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:16:20,771 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:17:42,704 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:17:42,776 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:25:06,439 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:25:06,513 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:25:53,630 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:11,522 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:33,916 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:46,353 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:46,417 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:47,469 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:47,536 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:47,718 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:48,074 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:55,594 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:55,661 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:55,779 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:55,990 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:57,952 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:27:58,019 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:33:12,384 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:33:12,466 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:14,995 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:47,672 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:47,741 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:48,457 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:48,528 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:48,861 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:34:48,940 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:35:01,347 — Bad Request: /api/generate-cycles/
+2026-05-07 15:35:23,755 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:35:37,598 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:35:39,840 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:35:39,931 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:35:40,058 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:35:40,188 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:26,037 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:26,125 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:28,027 — Bad Request: /api/generate-cycles/
+2026-05-07 15:36:46,351 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:46,412 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:46,511 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:46,614 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:46,713 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:36:46,811 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:43:03,064 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:43:03,152 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:43:03,281 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:43:03,410 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:45:39,768 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:45:39,835 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:41,562 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:41,645 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:45,453 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:45,518 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:45,623 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:45,731 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:45,836 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:45,946 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:48,409 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:49:48,476 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:52:33,337 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 15:52:41,911 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 15:54:34,046 — Internal Server Error: /api/generate-cycles/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py", line 86, in post
+    device = Device.objects.get(device_id=device_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 15:54:55,584 — Internal Server Error: /api/sessions/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 400, in __iter__
+    self._fetch_all()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 15:55:01,313 — Internal Server Error: /api/sessions/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 400, in __iter__
+    self._fetch_all()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 15:55:06,978 — Internal Server Error: /api/sessions/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 400, in __iter__
+    self._fetch_all()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 15:55:07,106 — Internal Server Error: /api/sessions/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 400, in __iter__
+    self._fetch_all()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 15:55:08,488 — Internal Server Error: /api/sessions/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 400, in __iter__
+    self._fetch_all()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 316, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 275, in ensure_connection
+    self.connect()
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/contrib/gis/db/backends/postgis/base.py", line 126, in get_new_connection
+    connection = super().get_new_connection(conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 277, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "vertoxlabsdb.postgres.database.azure.com" (4.188.241.46), port 5432 failed: SSL SYSCALL error: EOF detected
+
+2026-05-07 15:55:11,397 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:55:11,474 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:55:19,240 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:55:19,312 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:55:36,819 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 15:56:00,644 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 15:56:04,223 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 15:57:25,724 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:57:30,563 — Internal Server Error: /workerview/9327939342/
+2026-05-07 15:58:08,546 — Internal Server Error: /api/generate-cycles/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py", line 96, in post
+    pond=device.pond
+         ^^^^^^^^^^^
+AttributeError: 'Device' object has no attribute 'pond'
+2026-05-07 16:00:08,553 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:00:29,144 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:00:43,886 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:00:47,201 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:00:57,432 — Bad Request: /api/generate-cycles/
+2026-05-07 16:01:00,688 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:01:42,780 — Internal Server Error: /api/generate-cycles/
+Traceback (most recent call last):
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pradip/Desktop/worker_Master_Dashboard/env/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py", line 173, in post
+    "cycles": [
+              ^
+  File "/home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py", line 180, in <listcomp>
+    "id": s.worker.id if s.worker else None,
+          ^^^^^^^^^^^
+AttributeError: 'Worker_details' object has no attribute 'id'
+2026-05-07 16:03:34,171 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:03:38,527 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:03:46,956 — Bad Request: /api/generate-cycles/
+2026-05-07 16:04:02,192 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:04:06,891 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:04:06,961 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:04:30,915 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:05:16,365 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:08:43,377 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:08:51,625 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:08:54,841 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:09:14,611 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:09:49,569 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:10:18,322 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:10:27,067 — Bad Request: /api/sessions/
+2026-05-07 16:10:50,490 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:01,291 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:01,371 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:01,491 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:01,621 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:07,730 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:07,809 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:11:25,594 — Bad Request: /api/sessions/
+2026-05-07 16:14:33,097 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:14:40,514 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:14:44,803 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:14:49,397 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:15:00,776 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:15:06,209 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:15:20,895 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:15:26,241 — /home/pradip/Desktop/worker_Master_Dashboard/power_monitoring/views.py changed, reloading.
+2026-05-07 16:18:40,776 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:18:40,859 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:18:40,978 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:18:41,100 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:18:41,674 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:18:41,756 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:22:45,362 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:22:45,422 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:22:45,527 — Internal Server Error: /workerview/9327939342/
+2026-05-07 16:22:46,304 — Internal Server Error: /workerview/9327939342/

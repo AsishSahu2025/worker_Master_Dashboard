@@ -3,10 +3,10 @@ import sys
 import json
 import time
 import threading
-from datetime import datetime
-
 from datetime import timedelta
-from django.db import close_old_connections
+
+from django.db import OperationalError, close_old_connections
+from django.utils import timezone
 
 # ================= DJANGO SETUP ================= #
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -20,13 +20,10 @@ import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import requests
 
-# ================= DJANGO ================= #
-from django.utils import timezone
-
 # ================= PROJECT ================= #
 from power_monitoring.models import SensorData, MonitoringSession
 from power_monitoring.services.session_service import update_session_status
-
+from django.db import transaction
 
 # ================= MQTT CONFIG ================= #
 MQTT_BROKER = "mqttbroker.bc-pl.com"
@@ -36,29 +33,32 @@ MQTT_PASSWORD = "Bfl@2025"
 
 TOPIC_ALL = "pomon/+/rnd/#"
 
-TOPIC_ALERT = "pomon/+/rnd/alert"
-TOPIC_ABORT = "pomon/+/rnd/abort"
-
-
 # ================= TELEGRAM ================= #
 TELEGRAM_BOT_TOKEN = "8650685796:AAEWB2H-Jsr-34Oycq2EDi-EgbzGTKS0hkw"
 TELEGRAM_GROUPCHAT_IDS = [-5186117690, 1836771564]
 
+# ================= WATCHER LOCK ================= #
+WATCHER_STARTED = False
+
 LAST_SENT = {}
 LAST_VALUES = {}
 INTERVAL = 2
-COMPLETED_SENT = set()  
+
 # ================= TELEGRAM ================= #
 def send_telegram_alert(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+
     for chat_id in TELEGRAM_GROUPCHAT_IDS:
-        try:
-            requests.post(url, data={
-                "chat_id": chat_id,
-                "text": message
-            })
-        except Exception as e:
-            print("❌ Telegram Error:", e)
+        for i in range(3):  
+            try:
+                requests.post(url, data={
+                    "chat_id": chat_id,
+                    "text": message
+                }, timeout=5)
+                break
+            except Exception as e:
+                print(f"❌ Telegram retry {i+1}:", e)
+                time.sleep(2)
 
 
 def send_telegram_image(image_buffer):
@@ -85,15 +85,15 @@ def on_message(client, userdata, msg):
     topic = msg.topic
     raw_payload = msg.payload.decode()
 
+    if topic.endswith("/schedule"):
+        return
+
     print("\n========== MQTT ==========")
     print("📌", topic)
     print("📦", raw_payload)
 
     device_id = topic.split("/")[1]
     now = timezone.now()
-                # ===============================
-    # now = timezone.localtime()
-    now = datetime.now()
 
     # ===== ALERT ===== #
     if topic.endswith("/alert"):
@@ -117,7 +117,6 @@ def on_message(client, userdata, msg):
         if not session:
             return
 
-        update_session_status(session)
         session.refresh_from_db()
 
         if session.status != "PROCESSING":
@@ -127,13 +126,13 @@ def on_message(client, userdata, msg):
         if not dev:
             return
 
-        r = float(dev.get("R") or 0)
-        y = float(dev.get("Y") or 0)
-        b = float(dev.get("B") or 0)
-
-        vr = 230.0
-        vy = 230.0
-        vb = 230.0
+        try:
+            r = float(dev.get("R") or 0)
+            y = float(dev.get("Y") or 0)
+            b = float(dev.get("B") or 0)
+        except:
+            print("❌ Invalid current values")
+            return
 
         power = 230 * (r + y + b)
         wh = power * (5 / 3600)
@@ -142,11 +141,9 @@ def on_message(client, userdata, msg):
             SensorData.objects.create(
                 session=session,
                 timestamp=now,
-
-                voltage_r=vr,
-                voltage_y=vy,
-                voltage_b=vb,
-
+                voltage_r=230,
+                voltage_y=230,
+                voltage_b=230,
                 current_r=r,
                 current_y=y,
                 current_b=b,
@@ -160,97 +157,105 @@ def on_message(client, userdata, msg):
 
 
 # ================= WATCHER ================= #
- 
 def schedule_watcher():
     while True:
-        close_old_connections()
-        now = timezone.now()
+        try:
+            close_old_connections()
+            now = timezone.now()
 
-        sessions = MonitoringSession.objects.filter(
-            start_time__isnull=False,
-            end_time__isnull=False
-        )
+            sessions = MonitoringSession.objects.filter(
+                start_time__isnull=False,
+                end_time__isnull=False
+            )
 
-        for session in sessions:
-            try:
-                session.refresh_from_db()
+            for session in sessions:
+                try:
+                    session.refresh_from_db()
 
-                update_session_status(session)
-                session.refresh_from_db()
+                    update_session_status(session)
+                    session.refresh_from_db()
 
-                # ===============================
-                #  COMPLETION ALERT
-                # ===============================
-                if session.status == "COMPLETED" and session.id not in COMPLETED_SENT:
                     try:
-                        worker_name = session.worker.name if session.worker else "No Worker"
-                        message = (
-                                f"✅ Cycle Completed | Device: {session.device.device_id} | "
-                                f"Cycle: {session.cycle_number} | "
-                                f"Worker: {worker_name}"
-                            )
+                        with transaction.atomic():
+                            locked = MonitoringSession.objects.select_for_update().get(id=session.id)
 
-                        send_telegram_alert(message)
+                            if locked.status == "COMPLETED" and not locked.completion_alert_sent:
 
-                        COMPLETED_SENT.add(session.id)
+                                worker_name = locked.worker.name if locked.worker else "No Worker"
 
-                        print(f"📩 Completion alert sent → Session {session.id}")
+                                message = (
+                                    f"✅ Cycle Completed | Device: {locked.device.device_id} | "
+                                    f"Cycle: {locked.cycle_number} | Worker: {worker_name}"
+                                )
+
+                                send_telegram_alert(message)
+
+                                locked.completion_alert_sent = True
+                                locked.save(update_fields=["completion_alert_sent"])
+
+                                print(f"📩 Completion alert sent → Session {locked.id}")
 
                     except Exception as e:
                         print("❌ Completion Telegram Error:", e)
 
-                # ===============================
-                # PRE-START WINDOW
-                # ===============================
-                if (
-                    session.status == "PENDING"
-                    and not getattr(session, "mqtt_sent", False)
-                    and session.start_time - timedelta(seconds=20) <= now < session.start_time
-                ):
-                    print(f"⏰ PRE-START → Session {session.id}")
+                    if (
+                        session.status == "PENDING"
+                        and session.start_time - timedelta(seconds=20) <= now < session.start_time
+                    ):
+                        duration = int((session.end_time - session.start_time).total_seconds())
 
-                    duration = int(
-                        (session.end_time - session.start_time).total_seconds()
-                    )
+                        if duration <= 60:
+                            continue
 
-                    if duration <= 60:
-                        print(f"❌ SKIP Session {session.id} (duration={duration})")
-                        continue
+                        updated = MonitoringSession.objects.filter(
+                            id=session.id,
+                            mqtt_sent=False
+                        ).update(mqtt_sent=True)
 
-                    payload = {
-                        "start_time": session.start_time.strftime("%H:%M"),
-                        "duration": duration,
-                        "main": int(session.main)
-                    }
+                        if updated == 0:
+                            continue 
 
-                    topic = f"pomon/{session.device.device_id}/rnd/schedule"
-
-                    print(f"📤 MQTT → {payload}")
-
-                    publish.single(
-                        topic,
-                        json.dumps(payload, separators=(",", ":")),
-                        hostname=MQTT_BROKER,
-                        port=MQTT_PORT,
-                        auth={
-                            "username": MQTT_USER,
-                            "password": MQTT_PASSWORD
+                        payload = {
+                            "start_time": session.start_time.strftime("%H:%M"),
+                            "duration": duration,
+                            "main": int(session.main)
                         }
-                    )
 
-                    session.mqtt_sent = True
-                    session.save(update_fields=["mqtt_sent"])
+                        topic = f"pomon/{session.device.device_id}/rnd/schedule"
 
-                    print(f"🚀 SENT → Session {session.id}")
+                        print(f"📤 MQTT → {payload}")
 
-            except Exception as e:
-                print(f"⚠️ watcher error session {session.id}: {e}")
+                        publish.single(
+                            topic,
+                            json.dumps(payload, separators=(",", ":")),
+                            hostname=MQTT_BROKER,
+                            port=MQTT_PORT,
+                            auth={
+                                "username": MQTT_USER,
+                                "password": MQTT_PASSWORD
+                            }
+                        )
+
+                        print(f"🚀 SENT → Session {session.id}")
+
+                except Exception as e:
+                    print(f"⚠️ watcher error session {session.id}: {e}")
+
+        except OperationalError as e:
+            print("❌ DB CONNECTION LOST:", e)
+            time.sleep(5)
+            continue
+
+        except Exception as e:
+            print("⚠️ watcher error:", e)
 
         time.sleep(1)
 
 
 # ================= START ================= #
 def start():
+    global WATCHER_STARTED
+
     client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     client.username_pw_set(MQTT_USER, MQTT_PASSWORD)
 
@@ -259,7 +264,10 @@ def start():
 
     client.connect(MQTT_BROKER, MQTT_PORT, 60)
 
-    threading.Thread(target=schedule_watcher, daemon=True).start()
+    if not WATCHER_STARTED:
+        WATCHER_STARTED = True
+        threading.Thread(target=schedule_watcher, daemon=True).start()
+        print("🚀 WATCHER STARTED ONLY ONCE")
 
     print("🚀 System Started")
     client.loop_forever()

@@ -4,6 +4,3 @@ from django.apps import AppConfig
 class PowerMonitoringConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'power_monitoring'
-
-    def ready(self):
-        import power_monitoring.signals

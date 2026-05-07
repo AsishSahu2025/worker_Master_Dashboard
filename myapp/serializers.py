@@ -309,7 +309,6 @@ class UserCluserSerializer(serializers.ModelSerializer):
 from rest_framework import serializers
 from .models import Worker_details, Pond
 
-
 class WorkerCreateSerializer(serializers.ModelSerializer):
     pond_id = serializers.IntegerField(write_only=True)
 
@@ -324,6 +323,11 @@ class WorkerCreateSerializer(serializers.ModelSerializer):
             pond = Pond.objects.get(id=pond_id)
         except Pond.DoesNotExist:
             raise serializers.ValidationError("Invalid pond_id")
+        
+        if Worker_details.objects.filter(pond=pond).exists():
+            raise serializers.ValidationError(
+                "Worker already assigned to this pond"
+            )
 
         data["pond"] = pond
         data["manager"] = pond.manager
@@ -342,3 +346,10 @@ class WorkerCreateSerializer(serializers.ModelSerializer):
     )
 
         return worker
+    
+
+class WorkerListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Worker_details
+        fields = ['name', 'mobno']

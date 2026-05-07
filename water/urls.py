@@ -79,7 +79,7 @@ urlpatterns = [
     path("pond-task/", PondTaskView.as_view()),
     path("userponds/<registration_id>/", views.userponds),
     path("add-worker/", CreateWorkerAPIView.as_view()),
-    
+    path('workers/', WorkerListAPIView.as_view()),
     ######################### power monitoring #########################
     path("api/", include("power_monitoring.urls")),
     
