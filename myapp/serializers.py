@@ -68,18 +68,12 @@ class FeedTryGenerateSerializer(serializers.Serializer):
 
 import math
 class TaskSubmitSerializer(serializers.ModelSerializer):
-    worker_name = serializers.SlugRelatedField(
-        queryset=Worker_details.objects.all(),
-        slug_field='name',     
-        required=True
-    )
     from_time=serializers.TimeField()
     feed_weight = serializers.IntegerField()
     class Meta:
         model=Task
         fields = [
             'id',
-            'worker_name',
             'from_time',
             'to_time',
             'time_interval',

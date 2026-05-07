@@ -6,10 +6,6 @@ from django.db import transaction
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from checktray.mqtt_command_queue import enqueue_mqtt_command
-from checktray.telegram_queue import enqueue_telegram
-
-from checktray.telegram_notifications import notify_checktray_task
-import time
 
 @csrf_exempt
 # Create your views here.

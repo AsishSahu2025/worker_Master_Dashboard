@@ -293,6 +293,18 @@ class FeedingGenerateview(APIView):
             return Response(f"{device_id} already has active cycles for this date.")
         try:
             category = Task_Category.objects.get(name__iexact=category_name)
+            device = Device.objects.get(device_id=device_id)
+
+            # Get worker from same pond
+            worker = Worker_details.objects.filter(
+                pond=device.pond_id
+            ).first()
+
+            if not worker:
+                return Response(
+                    {"error": "No worker assigned to this pond"},
+                    status=status.HTTP_404_NOT_FOUND
+                )
             created_task_ids = []
 
             with transaction.atomic():
@@ -301,6 +313,7 @@ class FeedingGenerateview(APIView):
                     task = Task.objects.create(
                         taskcatagory=category,  
                         device_id=device_id,
+                        worker_name=worker.name,
                         cycles=cycle_no,
                         schedule_date=schedule_date,
                         batch_id=batch_id,
