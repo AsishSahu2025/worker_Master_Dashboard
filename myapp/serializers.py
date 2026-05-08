@@ -324,7 +324,7 @@ class WorkerCreateSerializer(serializers.ModelSerializer):
             pond = Pond.objects.get(id=pond_id)
         except Pond.DoesNotExist:
             raise serializers.ValidationError("Invalid pond_id")
-
+          
         data["pond"] = pond
         data["manager"] = pond.manager
 
