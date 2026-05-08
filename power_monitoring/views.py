@@ -21,6 +21,7 @@ from power_monitoring.utils.telegram_cards import notify_power_schedule
 from .models import SensorData, MonitoringSession
 from .serializers import SensorDataSerializer, MonitoringSessionSerializer
 from myapp.models import Device, Worker_details
+from django.db import close_old_connections
 
 # ---------------- MQTT CONFIG ---------------- #
 MQTT_BROKER = "mqttbroker.bc-pl.com"
@@ -60,11 +61,14 @@ class SensorDataViewSet(ModelViewSet):
 # ================= GENERATE CYCLES ================= #
 class GenerateCyclesView(APIView):
     def post(self, request):
+        close_old_connections()
         device_id = request.data.get("device_id")
         cycle_count = request.data.get("cycle_count")
 
+        # ===== VALIDATION ===== #
         if not device_id:
             return Response({"error": "device_id required"}, status=400)
+
         if not cycle_count:
             return Response({"error": "cycle_count required"}, status=400)
 
@@ -75,14 +79,29 @@ class GenerateCyclesView(APIView):
 
         if cycle_count <= 0:
             return Response({"error": "cycle_count must be > 0"}, status=400)
+
         if cycle_count > 5:
             return Response({"error": "Max 5 cycles allowed"}, status=400)
 
+        # ===== DEVICE ===== #
         try:
             device = Device.objects.get(device_id=device_id)
         except Device.DoesNotExist:
             return Response({"error": "Invalid device"}, status=400)
 
+        # =========================================================
+        # AUTO ASSIGN WORKER FROM SAME POND
+        # =========================================================
+        worker = Worker_details.objects.filter(
+            pond=device.pond_id
+        ).first()
+
+        if not worker:
+            return Response({
+                "error": "No worker available for this pond"
+            }, status=400)
+
+        # ===== CHECK EMPTY UNSCHEDULED ===== #
         existing_empty = MonitoringSession.objects.filter(
             device=device,
             start_time__isnull=True,
@@ -94,6 +113,7 @@ class GenerateCyclesView(APIView):
                 "error": f"Cannot create new cycles. {existing_empty} unscheduled cycle(s) exist."
             }, status=400)
 
+        # ===== ACTIVE COUNT ===== #
         active_count = MonitoringSession.objects.filter(
             device=device,
             status__in=["PENDING", "PROCESSING"]
@@ -109,30 +129,60 @@ class GenerateCyclesView(APIView):
 
         created_cycles = []
 
+        # =========================================================
+        # CREATE CYCLES
+        # =========================================================
         for i in range(cycles_to_create):
-            last_cycle = MonitoringSession.objects.filter(device=device).order_by("-cycle_number").first()
-            next_cycle_number = last_cycle.cycle_number + 1 if last_cycle else 1
+
+            last_cycle = MonitoringSession.objects.filter(
+                device=device
+            ).order_by("-cycle_number").first()
+
+            next_cycle_number = (
+                last_cycle.cycle_number + 1
+                if last_cycle else 1
+            )
 
             main_value = 1 if device.device_id == "BFL_PomonA001" else 2
 
             session = MonitoringSession.objects.create(
                 device=device,
+                worker=worker,
                 cycle_number=next_cycle_number,
                 start_time=None,
                 end_time=None,
                 status="PENDING",
-                main=main_value
+                main=main_value,
+                mqtt_sent=False
             )
 
-            created_cycles.append({
-                "cycle_number": session.cycle_number
-            })
+            created_cycles.append(session)
 
-        # -------- RESPONSE -------- #
+        # =========================================================
+        # RESPONSE
+        # =========================================================
         return Response({
             "success": True,
             "device_id": device.device_id,
-            "cycles": created_cycles
+            "pond": {
+                "id": device.pond_id.id if device.pond_id else None,
+                "name": device.pond_id.name if device.pond_id else None
+            },
+            "total_cycles_created": len(created_cycles),
+
+            "cycles": [
+                {
+                    "session_id": s.id,
+                    "cycle_number": s.cycle_number,
+                    "status": s.status,
+
+                    "worker": {
+                        "name": s.worker.name if s.worker else None,
+                        "mobno": s.worker.mobno if s.worker else None,
+                    }
+                }
+                for s in created_cycles
+            ]
         })
     
 # ================= CLEAR ALL CYCLES ================= #
@@ -237,14 +287,14 @@ class MonitoringSessionViewSet(ModelViewSet):
             for i, cycle_data in enumerate(cycles):
 
                 # ===== WORKER ===== #
-                worker_id = cycle_data.get("worker_id")
-                if not worker_id:
-                    raise ValidationError({"error": f"Cycle {i+1}: worker_id required"})
+                worker = Worker_details.objects.filter(
+                    pond_id=device.pond_id_id
+                ).first()
 
-                try:
-                    worker = Worker_details.objects.get(mobno=worker_id)
-                except Worker_details.DoesNotExist:
-                    raise ValidationError({"error": f"Cycle {i+1}: invalid worker_id"})
+                if not worker:
+                    raise ValidationError({
+                        "error": f"No worker assigned for pond {device.pond_id_id}"
+                    })
 
                 main = cycle_data.get("main", main_default)
 
@@ -257,7 +307,7 @@ class MonitoringSessionViewSet(ModelViewSet):
 
                     if duration <= 60:
                         raise ValidationError({
-                            "error": f"Cycle {i+1}: duration must be > 60 seconds"
+                            "error": f"Cycle {i+1}: duration must be > 1 minute"
                         })
 
                     start_time = next_start_time
@@ -280,7 +330,7 @@ class MonitoringSessionViewSet(ModelViewSet):
 
                 if duration_check <= 60:
                     raise ValidationError({
-                        "error": f"Cycle {i+1}: duration must be > 60 seconds"
+                        "error": f"Cycle {i+1}: duration must be > 1 minutes"
                     })
 
                 # =========================================================
@@ -290,7 +340,7 @@ class MonitoringSessionViewSet(ModelViewSet):
                     min_first_start = now + timedelta(seconds=100)
                     if start_time < min_first_start:
                         raise ValidationError({
-                            "error": "First cycle start_time must be at least 100 seconds greater than current time"
+                            "error": "First cycle Start time must be at least 2 minutes greater than Current time"
                         })
 
                 # =========================================================
@@ -300,7 +350,7 @@ class MonitoringSessionViewSet(ModelViewSet):
                     gap = (start_time - last_start_time).total_seconds()
                     if gap < MIN_GAP_SECONDS:
                         raise ValidationError({
-                            "error": f"Cycle {i+1}: minimum gap between cycles must be 120 seconds"
+                            "error": f"Cycle {i+1}: minimum gap between cycles must be 2 minutes"
                         })
 
                 last_start_time = start_time
@@ -339,12 +389,22 @@ class MonitoringSessionViewSet(ModelViewSet):
             "success": True,
             "message": f"{len(created_sessions)} cycles scheduled",
             "device": device.device_id,
+            "pond_id": device.pond_id_id,
+
             "cycles": [
                 {
+                    "session_id": s.id,
                     "cycle": s.cycle_number,
                     "start_time": s.start_time,
                     "end_time": s.end_time,
-                    "status": s.status
+                    "status": s.status,
+
+                    "worker": {
+                        "id": s.worker.mobno if s.worker else None,
+                        "name": s.worker.name if s.worker else None,
+                        "mobno": s.worker.mobno if s.worker else None,
+                    }
+
                 } for s in created_sessions
             ]
         })

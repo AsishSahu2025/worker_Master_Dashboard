@@ -41,7 +41,7 @@ class MonitoringSession(models.Model):
     description = models.CharField(max_length=255, blank=True)
     main = models.IntegerField(default=1)
     mqtt_sent = models.BooleanField(default=False)
-
+    completion_alert_sent = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
