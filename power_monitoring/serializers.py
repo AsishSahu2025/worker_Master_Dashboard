@@ -28,6 +28,7 @@ class MonitoringSessionSerializer(serializers.ModelSerializer):
     device_id = serializers.CharField(write_only=True)
     readings = SensorDataSerializer(many=True, read_only=True)
     energy = serializers.SerializerMethodField()
+    worker = serializers.SerializerMethodField()
 
     class Meta:
         model = MonitoringSession
@@ -35,6 +36,16 @@ class MonitoringSessionSerializer(serializers.ModelSerializer):
 
     def get_energy(self, obj):
         return round(obj.total_wh / 1000, 4)
+    
+    def get_worker(self, obj):
+        if obj.worker:
+            return {
+                "id": obj.worker.mobno,
+                "name": obj.worker.name,
+                "mobno": obj.worker.mobno,
+            }
+        return None
+
 
     def create(self, validated_data):
         device_id = validated_data.pop("device_id", None)

@@ -20,42 +20,68 @@ def delayed_trigger(device_id, delay=5):
 # ================= UPDATE STATUS ================= #
 def update_session_status(session):
     try:
+        session.refresh_from_db()
+
         now = timezone.now()
         old_status = session.status
 
+        # ================= STOP IF FINAL STATUS ================= #
         if old_status in ["COMPLETED", "FAILED", "ABORTED"]:
             return
 
+        # ================= STATUS LOGIC ================= #
         if not session.start_time or not session.end_time:
             new_status = "PENDING"
             duration = None
 
         else:
-            has_data = SensorData.objects.filter(session=session).exists()
+            has_data = SensorData.objects.filter(
+                session=session
+            ).exists()
 
             if now < session.start_time:
                 new_status = "PENDING"
 
-            elif session.start_time <= now <= session.end_time + timezone.timedelta(seconds=10):
+            
+            elif (
+                session.start_time
+                <= now
+                <= session.end_time + timezone.timedelta(seconds=10)
+            ):
                 new_status = "PROCESSING"
 
             else:
+
+                if session.status == "ABORTED":
+                    return
+
                 new_status = "COMPLETED" if has_data else "FAILED"
 
             duration = session.end_time - session.start_time
 
         # ================= LOG ONLY ON CHANGE ================= #
         if SESSION_STATUS_CACHE.get(session.id) != new_status:
-            print(f"🔄 Session {session.id}: {old_status} ➝ {new_status}")
+            print(
+                f"🔄 Session {session.id}: "
+                f"{old_status} ➝ {new_status}"
+            )
+
             SESSION_STATUS_CACHE[session.id] = new_status
 
         # ================= SAVE ================= #
         session.status = new_status
         session.duration = duration
-        session.save(update_fields=["status", "duration"])
+
+        session.save(update_fields=[
+            "status",
+            "duration"
+        ])
 
         # ================= TRIGGER NEXT ================= #
-        if new_status == "COMPLETED" and old_status != new_status:
+        if (
+            new_status == "COMPLETED"
+            and old_status != new_status
+        ):
             threading.Thread(
                 target=delayed_trigger,
                 args=(session.device.device_id,),
@@ -63,7 +89,10 @@ def update_session_status(session):
             ).start()
 
     except Exception as e:
-        print(f"⚠️ update_session_status error {session.id}: {e}")
+        print(
+            f"⚠️ update_session_status error "
+            f"{session.id}: {e}"
+        )
 
 # ================= TRIGGER NEXT ================= #
 def trigger_next_cycle(device_id):
