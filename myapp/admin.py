@@ -11,7 +11,7 @@ class Super(admin.ModelAdmin):
 
 @admin.register(User)
 class User(admin.ModelAdmin):
-    list_display = ['Company_name','Mob','Customer_id','Email','password','address','Pan_no','GST_no','user_category','token']
+    list_display = ['Company_name','country_code','Mob','Customer_id','Email','adharno','certificateno','password','address','Pan_no','GST_no','user_category','token']
 
 @admin.register(Cluster)
 class Cluster(admin.ModelAdmin):
@@ -75,3 +75,16 @@ admin.site.register(Alert_message,Alert_messageAdmin)
 class DeviceCommandState_Admin(admin.ModelAdmin):
     list_display = ['device_id','task_id','timepergm','step','updated_at']
 admin.site.register(DeviceCommandState,DeviceCommandState_Admin)
+
+
+#--------------------------- PhoneVerification -----------------------------------#
+class PhoneVerification_Admin(admin.ModelAdmin):
+    list_display = ['id','phone','is_verified','data']
+admin.site.register(PhoneVerification,PhoneVerification_Admin)
+
+
+#--------------------------- Bank_Details -----------------------------------#
+
+class BankDetailsAdmin(admin.ModelAdmin):
+    list_display = ['id','bankname','accountholder','ifsccode','accno','branchname','user']
+admin.site.register(Bank_Details,BankDetailsAdmin)
