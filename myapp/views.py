@@ -1112,8 +1112,87 @@ class UserClusterPondviews(APIView):
         
         serialiser = UserClusterPondSerializer(user)
         return Response(serialiser.data,status=200)
-        
-            
+
+################################### Device generate Views ###################################
+
+from django.utils import timezone
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from .models import Device, Pond
+
+
+class AutoDeviceGenerateView(APIView):
+
+    DEVICE_PREFIX = {
+        "AutoFeeder": "AF",
+        "CheckTray": "CT",
+        "PowerDevice": "PW"
+    }
+
+    def post(self, request):
+
+        device_type = request.data.get("device_type")
+        pond_id = request.data.get("pond_id")
+
+        # Validate device type
+        if device_type not in self.DEVICE_PREFIX:
+            return Response(
+                {"error": "Invalid device type"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            pond = Pond.objects.get(id=pond_id)
+        except Pond.DoesNotExist:
+            return Response(
+                {"error": "Pond not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Generate prefix
+        type_code = self.DEVICE_PREFIX[device_type]
+        year = str(timezone.now().year)[-2:]
+
+        # Example: BFLAF25
+        base_prefix = f"BFL{type_code}{year}"
+
+        # Get last device for this type
+        last_device = (
+            Device.objects
+            .filter(device_id__startswith=base_prefix)
+            .order_by('-device_id')
+            .first()
+        )
+
+        if last_device:
+            last_number = int(last_device.device_id[-2:])
+            new_number = last_number + 1
+        else:
+            new_number = 1
+
+        # Final Device ID
+        device_id = f"{base_prefix}{new_number:02d}"
+
+        # Create device
+        device = Device.objects.create(
+            device_id=device_id,
+            device_type=device_type,
+            pond_id=pond,
+        )
+
+        return Response(
+            {
+                "message": "Device created successfully",
+                "device_id": device.device_id
+            },
+            status=status.HTTP_201_CREATED
+        )
+
+
+###################################  Views ###################################
+          
        
 
 

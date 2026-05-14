@@ -74,6 +74,7 @@ urlpatterns = [
     path('bankregister/',BankDetailsRegisterView.as_view()),
     path('allcluster/',AllClusterViews.as_view()),
     path('allpondcluster/<Mob>/',UserClusterPondviews.as_view()),
+    path('generate_device/', AutoDeviceGenerateView.as_view()),
     ###################################################################
     path('api/', include('mobile_app.urls')),
     path('admin/', admin.site.urls),

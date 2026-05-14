@@ -4977,3 +4977,371 @@ AssertionError: The field 'ponds' was declared on serializer ClusterPondSerializ
 2026-05-06 12:01:50,954 — Not Found: /favicon.ico
 2026-05-06 12:19:03,296 — Not Found: /allpond/
 2026-05-06 12:21:18,475 — Bad Request: /managerregister/
+2026-05-08 12:11:35,555 — Not Found: /
+2026-05-08 12:11:35,626 — Not Found: /favicon.ico
+2026-05-08 12:16:20,872 — -- BEGIN Twilio API Request --
+2026-05-08 12:16:20,873 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-08 12:16:20,873 — Headers:
+2026-05-08 12:16:20,873 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:16:20,873 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:16:20,873 — Accept-Charset : utf-8
+2026-05-08 12:16:20,873 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:16:20,873 — Accept : application/json
+2026-05-08 12:16:20,873 — -- END Twilio API Request --
+2026-05-08 12:16:22,453 — Response Status Code: 201
+2026-05-08 12:16:22,453 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:46:22 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ569014466aa2d419d5fd0e1d8b22ecb3', 'Twilio-Request-Duration': '0.259', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'QtS8n07z91oN5S7mx_xM-mXFjFbC-nM_avpI6MGWzwxOgQyX_5PbNg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:16:38,091 — -- BEGIN Twilio API Request --
+2026-05-08 12:16:38,091 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-08 12:16:38,091 — Headers:
+2026-05-08 12:16:38,091 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:16:38,092 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:16:38,092 — Accept-Charset : utf-8
+2026-05-08 12:16:38,092 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:16:38,092 — Accept : application/json
+2026-05-08 12:16:38,092 — -- END Twilio API Request --
+2026-05-08 12:16:38,986 — Response Status Code: 200
+2026-05-08 12:16:38,987 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:46:38 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQfe26fb388d9843aa51d5ec33a9b89ea7', 'Twilio-Request-Duration': '0.070', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': '7yfweLIC_hiRzh7p9AQ8s5ubYDlGzuJC-6cbFMmpY0DX1Yy0e6WCgQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:17:43,771 — -- BEGIN Twilio API Request --
+2026-05-08 12:17:43,772 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-08 12:17:43,772 — Headers:
+2026-05-08 12:17:43,772 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:17:43,772 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:17:43,773 — Accept-Charset : utf-8
+2026-05-08 12:17:43,773 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:17:43,773 — Accept : application/json
+2026-05-08 12:17:43,773 — -- END Twilio API Request --
+2026-05-08 12:17:45,030 — Response Status Code: 201
+2026-05-08 12:17:45,030 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:47:44 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ277c9bd670848425a0030b9a337af006', 'Twilio-Request-Duration': '0.467', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'MHAIV_55uYUJGjXPuq-4MT_p9usQV4-feAxnsd0x4okJ2O_OXBQT7A==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:17:58,885 — Not Found: /favicon.ico
+2026-05-08 12:19:11,774 — -- BEGIN Twilio API Request --
+2026-05-08 12:19:11,774 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-08 12:19:11,775 — Headers:
+2026-05-08 12:19:11,775 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:19:11,775 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:19:11,775 — Accept-Charset : utf-8
+2026-05-08 12:19:11,775 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:19:11,775 — Accept : application/json
+2026-05-08 12:19:11,775 — -- END Twilio API Request --
+2026-05-08 12:19:12,763 — Response Status Code: 201
+2026-05-08 12:19:12,763 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '743', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:49:12 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ55acc5895ae4d164fbeeba270e127e7c', 'Twilio-Request-Duration': '0.218', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'x4gBUapdFaXA67Ayh4ui0FSTYq89XXZgDPYGeOX_Nw7R5fnGlZbQVw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:19:29,377 — -- BEGIN Twilio API Request --
+2026-05-08 12:19:29,377 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-08 12:19:29,377 — Headers:
+2026-05-08 12:19:29,377 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:19:29,377 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:19:29,377 — Accept-Charset : utf-8
+2026-05-08 12:19:29,377 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:19:29,377 — Accept : application/json
+2026-05-08 12:19:29,377 — -- END Twilio API Request --
+2026-05-08 12:19:30,181 — Response Status Code: 200
+2026-05-08 12:19:30,182 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:49:30 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ355fd6db55afae2738f8e9adef4710de', 'Twilio-Request-Duration': '0.055', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 70d0dc8fbdbb425873629b3f881a749a.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'HYD57-P7', 'X-Amz-Cf-Id': 'MYT9H7nuXk4DFyjkeo-tv4cHO68wDr2DyhTC0YJEDkqBwdTG08ssUQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:26:41,422 — -- BEGIN Twilio API Request --
+2026-05-08 12:26:41,422 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-08 12:26:41,422 — Headers:
+2026-05-08 12:26:41,423 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:26:41,423 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:26:41,423 — Accept-Charset : utf-8
+2026-05-08 12:26:41,423 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:26:41,423 — Accept : application/json
+2026-05-08 12:26:41,423 — -- END Twilio API Request --
+2026-05-08 12:26:43,445 — Response Status Code: 201
+2026-05-08 12:26:43,447 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:56:42 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQc111e11c59de49c1fd5755a6f14010c7', 'Twilio-Request-Duration': '0.238', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 b2449cb00a927a35244993c45d8637d4.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P5', 'X-Amz-Cf-Id': '5-IKP5ULmQ_bpywULJs7y4-pGnkZ-f2ENFlbdQLIPGlSLBcsC1kylg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:26:58,677 — -- BEGIN Twilio API Request --
+2026-05-08 12:26:58,677 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-08 12:26:58,677 — Headers:
+2026-05-08 12:26:58,677 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:26:58,678 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:26:58,678 — Accept-Charset : utf-8
+2026-05-08 12:26:58,678 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:26:58,678 — Accept : application/json
+2026-05-08 12:26:58,678 — -- END Twilio API Request --
+2026-05-08 12:26:59,774 — Response Status Code: 200
+2026-05-08 12:26:59,775 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:56:59 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ51cd3a87e78d2d4c26288861692b3b0b', 'Twilio-Request-Duration': '0.070', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 b2449cb00a927a35244993c45d8637d4.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P5', 'X-Amz-Cf-Id': 'FeBYIZiGaQYLFMhuZxp7R2eMsuisPyuQ3i7PPhWhpaCugTFNzWSRzQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-08 12:26:59,776 — Bad Request: /verifyotp/
+2026-05-08 12:27:09,330 — -- BEGIN Twilio API Request --
+2026-05-08 12:27:09,331 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-08 12:27:09,332 — Headers:
+2026-05-08 12:27:09,332 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-08 12:27:09,332 — X-Twilio-Client : python-9.1.1
+2026-05-08 12:27:09,332 — Accept-Charset : utf-8
+2026-05-08 12:27:09,332 — Content-Type : application/x-www-form-urlencoded
+2026-05-08 12:27:09,332 — Accept : application/json
+2026-05-08 12:27:09,332 — -- END Twilio API Request --
+2026-05-08 12:27:10,240 — Response Status Code: 200
+2026-05-08 12:27:10,241 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Fri, 08 May 2026 06:57:10 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ105a26c6b2209c0b542e3fa896e216a8', 'Twilio-Request-Duration': '0.072', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 b2449cb00a927a35244993c45d8637d4.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P5', 'X-Amz-Cf-Id': 'CgEqJq1hvhOZ2CFeJyqW4XFLe0pb3pEclNU9f8ka4pl3oTnJSCuPIw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 09:46:28,893 — Not Found: /
+2026-05-13 09:46:28,970 — Not Found: /favicon.ico
+2026-05-13 09:47:20,976 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 09:49:36,596 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 09:49:39,802 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 09:53:38,885 — Bad Request: /sendotp/
+2026-05-13 09:54:38,102 — Bad Request: /sendotp/
+2026-05-13 10:12:42,736 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 10:13:12,298 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 10:13:18,277 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 10:17:07,139 — /home/abhisek/Updated_Master_Dashboard/water/urls.py changed, reloading.
+2026-05-13 10:17:17,323 — /home/abhisek/Updated_Master_Dashboard/water/urls.py changed, reloading.
+2026-05-13 10:18:00,463 — Bad Request: /generate_device/
+2026-05-13 10:19:34,124 — Internal Server Error: /generate_device/
+Traceback (most recent call last):
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "maxCycles" of relation "myapp_device" violates not-null constraint
+DETAIL:  Failing row contains (BFLAF2601, null, 2026-05-13 10:19:34.079595+05:30, AutoFeeder, 8).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/myapp/views.py", line 1179, in post
+    device = Device.objects.create(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "maxCycles" of relation "myapp_device" violates not-null constraint
+DETAIL:  Failing row contains (BFLAF2601, null, 2026-05-13 10:19:34.079595+05:30, AutoFeeder, 8).
+
+2026-05-13 10:20:07,884 — /home/abhisek/Updated_Master_Dashboard/myapp/models.py changed, reloading.
+2026-05-13 10:20:16,944 — /home/abhisek/Updated_Master_Dashboard/myapp/models.py changed, reloading.
+2026-05-13 10:20:25,599 — Internal Server Error: /generate_device/
+Traceback (most recent call last):
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "maxCycles" of relation "myapp_device" violates not-null constraint
+DETAIL:  Failing row contains (BFLAF2601, null, 2026-05-13 10:20:25.550662+05:30, AutoFeeder, 8).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/myapp/views.py", line 1179, in post
+    device = Device.objects.create(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 822, in save
+    self.save_base(
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 1071, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/base.py", line 1112, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/abhisek/Updated_Master_Dashboard/env/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "maxCycles" of relation "myapp_device" violates not-null constraint
+DETAIL:  Failing row contains (BFLAF2601, null, 2026-05-13 10:20:25.550662+05:30, AutoFeeder, 8).
+
+2026-05-13 10:25:57,869 — Bad Request: /sendotp/
+2026-05-13 10:27:28,808 — Bad Request: /sendotp/
+2026-05-13 10:27:54,407 — Bad Request: /sendotp/
+2026-05-13 10:28:40,109 — Not Found: /send_otp/
+2026-05-13 10:29:25,078 — -- BEGIN Twilio API Request --
+2026-05-13 10:29:25,078 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-13 10:29:25,078 — Headers:
+2026-05-13 10:29:25,078 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:29:25,078 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:29:25,078 — Accept-Charset : utf-8
+2026-05-13 10:29:25,078 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:29:25,078 — Accept : application/json
+2026-05-13 10:29:25,078 — -- END Twilio API Request --
+2026-05-13 10:29:26,485 — Response Status Code: 201
+2026-05-13 10:29:26,485 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 04:59:26 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQbf32e29af6f4d1ca3fa6ffa83b5ff873', 'Twilio-Request-Duration': '0.262', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'YtflCY4_lE1EDHObS4TM-6tO69Aj0XR0ZsQZxtt7P9AJAkUCicvSsA==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:30:14,148 — -- BEGIN Twilio API Request --
+2026-05-13 10:30:14,148 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-13 10:30:14,149 — Headers:
+2026-05-13 10:30:14,149 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:30:14,149 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:30:14,149 — Accept-Charset : utf-8
+2026-05-13 10:30:14,149 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:30:14,149 — Accept : application/json
+2026-05-13 10:30:14,149 — -- END Twilio API Request --
+2026-05-13 10:30:14,570 — Response Status Code: 200
+2026-05-13 10:30:14,570 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:00:14 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ43cb6022a5765c0ec2fa0d8d4a6111f9', 'Twilio-Request-Duration': '0.055', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'T4FPBvpM8w5X-r_x6W9vWDvGt0MM2PkNzKnV1UpSIT0-QEJ3PoRuNw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:30:14,572 — Bad Request: /verifyotp/
+2026-05-13 10:30:26,954 — -- BEGIN Twilio API Request --
+2026-05-13 10:30:26,954 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-13 10:30:26,954 — Headers:
+2026-05-13 10:30:26,954 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:30:26,954 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:30:26,954 — Accept-Charset : utf-8
+2026-05-13 10:30:26,954 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:30:26,954 — Accept : application/json
+2026-05-13 10:30:26,954 — -- END Twilio API Request --
+2026-05-13 10:30:27,846 — Response Status Code: 200
+2026-05-13 10:30:27,846 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:00:27 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQdb7e8eb6bcc05a994f1f84eee174e0fa', 'Twilio-Request-Duration': '0.054', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'T47-SY0H6SdKay5tCjhXGl2wlYC06pInIz9B4W_ApLhVTr6AGByfhA==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:32:26,282 — Bad Request: /sendotp/
+2026-05-13 10:33:19,043 — -- BEGIN Twilio API Request --
+2026-05-13 10:33:19,043 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-13 10:33:19,043 — Headers:
+2026-05-13 10:33:19,044 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:33:19,044 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:33:19,044 — Accept-Charset : utf-8
+2026-05-13 10:33:19,044 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:33:19,044 — Accept : application/json
+2026-05-13 10:33:19,044 — -- END Twilio API Request --
+2026-05-13 10:33:20,066 — Response Status Code: 201
+2026-05-13 10:33:20,067 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:03:19 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ1c55f7d124d2aa8031bf1df2eabb3a8e', 'Twilio-Request-Duration': '0.176', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'Cow6QMb3Jwn0PAJspYtV3QqkTzUgpjknuwsrqIyhIFM7gCXEqxKPLQ==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:33:43,980 — -- BEGIN Twilio API Request --
+2026-05-13 10:33:43,981 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-13 10:33:43,981 — Headers:
+2026-05-13 10:33:43,981 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:33:43,981 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:33:43,981 — Accept-Charset : utf-8
+2026-05-13 10:33:43,981 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:33:43,981 — Accept : application/json
+2026-05-13 10:33:43,981 — -- END Twilio API Request --
+2026-05-13 10:33:44,354 — Response Status Code: 200
+2026-05-13 10:33:44,354 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:03:44 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ6ad41046f7abcac059a58909f44b9836', 'Twilio-Request-Duration': '0.054', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'z1OKVtZ0ijiXMsSFx5K_Yi0EM9tKyskxWZihorlXI5P7PTzP0E3X1A==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:35:38,889 — Method Not Allowed: /api/
+2026-05-13 10:36:03,287 — -- BEGIN Twilio API Request --
+2026-05-13 10:36:03,288 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-13 10:36:03,288 — Headers:
+2026-05-13 10:36:03,288 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:36:03,288 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:36:03,288 — Accept-Charset : utf-8
+2026-05-13 10:36:03,288 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:36:03,288 — Accept : application/json
+2026-05-13 10:36:03,288 — -- END Twilio API Request --
+2026-05-13 10:36:03,938 — Response Status Code: 201
+2026-05-13 10:36:03,939 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:06:03 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ13ece81273f1d0348e50a92895080c3d', 'Twilio-Request-Duration': '0.199', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'hSNvumnyTydMk7n9vUCHaIvwfJtzVwVNqaeANAOHaSMe6-2wE2rrzw==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:36:32,967 — -- BEGIN Twilio API Request --
+2026-05-13 10:36:32,967 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/VerificationCheck
+2026-05-13 10:36:32,967 — Headers:
+2026-05-13 10:36:32,967 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 10:36:32,967 — X-Twilio-Client : python-9.1.1
+2026-05-13 10:36:32,967 — Accept-Charset : utf-8
+2026-05-13 10:36:32,967 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 10:36:32,967 — Accept : application/json
+2026-05-13 10:36:32,967 — -- END Twilio API Request --
+2026-05-13 10:36:33,814 — Response Status Code: 200
+2026-05-13 10:36:33,815 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '340', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:06:33 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQfc24508944c5e3c17a76a265990bb134', 'Twilio-Request-Duration': '0.063', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 d13d2bbfb0a4492ae74849d955b73cb2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'MAA51-P2', 'X-Amz-Cf-Id': 'fpTc1kTIUBehe9Zt-7M0RwjZ8e5TgSxq1Np027X_ECfn-VR-_YkUlg==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 10:37:56,206 — Not Found: /favicon.ico
+2026-05-13 11:02:08,381 — -- BEGIN Twilio API Request --
+2026-05-13 11:02:08,382 — POST Request: https://verify.twilio.com/v2/Services/VAe2cf27df6ff13371138e188b0b14b9bb/Verifications
+2026-05-13 11:02:08,382 — Headers:
+2026-05-13 11:02:08,382 — User-Agent : twilio-python/9.1.1 (Linux x86_64) Python/3.12.3
+2026-05-13 11:02:08,382 — X-Twilio-Client : python-9.1.1
+2026-05-13 11:02:08,382 — Accept-Charset : utf-8
+2026-05-13 11:02:08,382 — Content-Type : application/x-www-form-urlencoded
+2026-05-13 11:02:08,382 — Accept : application/json
+2026-05-13 11:02:08,382 — -- END Twilio API Request --
+2026-05-13 11:02:09,959 — Response Status Code: 201
+2026-05-13 11:02:09,960 — Response Headers: {'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '634', 'Connection': 'keep-alive', 'Date': 'Wed, 13 May 2026 05:32:09 GMT', 'Twilio-Concurrent-Requests': '1', 'Twilio-Request-Id': 'RQ9699b8b2a609b34fe71d65d339ee88a0', 'Twilio-Request-Duration': '0.224', 'X-Home-Region': 'us1', 'X-API-Domain': 'verify.twilio.com', 'Strict-Transport-Security': 'max-age=31536000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 e1a01bb957ee62854c6245d9a2dcf2a2.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'CCU50-P5', 'X-Amz-Cf-Id': '1ypXqLCAUzm1vIACymuyHVrwkEIDd8ugBurM0ePpigDC258DgMt89Q==', 'X-Powered-By': 'AT-5000', 'X-Shenanigans': 'none', 'Vary': 'Origin'}
+2026-05-13 11:45:37,775 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 11:45:46,115 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 11:45:52,752 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 11:46:11,911 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.
+2026-05-13 11:46:19,886 — /home/abhisek/Updated_Master_Dashboard/myapp/views.py changed, reloading.

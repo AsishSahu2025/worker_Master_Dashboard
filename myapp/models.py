@@ -118,7 +118,7 @@ class Pond(models.Model):
 #********************************************** DEVICE MODEL ****************************************************#
 class Device(models.Model):
     device_id = models.CharField(max_length=255, primary_key=True)  
-    maxCycles=models.IntegerField()
+    maxCycles=models.IntegerField(null =True ,blank = True)
     created_at = models.DateTimeField(auto_now_add=True)
     device_type = models.CharField(max_length=100)
     pond_id = models.ForeignKey(Pond, on_delete=models.CASCADE,related_name='device')
