@@ -13,13 +13,13 @@ def start_scheduled_cycles():
     today = now.date()
     trigger_time = (now + timedelta(minutes=1)).time()
 
-    # 🔥 SAME QUERY + DISTINCT batch_id
+    # SAME QUERY + DISTINCT batch_id
     devices = Task.objects.filter(
         schedule_date=today,
         status="scheduled",
         cycles=1,
         from_time__lte=trigger_time
-    ).distinct("batch_id")   # ✅ ONLY CHANGE
+    ).distinct("batch_id")   # ONLY CHANGE
 
     for device in devices:
         # Prevent duplicate triggering (UNCHANGED)
