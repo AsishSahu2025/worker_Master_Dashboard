@@ -103,7 +103,6 @@ class MonitoringSession(models.Model):
             if has_data:
                 self.status = "COMPLETED"
             else:
-                # 🔥 small delay before marking FAILED
                 if now > self.end_time + timedelta(seconds=20):
                     self.status = "FAILED"
 

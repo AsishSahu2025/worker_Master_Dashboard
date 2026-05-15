@@ -312,7 +312,6 @@ class MonitoringSessionViewSet(ModelViewSet):
         # =====================================================
         MIN_GAP_SECONDS = 100
 
-        # STORE PREVIOUS END TIME
         last_end_time = None
 
         # =====================================================
@@ -449,7 +448,6 @@ class MonitoringSessionViewSet(ModelViewSet):
                             }
                         )
 
-                # STORE CURRENT END TIME
                 last_end_time = end_time
 
                 # =====================================================
@@ -553,7 +551,7 @@ class AbortSessionView(APIView):
             )
         except Exception as e:
             print("MQTT Abort Error:", e)
-
+                            
         # ================= TELEGRAM ALERT ================= #
         try:
             worker_name = session.worker.name if session.worker else "—"

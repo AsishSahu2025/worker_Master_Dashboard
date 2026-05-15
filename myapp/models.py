@@ -106,6 +106,7 @@ class Pond(models.Model):
     name = models.CharField(max_length=150)
     latlong = models.CharField(max_length=150)
     location = models.GeometryField(null=True, blank=True)
+    timezone = models.CharField(max_length=100,default="Asia/Kolkata")
     area = models.CharField(max_length=150, blank=True,null=True)
     address = models.CharField(max_length=150)
     telegram_group_id = models.CharField(max_length=100, null=True,blank=True)
@@ -169,7 +170,11 @@ class FailedLoginAttempt(models.Model):
     def __str__(self):
         return f"Failed login attempt for {self.registration.Name} at {self.timestamp}"
 
+<<<<<<< Updated upstream
 #********************************************* Task_Category  MODEL **********************************************#
+=======
+#********************************************* Task_Category MODEL ***************************************************#
+>>>>>>> Stashed changes
 class Task_Category(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
@@ -188,7 +193,6 @@ class Worker_details(models.Model):
     
 class Task(models.Model):
     taskcatagory = models.ForeignKey(Task_Category, on_delete=models.CASCADE)
-    #------------------------------------------------------------------------
     device = models.ForeignKey(Device,on_delete=models.CASCADE)
     worker_name = models.CharField(max_length=50,null=True,blank=True)
     cycles = models.IntegerField()
@@ -220,11 +224,11 @@ class Task(models.Model):
     is_published = models.BooleanField(default=False)
     extra_feed = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     batch_id = models.UUIDField(null=True, blank=True, db_index=True)
-    #------------------------------------------------------------------------
     spray_type = models.CharField(max_length=50, blank=True, null=True)
     image=models.ImageField(upload_to='image/',null=True,blank=True)
     depth=models.CharField(max_length=100,null=True,blank=True)
     quantity = models.CharField(max_length=100, null=True,blank=True)
+
     def __str__(self):
         return f"Task-{self.id} | Device-{self.device_id}"
 
@@ -278,6 +282,7 @@ class CycleStatus(models.Model):
     starttime=models.DateTimeField(auto_now=True)
     cycles=models.CharField(max_length=2)
     def __str__(self):
+
         return 'id'
 ################################# Alert Message #######################################
 class Alert_message(models.Model):
@@ -294,6 +299,7 @@ class DeviceCommandState(models.Model):
     timepergm=models.DecimalField(max_digits=10,decimal_places=5,default=0.00125)
     step = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return f"{self.step}"
 

@@ -108,7 +108,6 @@ def trigger_next_cycle(device_id):
             print("✅ No more cycles")
             return
 
-        # ❌ DO NOT SEND MQTT HERE
         print(f"⏳ Next session {next_session.id} will be triggered by watcher at correct time")
 
     except Exception as e:

@@ -19,7 +19,7 @@ class Cluster(admin.ModelAdmin):
 
 @admin.register(Pond)
 class Pond(admin.GISModelAdmin):
-    list_display = ['id','name','latlong','location','area','address','device_quantity','registration','telegram_group_id']
+    list_display = ['id','name','latlong','location', 'timezone', 'area','address','device_quantity','registration','telegram_group_id']
 
 @admin.register(Draw)
 class Draw(admin.ModelAdmin):

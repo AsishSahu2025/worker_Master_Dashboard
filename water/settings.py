@@ -200,7 +200,7 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = False
 
-###########################common login database ##########################
+########################### common login database ##########################
 COMMONLOGIN_DB_NAME = 'commonlogin'
 COMMONLOGIN_DB_USER = "Vertoxlabs1987Bfl"
 COMMONLOGIN_DB_PASS = "Vtx@1987#2026#Bfl@"
