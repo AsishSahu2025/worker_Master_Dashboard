@@ -170,11 +170,8 @@ class FailedLoginAttempt(models.Model):
     def __str__(self):
         return f"Failed login attempt for {self.registration.Name} at {self.timestamp}"
 
-<<<<<<< Updated upstream
-#********************************************* Task_Category  MODEL **********************************************#
-=======
-#********************************************* Task_Category MODEL ***************************************************#
->>>>>>> Stashed changes
+
+#********************************************* Task_Category MODEL ***************************************************#s
 class Task_Category(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):

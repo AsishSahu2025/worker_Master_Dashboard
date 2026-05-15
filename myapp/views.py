@@ -12,7 +12,7 @@ from rest_framework import status
 from checktray.models import *
 from datetime import datetime
 from django.utils import timezone
-
+from myapp.timezone_utils import get_timezone_from_latlng
 
 @csrf_exempt
 def cluster_get(request,Mob):
@@ -1098,37 +1098,32 @@ class ClusterRegisterView(APIView):
 ################################## Pond Registration ##################################
        
 class PondRegisterView(APIView):
-
     def post(self, request):
-
         ponds = request.data
         pond_objs = []
-
         try:
             for pond in ponds:
-
+                latitude = pond.get("latitude")
+                longitude = pond.get("longitude")
+                timezone_name = get_timezone_from_latlng(
+                    latitude,
+                    longitude
+                )
                 pond_objs.append(
                     Pond(
                         name=pond.get("pondid"),
-
-                        latlong=f"{pond.get('latitude')},{pond.get('longitude')}",
-
+                        latlong=f"{latitude},{longitude}",
                         location=pond.get("location"),
-
                         registration_id=pond.get("registration"),
-
-                        address=pond.get("address", "")
+                        address=pond.get("address", ""),
+                        timezone=timezone_name
                     )
                 )
-
             Pond.objects.bulk_create(pond_objs)
-
             return Response({
                 "msg": "All ponds registered"
             })
-
         except Exception as e:
-
             return Response({
                 "error": str(e)
             }, status=400)
